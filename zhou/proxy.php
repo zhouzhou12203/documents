@@ -9,13 +9,14 @@ $entries = json_decode(file_get_contents($dataFile), true) ?? [];
 $filteredEntries = array_map(function ($entry) {
     if ($entry['hidden']) {
         $entry['text'] = ''; //  隐藏 text 字段
+        $entry['time'] = '2025-01-01 00:00:00';
     }
 
     // 移除不需要的字段
     
     //移除pinned和hidden会导致置顶和隐藏功能出现问题
     //unset($entry['time']);
-    unset($entry['id']);
+    //unset($entry['id']);
     unset($entry['ipv4']);
     unset($entry['ipv6']);
 
