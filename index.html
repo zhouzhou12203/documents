@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cloudflare 图床滚动展示 (优化版)</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .image-wrapper img.fade-in {
+    opacity: 1;
+  }
+
+  .scrolling-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .scrolling-container.scrolling {
+    animation: scrollVertical var(--scroll-duration) linear infinite;
+    transition: animation-duration 0.5s ease-in-out;
+  }
+
+  :root {
+    --scroll-duration: 290s; /* 降低滚动速度 */
+  }
+
+  @keyframes scrollVertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="scrolling-container" id="scrollingContainer">
+  <div class="image-grid" id="imageGrid">
+    <!-- Images will be dynamically added here -->
+  </div>
+</div>
+
+<script>
+  const imageGrid = document.getElementById('imageGrid');
+  const scrollingContainer = document.getElementById('scrollingContainer');
+  const root = document.documentElement;
+  const imageBaseUrl = 'https://image.zhou12203.top/random?type=img';
+  const imageWidth = 200;
+  const imageHeight = 200;
+  let imagesPerRow = 0;
+  let allImagesLoaded = false;
+  let initialImageCount = 0;
+  let cloned = false;
+
+  let addImageInterval = 2000; // 初始添加图片的频率 (稍微增加)
+  const minImagesThreshold = 7; // 最少保持的图片数量 (略微增加)
+  const maxImagesThreshold = 12; // 最多保持的图片数量
+  let addImageTimer;
+
+  const scrollDuration = 290; // 初始滚动时间 (秒) (大幅增加)
+
+  function calculateImagesPerRow() {
+    const screenWidth = window.innerWidth;
+    imagesPerRow = Math.floor(screenWidth / (imageWidth + 10));
+    return imagesPerRow;
+  }
+
+  async function addImage() {
+    try {
+      const imageWrapper = document.createElement('div');
+      imageWrapper.classList.add('image-wrapper');
+
+      const img = document.createElement('img');
+      img.src = `${imageBaseUrl}&t=${Date.now()}`;
+
+      const startTime = performance.now();
+
+      img.onload = () => {
+        img.classList.add('fade-in');
+        imageWrapper.appendChild(img);
+        imageGrid.appendChild(imageWrapper);
+        checkIfAllImagesLoaded();
+        adjustAddImageFrequency();
+        const endTime = performance.now();
+        const loadTime = endTime - startTime;
+        console.log(`图片加载时间：${loadTime.toFixed(2)}ms, URL: ${img.src}`);
+      };
+
+      img.onerror = () => {
+        console.error(`图片加载失败: ${img.src}`);
+        imageWrapper.remove();
+        checkIfAllImagesLoaded();
+        adjustAddImageFrequency();
+      };
+
+      return img;
+
+    } catch (error) {
+      console.error("Failed to load image:", error);
+      checkIfAllImagesLoaded();
+      adjustAddImageFrequency();
+      return null;
+    }
+  }
+
+  function checkIfAllImagesLoaded() {
+    if (!allImagesLoaded && imageGrid.children.length >= initialImageCount) {
+      let loadedCount = 0;
+      for (let i = 0; i < imageGrid.children.length; i++) {
+        const img = imageGrid.children[i].querySelector('img');
+        if (img && img.complete) {
+          loadedCount++;
+        }
+      }
+
+      if (loadedCount >= initialImageCount) {
+        allImagesLoaded = true;
+        cloneImages();
+      }
+    }
+  }
+
+  function cloneImages() {
+    const originalImages = Array.from(imageGrid.children);
+
+    // 克隆三份图片，确保高度足够 (进一步增加)
+    for (let i = 0; i < 3; i++) {
+      originalImages.forEach(image => {
+        const clonedImage = image.cloneNode(true);
+        imageGrid.appendChild(clonedImage);
+      });
+    }
+
+    cloned = true;
+    scrollingContainer.classList.add('scrolling');
+    startAddingImages();
+  }
+
+  function startAddingImages() {
+    addImageTimer = setInterval(() => {
+      addImage();
+      // 立即检查图片数量并补充 (更积极的补充策略)
+      adjustAddImageFrequency();
+    }, addImageInterval);
+  }
+
+  function stopAddingImages() {
+    clearInterval(addImageTimer);
+  }
+
+  function adjustAddImageFrequency() {
+    const visibleImagesCount = imageGrid.children.length;
+
+    if (visibleImagesCount < minImagesThreshold) {
+      stopAddingImages();
+      addImageInterval = Math.max(500, addImageInterval - 300); // 减少最小值
+      startAddingImages();
+      console.log("加快添加频率, interval:", addImageInterval);
+    } else if (visibleImagesCount > maxImagesThreshold) {
+      stopAddingImages();
+      addImageInterval = Math.min(3000, addImageInterval + 300); // 增加最大值
+      startAddingImages();
+      console.log("减慢添加频率, interval:", addImageInterval);
+    }
+  }
+
+  function initializeGrid() {
+    calculateImagesPerRow();
+
+    initialImageCount = imagesPerRow * 20; // 增加预加载数量
+
+    for (let i = 0; i < initialImageCount; i++) {
+      addImage();
+    }
+  }
+
+  window.onload = initializeGrid;
+
+  window.addEventListener('resize', () => {
+    calculateImagesPerRow();
+  });
+
+</script>
+
+</body>
+</html>
