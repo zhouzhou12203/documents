@@ -1,9 +1,0 @@
-# 忽略所有 .vscode 文件夹
-**/.vscode/
-
-# 如果根目录下也有 .vscode 文件夹
-.vscode/
-
-
-**/.DS_Store
-.DS_Store
