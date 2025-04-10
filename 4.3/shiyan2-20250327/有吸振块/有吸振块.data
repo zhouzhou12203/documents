@@ -1,0 +1,21 @@
+<Root>
+  <Event>
+    <SampleEvent EventType="1" Manual="False" Start="True" DateTime1="-8584585507434775808" ShowTime="2025/3/27 14:15:42" SampleFreq="512" EventPos="0" strEvent="" InstantIndex="0" SupperAdd="False" SupperAddPos="0" SupperAddTime="0" SurveyIndex="0" />
+    <SampleEvent EventType="1" Manual="False" Start="False" DateTime1="-8584585507434775808" ShowTime="2025/3/27 14:15:42" SampleFreq="512" EventPos="10006" strEvent="" InstantIndex="0" SupperAdd="False" SupperAddPos="0" SupperAddTime="0" SurveyIndex="0" />
+  </Event>
+  <DataCollect>
+    <TotalCount>10007</TotalCount>
+    <SampleFreq>512</SampleFreq>
+    <ContinueSample>True</ContinueSample>
+    <RebackID>0</RebackID>
+    <KeepSample>False</KeepSample>
+    <LastDataCount>0</LastDataCount>
+    <LastFreq>512</LastFreq>
+    <IgnoreNoDataRange>False</IgnoreNoDataRange>
+    <NoDataRange />
+    <SampleTime>
+      <item InstantIndex="0" time="-8584585507434775808" />
+    </SampleTime>
+    <KeepSampleInfo />
+  </DataCollect>
+</Root>

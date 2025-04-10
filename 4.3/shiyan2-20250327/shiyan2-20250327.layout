@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<ProjectLayOut>
+  <DataPreView>
+    <RunSerialNumber>91124fba-751b-4e1d-9831-ba4cb5eb01d2</RunSerialNumber>
+    <SignalType>1</SignalType>
+    <SignalSerialNumber>8c0fc2bb-71ee-444d-8fb0-008b15838506</SignalSerialNumber>
+    <InstantIndex>0</InstantIndex>
+    <BeginTime>0</BeginTime>
+    <EndTime>46.0390625</EndTime>
+    <YellowLine>46.037109375</YellowLine>
+    <SaveDataIndex>0</SaveDataIndex>
+  </DataPreView>
+  <ChatManage>
+    <ViewForm LayoutType="recorder" Height="892" Width="1432">
+      <Panel ViewControlID="68A2CEEA-53C9-41AF-A4D7-B661A92C8424" Left="0" Top="446" Width="1432" Height="446" ProjectChat="False" ProjectChatSerialNumber="" MultiScreen="False">
+        <Chat>
+          <MiddleData>
+            <XYPairType>0</XYPairType>
+            <Vertical>1</Vertical>
+            <LineDetach>False</LineDetach>
+            <SameYCoord>True</SameYCoord>
+            <SameXCoord>True</SameXCoord>
+            <TotalLine>1</TotalLine>
+            <NormValue>1</NormValue>
+            <DbRefMeterage>自定义</DbRefMeterage>
+            <AutoScaleCoief>0.0078125</AutoScaleCoief>
+            <TrigZero>False</TrigZero>
+            <Legend>False</Legend>
+            <RunName>False</RunName>
+            <ShowDetail>False</ShowDetail>
+            <ShowUnit>True</ShowUnit>
+            <ShowZeroScale>False</ShowZeroScale>
+            <XYALLDATA>False</XYALLDATA>
+            <DrawPoints>False</DrawPoints>
+            <DrawOnlyPoints>False</DrawOnlyPoints>
+            <ContinueDraw>False</ContinueDraw>
+            <DrawRefSpec>False</DrawRefSpec>
+            <DrawThreshold>False</DrawThreshold>
+            <ShowCyc>True</ShowCyc>
+            <RefSpecInfo>
+            </RefSpecInfo>
+            <Threshold>
+            </Threshold>
+            <DrawRefLine>False</DrawRefLine>
+          </MiddleData>
+          <LineController>
+            <ActiveLine>True</ActiveLine>
+            <YSignalType>1</YSignalType>
+            <XSignalType>0</XSignalType>
+            <XSignalDataType>0</XSignalDataType>
+            <YSignalDataType>0</YSignalDataType>
+            <XCalType>1</XCalType>
+            <YCalType>0</YCalType>
+            <AxisXEditType>1</AxisXEditType>
+            <XType>0</XType>
+            <YType>0</YType>
+            <WinType>0</WinType>
+            <StartSaoAmp>0</StartSaoAmp>
+            <EndSaoAmp>0</EndSaoAmp>
+            <OctaveType>-1</OctaveType>
+            <WeightType>0</WeightType>
+            <SpectrumType>0</SpectrumType>
+            <Grid>True</Grid>
+            <ShowEventMark>True</ShowEventMark>
+            <PeakList>False</PeakList>
+            <FzList>False</FzList>
+            <Stat>True</Stat>
+            <Gezhi>0.1</Gezhi>
+            <StatItem>False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False</StatItem>
+            <HarmonicCount>10</HarmonicCount>
+            <PeakCount>10</PeakCount>
+            <Fz>0</Fz>
+            <DigitsX>3</DigitsX>
+            <DigitsY>3</DigitsY>
+            <XYDrawType>0</XYDrawType>
+            <XYStatType>-1</XYStatType>
+            <XYStatSpace>0.1</XYStatSpace>
+            <SideFreqCursorCount>10</SideFreqCursorCount>
+            <RefreshUnit>
+            </RefreshUnit>
+            <RefreshSpan>0</RefreshSpan>
+            <SHOWXZOOMEDIT>True</SHOWXZOOMEDIT>
+            <AverageType>0</AverageType>
+            <MachineOrderUp>8</MachineOrderUp>
+            <MachineCyclesNormal>128</MachineCyclesNormal>
+            <MachineLowSpeed>0</MachineLowSpeed>
+            <MachineHighSpeed>10000</MachineHighSpeed>
+            <MachineShowSpeed>False</MachineShowSpeed>
+            <MachineFreqWidth>1000</MachineFreqWidth>
+            <MachineValueType>0</MachineValueType>
+            <MachineShowOrderIndex>1</MachineShowOrderIndex>
+            <MachineDirect>0</MachineDirect>
+            <CursorType>1</CursorType>
+            <CursorValue>
+              <ActiveCursor>True</ActiveCursor>
+              <CursorDataPosX>103</CursorDataPosX>
+              <CursorXCoordValue>0.201171875</CursorXCoordValue>
+              <CursorYCoordValue>-0.023729894310236</CursorYCoordValue>
+            </CursorValue>
+            <YScaleType>1</YScaleType>
+            <XScaleType>1</XScaleType>
+            <CoordMaxY>1</CoordMaxY>
+            <CoordMinY>-1.1</CoordMinY>
+            <CoordMaxX>46.0390625</CoordMaxX>
+            <CoordMinX>0</CoordMinX>
+            <ZoomY>1</ZoomY>
+            <ZoomX>1</ZoomX>
+            <AxisDataCondition AxisType="X">
+              <RunName>
+              </RunName>
+              <RunSerialNumber>
+              </RunSerialNumber>
+              <SourceSignalType>0</SourceSignalType>
+              <SourceSignalSerialNumber>
+              </SourceSignalSerialNumber>
+              <SignalType>0</SignalType>
+              <SerialNumber>
+              </SerialNumber>
+              <SignalName>
+              </SignalName>
+              <SignalDetail>
+              </SignalDetail>
+              <Color>0</Color>
+              <SampleFreq>0</SampleFreq>
+              <XUnit>
+              </XUnit>
+              <Unit>
+              </Unit>
+              <ContinueSample>False</ContinueSample>
+              <MaxCoordValue>0</MaxCoordValue>
+              <MinCoordValue>0</MinCoordValue>
+              <AnalysisBlockSize>0</AnalysisBlockSize>
+              <SampleTime>0</SampleTime>
+              <ResampleDelta>1</ResampleDelta>
+              <SampleRate>1</SampleRate>
+              <MeasureType>0</MeasureType>
+              <ClockMode>0</ClockMode>
+              <SampleEvent />
+              <SampleNoDataInfo />
+              <SuperAddInfo />
+              <BufferRead>False</BufferRead>
+              <SerialDataCount>1048576</SerialDataCount>
+              <StatDataCount>4000</StatDataCount>
+              <NotMarks />
+            </AxisDataCondition>
+            <AxisDataCondition AxisType="Y">
+              <RunName>
+              </RunName>
+              <RunSerialNumber>91124fba-751b-4e1d-9831-ba4cb5eb01d2</RunSerialNumber>
+              <SourceSignalType>0</SourceSignalType>
+              <SourceSignalSerialNumber>
+              </SourceSignalSerialNumber>
+              <SignalType>1</SignalType>
+              <SerialNumber>8c0fc2bb-71ee-444d-8fb0-008b15838506</SerialNumber>
+              <SignalName>AI2-01</SignalName>
+              <SignalDetail>
+              </SignalDetail>
+              <Color>-47872</Color>
+              <SampleFreq>512</SampleFreq>
+              <XUnit>s</XUnit>
+              <Unit>g</Unit>
+              <ContinueSample>True</ContinueSample>
+              <MaxCoordValue>9.99200630187988</MaxCoordValue>
+              <MinCoordValue>-9.99200630187988</MinCoordValue>
+              <AnalysisBlockSize>1024</AnalysisBlockSize>
+              <SampleTime>-8584585502194775808</SampleTime>
+              <ResampleDelta>1</ResampleDelta>
+              <SampleRate>1</SampleRate>
+              <MeasureType>0</MeasureType>
+              <ClockMode>0</ClockMode>
+              <SampleEvent EventType="1" Manual="False" Start="False" DateTime1="-8584585502194775808" ShowTime="2025/3/27 14:24:26" SampleFreq="512" EventPos="23572" strEvent="" InstantIndex="0" SupperAdd="False" SupperAddPos="0" SupperAddTime="0" SurveyIndex="0" />
+              <SampleNoDataInfo />
+              <SuperAddInfo />
+              <BufferRead>False</BufferRead>
+              <SerialDataCount>1048576</SerialDataCount>
+              <StatDataCount>4000</StatDataCount>
+              <NotMarks />
+            </AxisDataCondition>
+            <NowBlockIndex>0</NowBlockIndex>
+            <AnalysisFFTSize>1024</AnalysisFFTSize>
+            <OneBlockMaxSize>5120</OneBlockMaxSize>
+            <NowBlockStartData>0</NowBlockStartData>
+            <ScreenStart>0</ScreenStart>
+            <SampleTime>-8584585502194775808</SampleTime>
+            <NowDataCount>23573</NowDataCount>
+            <NowDataTime>46.0390625</NowDataTime>
+            <OffsetSize>0</OffsetSize>
+            <YellowLinePos>46.037109375</YellowLinePos>
+            <Positive>False</Positive>
+            <LineIndex>0</LineIndex>
+            <AngleZX>45</AngleZX>
+            <ClrChatTitle>-16777216</ClrChatTitle>
+            <CoordXColor>-939524096</CoordXColor>
+            <CoordYColor>-939524096</CoordYColor>
+            <ViewBackColor>-1</ViewBackColor>
+            <GridColor>-5526613</GridColor>
+            <AxisColor>-8947849</AxisColor>
+            <ScaleColor>-939524096</ScaleColor>
+            <Cursor1Color>-16777216</Cursor1Color>
+            <Cursor2Color>-16777216</Cursor2Color>
+            <InfoBackColor>-2147483648</InfoBackColor>
+            <CursorValueWindowTitleColor>-8355712</CursorValueWindowTitleColor>
+            <InfoTextColor>-2147483648</InfoTextColor>
+            <NoteColor>-16777216</NoteColor>
+            <LineColor>-47872</LineColor>
+            <YellowLineColor>-256</YellowLineColor>
+            <RefSpecColor>-256</RefSpecColor>
+            <LineWidth>0</LineWidth>
+            <GridWidth>1</GridWidth>
+            <AxisWidth>1</AxisWidth>
+            <ScaleWidth>1</ScaleWidth>
+            <CursorWidth>0</CursorWidth>
+            <CursorStyle>0</CursorStyle>
+            <CoordXFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CoordYFont Name="微软雅黑" Size="8" Style="Regular" />
+            <UnitXFont Name="微软雅黑" Size="8" Style="Regular" />
+            <UnitYFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorFont Name="微软雅黑" Size="8" Style="Regular" />
+            <StatFont Name="微软雅黑" Size="8" Style="Regular" />
+            <MarkFont Name="微软雅黑" Size="8" Style="Regular" />
+            <NoteFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorNumFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorDirFont Name="微软雅黑" Size="8" Style="Regular" />
+          </LineController>
+        </Chat>
+      </Panel>
+      <Panel ViewControlID="85C950BE-936A-436B-A267-351613C422ED" Left="0" Top="0" Width="1432" Height="446" ProjectChat="False" ProjectChatSerialNumber="" MultiScreen="False">
+        <Chat>
+          <MiddleData>
+            <XYPairType>0</XYPairType>
+            <Vertical>1</Vertical>
+            <LineDetach>False</LineDetach>
+            <SameYCoord>True</SameYCoord>
+            <SameXCoord>True</SameXCoord>
+            <TotalLine>1</TotalLine>
+            <NormValue>1</NormValue>
+            <DbRefMeterage>自定义</DbRefMeterage>
+            <AutoScaleCoief>0.0078125</AutoScaleCoief>
+            <TrigZero>False</TrigZero>
+            <Legend>False</Legend>
+            <RunName>False</RunName>
+            <ShowDetail>False</ShowDetail>
+            <ShowUnit>True</ShowUnit>
+            <ShowZeroScale>False</ShowZeroScale>
+            <XYALLDATA>False</XYALLDATA>
+            <DrawPoints>False</DrawPoints>
+            <DrawOnlyPoints>False</DrawOnlyPoints>
+            <ContinueDraw>False</ContinueDraw>
+            <DrawRefSpec>False</DrawRefSpec>
+            <DrawThreshold>False</DrawThreshold>
+            <ShowCyc>True</ShowCyc>
+            <RefSpecInfo>
+            </RefSpecInfo>
+            <Threshold>
+            </Threshold>
+            <DrawRefLine>False</DrawRefLine>
+          </MiddleData>
+          <LineController>
+            <ActiveLine>True</ActiveLine>
+            <YSignalType>26</YSignalType>
+            <XSignalType>0</XSignalType>
+            <XSignalDataType>0</XSignalDataType>
+            <YSignalDataType>1</YSignalDataType>
+            <XCalType>0</XCalType>
+            <YCalType>0</YCalType>
+            <AxisXEditType>1</AxisXEditType>
+            <XType>0</XType>
+            <YType>0</YType>
+            <WinType>0</WinType>
+            <StartSaoAmp>0</StartSaoAmp>
+            <EndSaoAmp>0</EndSaoAmp>
+            <OctaveType>-1</OctaveType>
+            <WeightType>0</WeightType>
+            <SpectrumType>0</SpectrumType>
+            <Grid>True</Grid>
+            <ShowEventMark>True</ShowEventMark>
+            <PeakList>False</PeakList>
+            <FzList>False</FzList>
+            <Stat>True</Stat>
+            <Gezhi>0.1</Gezhi>
+            <StatItem>False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False</StatItem>
+            <HarmonicCount>10</HarmonicCount>
+            <PeakCount>10</PeakCount>
+            <Fz>0</Fz>
+            <DigitsX>3</DigitsX>
+            <DigitsY>3</DigitsY>
+            <XYDrawType>0</XYDrawType>
+            <XYStatType>-1</XYStatType>
+            <XYStatSpace>0.1</XYStatSpace>
+            <SideFreqCursorCount>10</SideFreqCursorCount>
+            <RefreshUnit>
+            </RefreshUnit>
+            <RefreshSpan>0</RefreshSpan>
+            <SHOWXZOOMEDIT>True</SHOWXZOOMEDIT>
+            <AverageType>0</AverageType>
+            <MachineOrderUp>8</MachineOrderUp>
+            <MachineCyclesNormal>128</MachineCyclesNormal>
+            <MachineLowSpeed>0</MachineLowSpeed>
+            <MachineHighSpeed>10000</MachineHighSpeed>
+            <MachineShowSpeed>False</MachineShowSpeed>
+            <MachineFreqWidth>1000</MachineFreqWidth>
+            <MachineValueType>0</MachineValueType>
+            <MachineShowOrderIndex>1</MachineShowOrderIndex>
+            <MachineDirect>0</MachineDirect>
+            <CursorType>2</CursorType>
+            <CursorValue>
+              <ActiveCursor>False</ActiveCursor>
+              <CursorDataPosX>121</CursorDataPosX>
+              <CursorXCoordValue>15.125</CursorXCoordValue>
+              <CursorYCoordValue>2.07781076431274</CursorYCoordValue>
+            </CursorValue>
+            <CursorValue>
+              <ActiveCursor>True</ActiveCursor>
+              <CursorDataPosX>196</CursorDataPosX>
+              <CursorXCoordValue>24.5</CursorXCoordValue>
+              <CursorYCoordValue>0.962427020072937</CursorYCoordValue>
+            </CursorValue>
+            <YScaleType>1</YScaleType>
+            <XScaleType>1</XScaleType>
+            <CoordMaxY>2.4</CoordMaxY>
+            <CoordMinY>0</CoordMinY>
+            <CoordMaxX>50</CoordMaxX>
+            <CoordMinX>0</CoordMinX>
+            <ZoomY>1</ZoomY>
+            <ZoomX>1</ZoomX>
+            <AxisDataCondition AxisType="X">
+              <RunName>
+              </RunName>
+              <RunSerialNumber>
+              </RunSerialNumber>
+              <SourceSignalType>0</SourceSignalType>
+              <SourceSignalSerialNumber>
+              </SourceSignalSerialNumber>
+              <SignalType>0</SignalType>
+              <SerialNumber>
+              </SerialNumber>
+              <SignalName>
+              </SignalName>
+              <SignalDetail>
+              </SignalDetail>
+              <Color>0</Color>
+              <SampleFreq>0</SampleFreq>
+              <XUnit>
+              </XUnit>
+              <Unit>
+              </Unit>
+              <ContinueSample>False</ContinueSample>
+              <MaxCoordValue>0</MaxCoordValue>
+              <MinCoordValue>0</MinCoordValue>
+              <AnalysisBlockSize>0</AnalysisBlockSize>
+              <SampleTime>0</SampleTime>
+              <ResampleDelta>1</ResampleDelta>
+              <SampleRate>1</SampleRate>
+              <MeasureType>0</MeasureType>
+              <ClockMode>0</ClockMode>
+              <SampleEvent />
+              <SampleNoDataInfo />
+              <SuperAddInfo />
+              <BufferRead>False</BufferRead>
+              <SerialDataCount>1048576</SerialDataCount>
+              <StatDataCount>4000</StatDataCount>
+              <NotMarks />
+            </AxisDataCondition>
+            <AxisDataCondition AxisType="Y">
+              <RunName>
+              </RunName>
+              <RunSerialNumber>91124fba-751b-4e1d-9831-ba4cb5eb01d2</RunSerialNumber>
+              <SourceSignalType>0</SourceSignalType>
+              <SourceSignalSerialNumber>
+              </SourceSignalSerialNumber>
+              <SignalType>26</SignalType>
+              <SerialNumber>c89d4031-6a77-4f9c-be79-f7dcb507de6d</SerialNumber>
+              <SignalName>AI2-03_AI2-01(频响)</SignalName>
+              <SignalDetail>
+              </SignalDetail>
+              <Color>-4996406</Color>
+              <SampleFreq>512</SampleFreq>
+              <XUnit>Hz</XUnit>
+              <Unit>g/N</Unit>
+              <ContinueSample>True</ContinueSample>
+              <MaxCoordValue>9.99200630187988</MaxCoordValue>
+              <MinCoordValue>0</MinCoordValue>
+              <AnalysisBlockSize>4096</AnalysisBlockSize>
+              <SampleTime>-8584585502194775808</SampleTime>
+              <ResampleDelta>1</ResampleDelta>
+              <SampleRate>1</SampleRate>
+              <MeasureType>3</MeasureType>
+              <ClockMode>0</ClockMode>
+              <SampleEvent />
+              <SampleNoDataInfo />
+              <SuperAddInfo />
+              <BufferRead>False</BufferRead>
+              <SerialDataCount>1048576</SerialDataCount>
+              <StatDataCount>4000</StatDataCount>
+              <NotMarks />
+            </AxisDataCondition>
+            <NowBlockIndex>4</NowBlockIndex>
+            <AnalysisFFTSize>4096</AnalysisFFTSize>
+            <OneBlockMaxSize>1601</OneBlockMaxSize>
+            <NowBlockStartData>0</NowBlockStartData>
+            <ScreenStart>0</ScreenStart>
+            <SampleTime>0</SampleTime>
+            <NowDataCount>401</NowDataCount>
+            <NowDataTime>10</NowDataTime>
+            <OffsetSize>0</OffsetSize>
+            <YellowLinePos>0</YellowLinePos>
+            <Positive>False</Positive>
+            <LineIndex>0</LineIndex>
+            <AngleZX>45</AngleZX>
+            <ClrChatTitle>-16777216</ClrChatTitle>
+            <CoordXColor>-939524096</CoordXColor>
+            <CoordYColor>-939524096</CoordYColor>
+            <ViewBackColor>-1</ViewBackColor>
+            <GridColor>-5526613</GridColor>
+            <AxisColor>-8947849</AxisColor>
+            <ScaleColor>-939524096</ScaleColor>
+            <Cursor1Color>-16777216</Cursor1Color>
+            <Cursor2Color>-16777216</Cursor2Color>
+            <InfoBackColor>-2147483648</InfoBackColor>
+            <CursorValueWindowTitleColor>-8355712</CursorValueWindowTitleColor>
+            <InfoTextColor>-2147483648</InfoTextColor>
+            <NoteColor>-16777216</NoteColor>
+            <LineColor>-4996406</LineColor>
+            <YellowLineColor>-256</YellowLineColor>
+            <RefSpecColor>-256</RefSpecColor>
+            <LineWidth>0</LineWidth>
+            <GridWidth>1</GridWidth>
+            <AxisWidth>1</AxisWidth>
+            <ScaleWidth>1</ScaleWidth>
+            <CursorWidth>0</CursorWidth>
+            <CursorStyle>0</CursorStyle>
+            <CoordXFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CoordYFont Name="微软雅黑" Size="8" Style="Regular" />
+            <UnitXFont Name="微软雅黑" Size="8" Style="Regular" />
+            <UnitYFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorFont Name="微软雅黑" Size="8" Style="Regular" />
+            <StatFont Name="微软雅黑" Size="8" Style="Regular" />
+            <MarkFont Name="微软雅黑" Size="8" Style="Regular" />
+            <NoteFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorNumFont Name="微软雅黑" Size="8" Style="Regular" />
+            <CursorDirFont Name="微软雅黑" Size="8" Style="Regular" />
+          </LineController>
+        </Chat>
+      </Panel>
+    </ViewForm>
+  </ChatManage>
+</ProjectLayOut>

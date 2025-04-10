@@ -1,0 +1,14 @@
+<Project Name="shiyanone-20250320">
+  <Run>
+    <RunPath>./自由衰减小阻尼/自由衰减小阻尼.dhprj</RunPath>
+  </Run>
+  <Run>
+    <RunPath>./自由衰减大阻尼/自由衰减大阻尼.dhprj</RunPath>
+  </Run>
+  <Run>
+    <RunPath>./强迫振动小阻尼/强迫振动小阻尼.dhprj</RunPath>
+  </Run>
+  <Run>
+    <RunPath>./强迫振动大阻尼/强迫振动大阻尼/强迫振动大阻尼.dhprj</RunPath>
+  </Run>
+</Project>

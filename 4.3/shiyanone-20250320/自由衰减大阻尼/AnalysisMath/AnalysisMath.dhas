@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Analysis AnalysisVer="0" AnalysisType="ADA510AF-AF13-4B86-A8AE-F58B40DE9012">
+  <Group GroupType="8" GroupID="1" GroupName="滤波组" GroupVersion="0" SerialNumber="48cf6132-fe88-4c20-9998-5828e389aa25">
+    <BandLowFreq>50</BandLowFreq>
+    <BandUpFreq>160</BandUpFreq>
+    <CoeifDenominator>
+    </CoeifDenominator>
+    <CoeifNumerator>
+    </CoeifNumerator>
+    <DesignType>0</DesignType>
+    <FilterMode>2</FilterMode>
+    <APass>0.3</APass>
+    <AStop>40</AStop>
+    <PassLowFreq>1</PassLowFreq>
+    <PassUpFreq>200</PassUpFreq>
+    <Rank>100</Rank>
+    <WindowType>0</WindowType>
+    <FilterType>0</FilterType>
+    <DHAlgorithm AlgType="8" AlgVersion="0">
+      <FileSuffix>.flt</FileSuffix>
+      <FileName>0bf5796f-36c9-416e-9eb7-2bf0f6ad4175</FileName>
+      <SourceSignal SignalType="1" SerialNumber="8784653a-c5e0-403e-951c-21488d2e0476" />
+      <DesSignal SignalName="AI3-01_FIR_Filter" SignalType="9" SerialNumber="49fb2895-d10d-4949-b3fe-f4727c09293b" Version="0">
+        <DesignType>0</DesignType>
+        <FilterType>0</FilterType>
+        <FilterMode>2</FilterMode>
+        <MeasureType>0</MeasureType>
+        <MeterageType>3</MeterageType>
+        <MachineIP>
+        </MachineIP>
+        <MachineID>2</MachineID>
+        <MacChnID>0</MacChnID>
+        <MacCellID>0</MacCellID>
+        <SampleFrequency>500</SampleFrequency>
+        <SampleStartTime>-8584591564475892847</SampleStartTime>
+        <TotoalDataCount>21310</TotoalDataCount>
+        <Unit>g</Unit>
+        <MaxScaleValue>10.3156585693359</MaxScaleValue>
+        <MinScaleValue>-10.3156585693359</MinScaleValue>
+        <Color>-47872</Color>
+        <NotMarks />
+      </DesSignal>
+    </DHAlgorithm>
+  </Group>
+  <CustomLink>
+    <Designer>
+      <File>
+        <Activity FactoryID="161E878F044F41B5814C8294AC12644E">
+          <Content>
+            <ActivityID>48cf6132-fe88-4c20-9998-5828e389aa25</ActivityID>
+            <ActivityName>FIR滤波器设置</ActivityName>
+            <MathType>8_1</MathType>
+            <Left>1</Left>
+            <Top>2</Top>
+          </Content>
+        </Activity>
+      </File>
+    </Designer>
+  </CustomLink>
+</Analysis>

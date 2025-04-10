@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+        <!-- 添加viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>剪贴板管理工具</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="entries"></div>
+    <textarea id="new-text" placeholder="输入文本内容..." ></textarea>
+
+    <div>
+        <input type="text" id="new-note" placeholder="输入备注（可选）...">
+        <button onclick="saveEntry()">保存</button>
+    </div>
+
+    <script>
+    // 创建全局命名空间 (防止命名冲突)
+    var MyApp = {};
+
+    function loadScript(url, callback) {
+        var script = document.createElement('script');
+        script.src = url;
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
+
+    function startApp() {
+        if (typeof MyApp.coreInit === 'function' && typeof MyApp.helper === 'object' && typeof MyApp.api === 'object' ) {
+            MyApp.coreInit();  // 初始化核心模块
+            console.log('应用程序已启动');
+        } else {
+            console.warn('核心模块加载不完整，请检查!');
+        }
+    }
+
+    loadScript('js_loader.php?file=core.js', function() {
+        loadScript('js_loader.php?file=helper.js', function() {
+        loadScript('js_loader.php?file=api.js', startApp);
+        });
+    });
+
+    </script>
+</body>
+</html>
