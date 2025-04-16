@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
     <meta charset="utf-8">
     <title>剪贴板管理工具</title>
     <!-- 添加viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
+
+
+
         :root {
             --bg-color: #47494d;
             --card-bg: #272424;
@@ -30,9 +39,11 @@
             margin-bottom: 20px;
         }
 
+
+
         .entry {
             margin: 10px 0;
-            padding: 15px;
+            padding: 8px 12px;      /* 原始间距 */
             border-radius: 6px;
             background: var(--card-bg);
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -40,19 +51,28 @@
             position: relative;
             cursor: pointer;
             display: flex;
-            align-items: center;
+            align-items: baseline ; /* 强制基线对齐 */
+            min-height: auto;         /* 解除高度限制 */
             transition: background 0.2s;
         }
+
+        .entry-text {
+            flex: 1;
+            word-break: break-word;
+            margin-right: 15px;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            line-height: 1.2;                /* 压缩行高 */
+            display: inline-flex;            /* 保持弹性但避免块级特性 */
+            padding-top: 2px;                /* 微调垂直对齐 */
+            transform: translateY(0.1em);    /* 像素级对齐修正 */
+             
+        }
+
         .entry:hover {
             background: #3e85cc;
             transform: translateX(5px);
-        }
-        .entry-text {
-            flex: 1;
-            word-break: break-all;
-            margin-right: 15px;
-            color: var(--text-color);
-        }
+        }  
         .entry-note {
 
             color: #7f8c8d;
@@ -197,12 +217,13 @@
 
     <script>
 
-        // 加载条目）
+// 加载条目）
+
 function loadEntries() {
     fetch('proxy.php')
         .then(res => res.json())
         .then(data => {
-            // 排序逻辑：先显示置顶条目，再按时间倒序
+            // 排序逻辑保持不变
             const sorted = data.sort((a, b) => {
                 if (a.pinned === b.pinned) {
                     return new Date(b.time) - new Date(a.time);
@@ -212,17 +233,22 @@ function loadEntries() {
 
             const entriesDiv = document.getElementById('entries');
             entriesDiv.innerHTML = sorted.map(entry => {
-                 const isHidden = entry.hidden === true;
-                 const textToDisplay = isHidden ? '*** 内容已隐藏 ***' : (entry.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const isHidden = entry.hidden === true;
+                
+                // 新增格式处理逻辑
+                const rawText = entry.text || '';
+                const mdHtml = marked.parse(rawText); // Markdown转HTML
+                const safeHtml = DOMPurify.sanitize(mdHtml); // XSS过滤
+                
                 return `
                 <div class="entry ${entry.pinned ? 'pinned' : ''}"
                      data-id="${entry.id}"
                      onclick="toggleNote(this)">
                     <div class="entry-text ${entry.hidden ? 'hidden-text' : ''}">
-                        ${textToDisplay}
+                        ${isHidden ? '*** 内容已隐藏 ***' : safeHtml}
                     </div>
                     <button class="copy-btn"
-                            data-text="${(entry.text || '').replace(/"/g, '&quot;')}"
+                            data-text="${rawText.replace(/"/g, '&quot;')}"
                             data-hidden="${isHidden}"
                             onclick="copyText(this)">复制
                     </button>
@@ -235,7 +261,19 @@ function loadEntries() {
                     <button class="delete-btn" onclick="deleteEntry('${entry.id}')">🗑️</button>
                     ${entry.note ? `<div class="entry-note">备注：${entry.note}</div>` : ''}
                 </div>
-            `}).join('');
+                </div>`;
+            }).join('');
+            
+            // 新增LaTeX渲染
+            setTimeout(() => {
+                renderMathInElement(entriesDiv, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }, 0);
         });
 }
 
