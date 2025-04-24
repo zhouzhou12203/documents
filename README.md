@@ -41,6 +41,10 @@ git checkout origin/main -- python/test/star.py
 
 # 下载远程文件到本地（不修改 Git 记录）
 git show origin/main:python/test/star.py > py-win/test/star.py
+
+#设置本地分支的追踪信息(origin/mainy远程；main本地)
+git branch --set-upstream-to=origin/main main
+
 ```
 
 ---
@@ -76,6 +80,7 @@ ssh -T git@gitlab.com  # GitLab
 ### 拉取远程变更
 ```bash
 git pull origin main       # 拉取并合并
+git reset --hard origin/main  #将本地重置为远程
 git fetch origin          # 仅获取远程变更（不合并）
 git log origin/main        #查看 origin/main 的最新提交
 git diff main origin/main   #比较你的本地 main 分支和远程 origin/main 分支的差异
@@ -138,6 +143,8 @@ git branch -a                  # 查看所有分支
 git checkout -b feature        # 创建并切换分支
 git merge feature              # 合并分支到当前分支
 git branch -d feature          # 删除本地分支
+git checkout main              # 切换到 main 分支
+git branch --set-upstream-to=origin/main main # 设置追踪关系
 ```
 
 ### 撤销操作
@@ -170,3 +177,23 @@ git clean -fd                  # 删除未跟踪的文件/文件夹
 4. **Sparse Checkout**：后续新增目录需手动添加到 `.git/info/sparse-checkout`
 
 > 更多细节参考 [Git 官方文档](https://git-scm.com/doc)
+
+
+
+# 设置代理
+```bash
+git config --global http.proxy socks5 127.0.0.1:7890
+git config --global https.proxy socks5 127.0.0.1:7890
+git config --global http.proxy 127.0.0.1:7890
+git config --global https.proxy 127.0.0.1:7890
+```
+#查看代理
+```bash
+git config --global --get http.proxy
+git config --global --get https.proxy
+```
+清除代理
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
