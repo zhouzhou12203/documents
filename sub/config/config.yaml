@@ -2,10 +2,10 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 50
+concurrent: 30
 
 # 检查间隔(分钟)
-check-interval: 1
+check-interval: 5
 
 # cron表达式，如果配置了此项，将忽略check-interval
 # 支持标准cron表达式，如：
@@ -16,7 +16,7 @@ check-interval: 1
 # cron-expression: "*/30 * * * *"
 
 # 超时时间(毫秒)(节点的最大延迟)
-timeout: 500
+timeout: 1000
 
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
