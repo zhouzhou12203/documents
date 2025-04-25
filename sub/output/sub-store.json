@@ -1,9 +1,40 @@
 {
-  "subs": [],
+  "subs": [
+    {
+      "content": "proxies:\n    - alpn:\n        - h2\n        - http/1.1\n      alterId: \"0\"\n      cipher: auto\n      grpc-opts:\n        grpc-service-name: hi.filmekade.ru\n      name: \"\\U0001F1EC\\U0001F1E7英国1 | ⬇️ 4.3MB/s\"\n      network: grpc\n      port: \"2087\"\n      server: hi.filmekade.ru\n      servername: hi.filmekade.ru\n      skip-cert-verify: false\n      tls: true\n      type: vmess\n      udp: true\n      uuid: 189c7e06-cec7-4dc0-d1d3-2a3b5ec38562\n      xudp: true\n    - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      name: \"\\U0001F1F8\\U0001F1EC新加坡1 | ⬇️ 34.6MB/s\"\n      password: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      port: 35000\n      server: 152.69.220.212\n      skip-cert-verify: true\n      sni: api.push.apple.com\n      type: hysteria2\n    - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      name: \"\\U0001F1F8\\U0001F1EC新加坡2 | ⬇️ 1.2MB/s\"\n      password: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      port: 35000\n      server: 140.245.36.207\n      skip-cert-verify: true\n      sni: www.apple.com\n      type: hysteria2\n    - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      name: \"\\U0001F1E6\\U0001F1EA阿拉伯酋长国1 | ⬇️ 9.7MB/s\"\n      password: b543c066-2189-4aa4-8afb-445ac8ee28d4\n      port: 35000\n      server: 193.123.76.84\n      skip-cert-verify: true\n      sni: www.apple.com\n      type: hysteria2\n    - client-fingerprint: chrome\n      flow: xtls-rprx-vision\n      name: \"\\U0001F300其他1-LV | ⬇️ 3.5MB/s\"\n      network: tcp\n      port: 29316\n      reality-opts:\n        public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY\n      server: vip.jddns0202.top\n      servername: www.amazon.com\n      tls: true\n      type: vless\n      uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45\n",
+      "name": "sub",
+      "remark": "subs-check专用,勿动",
+      "source": "local",
+      "process": [
+        {
+          "type": "Quick Setting Operator"
+        }
+      ]
+    }
+  ],
   "collections": [],
   "artifacts": [],
   "rules": [],
-  "files": [],
+  "files": [
+    {
+      "name": "mihomo",
+      "process": [
+        {
+          "args": {
+            "content": "http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml",
+            "mode": "link"
+          },
+          "disabled": false,
+          "type": "Script Operator"
+        }
+      ],
+      "remark": "subs-check专用,勿动",
+      "source": "local",
+      "sourceName": "sub",
+      "sourceType": "subscription",
+      "type": "mihomoProfile"
+    }
+  ],
   "tokens": [],
   "schemaVersion": "2.0",
   "settings": {},
