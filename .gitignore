@@ -4,6 +4,6 @@
 # 如果根目录下也有 .vscode 文件夹
 .vscode/
 
-
+**/subs-check.exe
 **/.DS_Store
 .DS_Store
