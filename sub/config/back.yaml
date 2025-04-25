@@ -2,7 +2,7 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 30
+concurrent: 500
 
 # 检查间隔(分钟)
 check-interval: 1
@@ -21,7 +21,7 @@ timeout: 500
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
 # 如果找不到稳定的测速地址，可以自建测速地址
-speed-test-url: https://y.demo.lhyang.org/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
+speed-test-url: http://speed.zhou12203.top/speedtest?bytes=104857600
 
 # 最低测速结果舍弃(KB/s)
 min-speed: 2048
