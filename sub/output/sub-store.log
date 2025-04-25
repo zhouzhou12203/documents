@@ -6,18 +6,6 @@
 [sub-store] INFO: Start migrating...
 [sub-store] INFO: Migration complete!
 [sub-store] INFO: [BACKEND] :::8299
-
-┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-     Sub-Store -- v2.19.24
-┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-
-[sub-store] INFO: [BACKEND] :::8299
-
-┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-     Sub-Store -- v2.19.24
-┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-
-[sub-store] INFO: [BACKEND] :::8299
 [sub-store] INFO: 正在创建订阅： sub
 [sub-store] INFO: 正在创建文件：mihomo
 [sub-store] INFO: 正在更新订阅： sub
@@ -33,6 +21,8 @@ URL: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml
 [sub-store] INFO: statusCode: 200
 [sub-store] INFO: Pre-processor [Clash Pre-processor] activated
 [sub-store] INFO: Clash Parser is activated
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
 [sub-store] INFO: 正在下载订阅：sub
 请求 User-Agent: Go-http-client/1.1
 请求 target: V2Ray
@@ -40,11 +30,15 @@ URL: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml
 [sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
 [sub-store] INFO: Pre-processor [Clash Pre-processor] activated
 [sub-store] INFO: Clash Parser is activated
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
 [sub-store] INFO: 正在下载文件：mihomo
 请求 User-Agent: Go-http-client/1.1
 [sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
 [sub-store] INFO: Pre-processor [Clash Pre-processor] activated
 [sub-store] INFO: Clash Parser is activated
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
 [sub-store] INFO: 正在下载订阅：sub
 请求 User-Agent: Go-http-client/1.1
 请求 target: V2Ray
@@ -52,128 +46,5 @@ URL: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml
 [sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
 [sub-store] INFO: Pre-processor [Clash Pre-processor] activated
 [sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在更新订阅： sub
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在更新订阅： sub
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在更新订阅： sub
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在更新订阅： sub
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在更新订阅： sub
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载文件：mihomo
-请求 User-Agent: Go-http-client/1.1
-[sub-store] INFO: 使用缓存: http://127.0.0.1:8199/sub/ACL4SSR_Online_Full.yaml, clash.meta
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
-[sub-store] INFO: 正在下载订阅：sub
-请求 User-Agent: Go-http-client/1.1
-请求 target: V2Ray
-实际输出: V2Ray
-[sub-store] ERROR: 获取版本号失败: TypeError: Cannot read properties of undefined (reading 'indexOf')
-[sub-store] INFO: Pre-processor [Clash Pre-processor] activated
-[sub-store] INFO: Clash Parser is activated
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal
+[sub-store] ERROR: UUID may be invalid: 🇵🇱波兰1 | ⬇️ 7.0MB/s id46---@vpn-whal

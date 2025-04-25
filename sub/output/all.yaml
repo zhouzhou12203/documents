@@ -1,24 +1,6 @@
 proxies:
-    - alpn:
-        - h2
-        - http/1.1
-      alterId: "0"
-      cipher: auto
-      grpc-opts:
-        grpc-service-name: hi.filmekade.ru
-      name: "\U0001F1EC\U0001F1E7英国1 | ⬇️ 4.3MB/s"
-      network: grpc
-      port: "2087"
-      server: hi.filmekade.ru
-      servername: hi.filmekade.ru
-      skip-cert-verify: false
-      tls: true
-      type: vmess
-      udp: true
-      uuid: 189c7e06-cec7-4dc0-d1d3-2a3b5ec38562
-      xudp: true
     - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-      name: "\U0001F1F8\U0001F1EC新加坡1 | ⬇️ 34.6MB/s"
+      name: "\U0001F1F8\U0001F1EC新加坡1 | ⬇️ 35.4MB/s"
       password: b543c066-2189-4aa4-8afb-445ac8ee28d4
       port: 35000
       server: 152.69.220.212
@@ -26,10 +8,18 @@ proxies:
       sni: api.push.apple.com
       type: hysteria2
     - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-      name: "\U0001F1F8\U0001F1EC新加坡2 | ⬇️ 1.2MB/s"
+      name: "\U0001F1E9\U0001F1EA德国1 | ⬇️ 14.7MB/s"
       password: b543c066-2189-4aa4-8afb-445ac8ee28d4
       port: 35000
-      server: 140.245.36.207
+      server: 141.147.19.58
+      skip-cert-verify: true
+      sni: api.push.apple.com
+      type: hysteria2
+    - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
+      name: "\U0001F1FA\U0001F1F8美国1 | ⬇️ 15.4MB/s"
+      password: b543c066-2189-4aa4-8afb-445ac8ee28d4
+      port: 35000
+      server: 129.146.95.165
       skip-cert-verify: true
       sni: www.apple.com
       type: hysteria2
@@ -41,15 +31,68 @@ proxies:
       skip-cert-verify: true
       sni: www.apple.com
       type: hysteria2
+    - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
+      name: "\U0001F1F8\U0001F1EC新加坡2 | ⬇️ 1.2MB/s"
+      password: b543c066-2189-4aa4-8afb-445ac8ee28d4
+      port: 35000
+      server: 140.245.46.17
+      skip-cert-verify: true
+      sni: www.apple.com
+      type: hysteria2
+    - name: "\U0001F1E7\U0001F1F7巴西1 | ⬇️ 7.0MB/s"
+      network: ws
+      port: "80"
+      server: www.speedtest.net
+      type: vless
+      udp: true
+      uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
+      ws-opts:
+        headers:
+            Host: redfree8mahsang6.redfree8.ir
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36
+        path: /?ed=2560
+      xudp: true
     - client-fingerprint: chrome
       flow: xtls-rprx-vision
-      name: "\U0001F300其他1-LV | ⬇️ 3.5MB/s"
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: "\U0001F1E9\U0001F1EA德国2 | ⬇️ 7.9MB/s"
       network: tcp
-      port: 29316
+      port: "37051"
       reality-opts:
-        public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
-      server: vip.jddns0202.top
-      servername: www.amazon.com
+        public-key: 4HV8B6aiVjtQHJ6wEtGtMilz62FS8jnI68xNZrt56z0
+        short-id: 48e98e27
+      server: 164.92.172.116
+      servername: Referson.com
       tls: true
       type: vless
-      uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+      udp: true
+      uuid: 00f061fc-5083-4f2f-8408-67990e4cbfaa
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1F5\U0001F1F1波兰1 | ⬇️ 7.0MB/s"
+      network: ws
+      port: "80"
+      server: biiia-vpn-whal.fast.hosting-ip.com
+      skip-cert-verify: false
+      tls: false
+      type: vmess
+      udp: true
+      uuid: id46---@vpn-whal
+      ws-opts:
+        headers:
+            Host: cat.IR.
+        path: /?ed=2056/#id-telegram:--->@vpn_whal<---
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: "\U0001F300其他1-TR | ⬇️ 3.4MB/s"
+      password: UUVurP2dQKQK6GLsKFytdL
+      port: "55548"
+      server: 62.60.233.240
+      type: ss
+      udp: true
