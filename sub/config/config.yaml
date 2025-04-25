@@ -2,7 +2,7 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 500
+concurrent: 50
 
 # 检查间隔(分钟)
 check-interval: 1
