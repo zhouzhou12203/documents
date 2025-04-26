@@ -1,103 +1,610 @@
 proxies:
-  - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    name: "\U0001F1F8\U0001F1EC新加坡1 | ⬇️ 35.4MB/s"
-    password: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    port: 35000
-    server: 152.69.220.212
-    skip-cert-verify: true
-    sni: api.push.apple.com
-    type: hysteria2
-  - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    name: "\U0001F1E9\U0001F1EA德国1 | ⬇️ 14.7MB/s"
-    password: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    port: 35000
-    server: 141.147.19.58
-    skip-cert-verify: true
-    sni: api.push.apple.com
-    type: hysteria2
-  - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    name: "\U0001F1FA\U0001F1F8美国1 | ⬇️ 15.4MB/s"
-    password: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    port: 35000
-    server: 129.146.95.165
-    skip-cert-verify: true
-    sni: www.apple.com
-    type: hysteria2
-  - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    name: "\U0001F1E6\U0001F1EA阿拉伯酋长国1 | ⬇️ 9.7MB/s"
-    password: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    port: 35000
-    server: 193.123.76.84
-    skip-cert-verify: true
-    sni: www.apple.com
-    type: hysteria2
-  - auth: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    name: "\U0001F1F8\U0001F1EC新加坡2 | ⬇️ 1.2MB/s"
-    password: b543c066-2189-4aa4-8afb-445ac8ee28d4
-    port: 35000
-    server: 140.245.46.17
-    skip-cert-verify: true
-    sni: www.apple.com
-    type: hysteria2
-  - name: "\U0001F1E7\U0001F1F7巴西1 | ⬇️ 7.0MB/s"
+  - name: "\U0001F1F9\U0001F1FC台湾1 | ⬇️ 5.3MB/s"
     network: ws
-    port: 80
-    server: www.speedtest.net
-    type: vless
+    password: Aimer
+    port: 10443
+    server: 20.243.85.49
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
     udp: true
-    uuid: 53fa8faf-ba4b-4322-9c69-a3e5b1555049
     ws-opts:
       headers:
-        Host: redfree8mahsang6.redfree8.ir
-        User-Agent: >-
-          Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like
-          Gecko) Chrome/70.0.3538.67 Safari/537.36
-      path: /?ed=2560
-    xudp: true
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾2 | ⬇️ 2.9MB/s"
+    network: ws
+    password: Aimer
+    port: 8443
+    server: 104.129.167.255
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾3 | ⬇️ 1.2MB/s"
+    network: ws
+    password: Aimer
+    port: 443
+    server: 108.165.152.113
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾4 | ⬇️ 2.3MB/s"
+    network: ws
+    password: Aimer
+    port: 8443
+    server: 167.68.4.131
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾5 | ⬇️ 2.1MB/s"
+    network: ws
+    password: Aimer
+    port: 443
+    server: 27.50.49.136
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾6 | ⬇️ 2.0MB/s"
+    network: ws
+    password: Aimer
+    port: 8443
+    server: 27.50.49.177
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾7 | ⬇️ 2.2MB/s"
+    network: ws
+    password: Aimer
+    port: 2083
+    server: 198.62.62.61
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾8 | ⬇️ 3.0MB/s"
+    network: ws
+    password: Aimer
+    port: 443
+    server: 213.109.205.45
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾9 | ⬇️ 2.7MB/s"
+    network: ws
+    password: Aimer
+    port: 2096
+    server: 167.68.4.223
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾10 | ⬇️ 2.1MB/s"
+    network: ws
+    password: Aimer
+    port: 2083
+    server: 154.197.64.228
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾11 | ⬇️ 2.1MB/s"
+    network: ws
+    password: Aimer
+    port: 2087
+    server: 167.68.5.248
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - name: "\U0001F1F9\U0001F1FC台湾12 | ⬇️ 6.4MB/s"
+    network: ws
+    password: Aimer
+    port: 2083
+    server: 130.250.137.63
+    skip-cert-verify: true
+    sni: epcca.ambercc.filegear-sg.me
+    type: trojan
+    udp: true
+    ws-opts:
+      headers:
+        Host: epcca.ambercc.filegear-sg.me
+      path: /?ed=2560&proxyip=ts.hpc.tw
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港1 | ⬇️ 23.4MB/s"
+    network: ws
+    port: 80
+    server: dbacca25-sv2sg0-sv0wpw-17xo8.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: b4e40aa2-74a1-11ed-b0b5-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: dbacca25-sv2sg0-sv0wpw-17xo8.hk.p5pv.com
+      path: /
+    servername: "\U0001F1ED\U0001F1F0HK-1.65.216.214-1120 | 22.818MB"
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港2 | ⬇️ 22.4MB/s"
+    network: ws
+    port: 80
+    server: 7bdf061e-sv0xs0-sv8lir-1su7j.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: 0e4ec84a-a324-11ef-81b0-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: 7bdf061e-sv0xs0-sv8lir-1su7j.hk.p5pv.com
+      path: /
+    servername: "\U0001F1ED\U0001F1F0HK-1.65.216.214-1072 | 13.149MB"
+  - cipher: aes-256-gcm
+    name: "\U0001F1F8\U0001F1EC新加坡1 | ⬇️ 5.2MB/s"
+    password: 9acfc574-acc3-4c2b-ab3b-491d43a6eb83
+    port: 21115
+    server: okanc.node-is.green
+    type: ss
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港3 | ⬇️ 20.7MB/s"
+    network: ws
+    port: 80
+    server: dbacca25-sv2sg0-sv0wpw-17xo8.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: b4e40aa2-74a1-11ed-b0b5-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: dbacca25-sv2sg0-sv0wpw-17xo8.hk.p5pv.com
+      path: /
+    servername: broadcastlv.chat.bilibili.com
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港4 | ⬇️ 19.8MB/s"
+    network: ws
+    port: 80
+    server: 7bdf061e-sv0xs0-sv8lir-1su7j.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: 0e4ec84a-a324-11ef-81b0-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: 7bdf061e-sv0xs0-sv8lir-1su7j.hk.p5pv.com
+      path: /
+    servername: broadcastlv.chat.bilibili.com
+  - name: "\U0001F1ED\U0001F1F0香港5 | ⬇️ 15.8MB/s"
+    password: exaxgqkKkd0TAMrCxeonWg==
+    port: 443
+    server: hkre1-cdn-route.couldflare-cdn.com
+    skip-cert-verify: false
+    tls: true
+    type: http
+    username: mrwdfNTD8M79LCukCieldrqZWqs=
+    sni: hkre1-cdn-route.couldflare-cdn.com
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国1 | ⬇️ 1.1MB/s"
+    network: ws
+    port: 443
+    server: hk2.rtmp.online
+    skip-cert-verify: false
+    tls: true
+    type: vmess
+    uuid: 1d7dc43f-ee28-4e2f-a104-8bfb9b2c70b8
+    ws-opts:
+      headers:
+        Host: hk2.rtmp.online
+      path: /
+    servername: hk2.rtmp.online
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港6 | ⬇️ 24.6MB/s"
+    network: ws
+    port: 80
+    server: 2eed1a9a-sv0xs0-sv7gs8-1lkbs.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: 5a4c13ae-6673-11ee-a149-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: 2eed1a9a-sv0xs0-sv7gs8-1lkbs.hk.p5pv.com
+      path: /
+    servername: broadcastlv.chat.bilibili.com
+  - alterId: 2
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港7 | ⬇️ 24.4MB/s"
+    network: ws
+    port: 80
+    server: db663bf2-sv2sg0-sv7gs8-1lkbs.hk.p5pv.com
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: 5a4c13ae-6673-11ee-a149-f23c9164ca5d
+    ws-opts:
+      headers:
+        Host: db663bf2-sv2sg0-sv7gs8-1lkbs.hk.p5pv.com
+      path: /
+    servername: broadcastlv.chat.bilibili.com
   - client-fingerprint: chrome
     flow: xtls-rprx-vision
-    http-opts:
-      headers: {}
-      path:
-        - /
-    name: "\U0001F1E9\U0001F1EA德国2 | ⬇️ 7.9MB/s"
-    network: tcp
-    port: 37051
+    name: "\U0001F1ED\U0001F1F0香港8 | ⬇️ 6.4MB/s"
+    port: 41279
     reality-opts:
-      public-key: 4HV8B6aiVjtQHJ6wEtGtMilz62FS8jnI68xNZrt56z0
-      short-id: 48e98e27
-    server: 164.92.172.116
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: csuzhou01.1cooldns.com
+    skip-cert-verify: false
     tls: true
     type: vless
     udp: true
-    uuid: 00f061fc-5083-4f2f-8408-67990e4cbfaa
-    xudp: true
-    servername: Referson.com
-  - alpn:
-      - ''
-    alterId: '0'
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.nvidia.com
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1F9\U0001F1FC台湾13 | ⬇️ 1.2MB/s"
+    port: 15823
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: test123.zlqhdns.top
+    skip-cert-verify: false
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.yahoo.com
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1ED\U0001F1F0香港9 | ⬇️ 12.7MB/s"
+    port: 33782
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: shenzhou05.mysynology.net
+    skip-cert-verify: true
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.nvidia.com
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1EF\U0001F1F5日本1 | ⬇️ 2.2MB/s"
+    port: 13989
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: csuzhou01.1cooldns.com
+    skip-cert-verify: false
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: gateway.icloud.com
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1EF\U0001F1F5日本2 | ⬇️ 2.3MB/s"
+    port: 14548
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: vip.jddns0202.top
+    skip-cert-verify: false
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.nvidia.com
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1ED\U0001F1F0香港10 | ⬇️ 7.4MB/s"
+    port: 46716
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: agaungzhou01.bumbleshrimp.com
+    skip-cert-verify: false
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.nvidia.com
+  - alterId: 0
     cipher: auto
-    name: "\U0001F1F5\U0001F1F1波兰1 | ⬇️ 7.0MB/s"
-    network: ws
-    port: 80
-    server: biiia-vpn-whal.fast.hosting-ip.com
+    http-opts:
+      headers:
+        Host:
+          - nl1.bugfreenet.biz.ddns-ip.net
+      method: GET
+      path:
+        - /
+    name: "\U0001F1F3\U0001F1F1荷兰1 | ⬇️ 11.1MB/s"
+    network: http
+    port: 2095
+    server: '0:0:0:0:0:ffff:9df5:4c61'
     skip-cert-verify: false
     tls: false
     type: vmess
     udp: true
-    uuid: id46---@vpn-whal
+    uuid: 6ba15edd-efc5-426b-baf7-70b9c6607e26
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港11 | ⬇️ 1.8MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: f8d49131-349e-4f54-86d4-d0751cdec7a7
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港12 | ⬇️ 7.0MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 4ad00907-f115-4c7d-a6f5-8de138533dd4
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - name: "\U0001F1FA\U0001F1F8美国2 | ⬇️ 5.4MB/s"
+    password: 2c01eae6-0b6a-11ee-a058-f23c91369f2d
+    port: 443
+    server: c795e23c-sva740-sxnljm-1jr1u.los.gotochinatown.net
+    tls: true
+    type: http
+    udp: true
+    username: 2c01eae6-0b6a-11ee-a058-f23c91369f2d
+    sni: c795e23c-sva740-sxnljm-1jr1u.los.gotochinatown.net
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港13 | ⬇️ 1.1MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 92b76326-8f58-4205-b888-430db690d22c
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港14 | ⬇️ 5.4MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 2706e950-afce-4ce7-8011-ccb7a0d82f27
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    name: "\U0001F1ED\U0001F1F0香港15 | ⬇️ 3.2MB/s"
+    port: 24318
+    reality-opts:
+      public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
+    server: test123.zlqhdns.top
+    skip-cert-verify: false
+    tls: true
+    type: vless
+    udp: true
+    uuid: 459b4a80-bd61-4ecd-a26b-e9c1809d9e45
+    network: tcp
+    servername: www.nvidia.com
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港16 | ⬇️ 1.9MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 104f43f6-cd84-48b2-be52-3a8a59c387a2
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港17 | ⬇️ 2.6MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 86ab1066-cb32-404f-bafc-5e138c1689ce
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港18 | ⬇️ 1.3MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: b519aad4-0458-47b6-abd6-bcb635207474
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - alterId: '0'
+    cipher: auto
+    name: "\U0001F1ED\U0001F1F0香港19 | ⬇️ 6.2MB/s"
+    network: ws
+    port: 23025
+    server: 212.192.12.154
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    udp: true
+    uuid: 49b3a16a-15ed-45d4-9df9-48b5272006b3
+    ws-opts:
+      headers: {}
+      path: /
+    xudp: true
+  - name: "\U0001F1FA\U0001F1F8美国3 | ⬇️ 1.7MB/s"
+    password: GgXHSdKqCV
+    port: 25126
+    server: 38.59.241.51
+    skip-cert-verify: true
+    type: trojan
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国4 | ⬇️ 4.8MB/s"
+    network: ws
+    port: 443
+    server: xc011-2.meiziba5566.com
+    skip-cert-verify: true
+    tfo: false
+    tls: true
+    type: vmess
+    udp: true
+    uuid: 42576a04-5a4d-4c7e-fcb4-a8582ab46031
     ws-opts:
       headers:
-        Host: cat.IR.
-      path: '/?ed=2056/#id-telegram:--->@vpn_whal<---'
-    xudp: true
-  - cipher: chacha20-ietf-poly1305
-    name: "\U0001F300其他1-TR | ⬇️ 3.4MB/s"
-    password: UUVurP2dQKQK6GLsKFytdL
-    port: 55548
-    server: 62.60.233.240
-    type: ss
+        Host: xc011-2.meiziba5566.com
+      path: /xc1234
+    servername: xc011-2.meiziba5566.com
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国5 | ⬇️ 4.2MB/s"
+    network: ws
+    port: 443
+    server: xcf046.facai2024.com
+    skip-cert-verify: true
+    tfo: false
+    tls: true
+    type: vmess
     udp: true
+    uuid: c47d5728-8d15-4e07-b5ac-9acff953b12b
+    ws-opts:
+      headers:
+        Host: xcf046.facai2024.com
+      path: /c47d5728
+    servername: xcf046.facai2024.com
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国6 | ⬇️ 4.8MB/s"
+    network: ws
+    port: 443
+    server: xcmg32.dtkj0328.com
+    skip-cert-verify: true
+    tfo: false
+    tls: true
+    type: vmess
+    udp: true
+    uuid: 2a79ae3c-5857-48c0-a779-8f1029f0fb77
+    ws-opts:
+      headers:
+        Host: xcmg32.dtkj0328.com
+      path: /xcmg1234
+    servername: xcmg32.dtkj0328.com
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国7 | ⬇️ 3.8MB/s"
+    network: ws
+    port: 443
+    server: yymg12.haibo168.com
+    tls: true
+    type: vmess
+    uuid: 555dc227-b8a9-4c41-eb2b-b6f9e5bdc168
+    ws-opts:
+      headers:
+        Host: yymg12.haibo168.com
+      path: /yymg1234
+    servername: yymg12.haibo168.com
+  - alterId: 0
+    cipher: auto
+    name: "\U0001F1FA\U0001F1F8美国8 | ⬇️ 4.3MB/s"
+    network: ws
+    port: 443
+    server: xc125-1.meiziba5566.com
+    tls: true
+    type: vmess
+    uuid: 6b95d340-30a5-47bd-ac53-49584e5d4ddf
+    ws-opts:
+      headers:
+        Host: xc125-1.meiziba5566.com
+      path: /6b95d340
+    servername: xc125-1.meiziba5566.com
 proxy-groups:
   - name: "\U0001F680 节点选择"
     type: select
