@@ -2,7 +2,7 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 30
+concurrent: 10
 
 # 检查间隔(分钟)
 check-interval: 1
@@ -24,7 +24,7 @@ timeout: 5000
 speed-test-url: https://y.demo.lhyang.org/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
 
 # 最低测速结果舍弃(KB/s)
-min-speed: 1024
+min-speed: 2048
 
 # 下载测试时间(s)(与下载链接大小相关，默认最大测试10s)
 download-timeout: 10
@@ -59,7 +59,7 @@ keep-success-proxies: false
 # 保存几个成功的节点，为0代表不限制 
 # 如果你的并发数量超过这个参数，那么成功的结果可能会大于这个数值
 # success-limit <= success <= success-limit+concurrent
-success-limit: 30
+success-limit: 0
 
 # 输出目录
 # 如果为空，则为程序所在目录的config目录
@@ -119,7 +119,7 @@ mihomo-api-secret: ""
 save-method: webdav
 
 # webdav
-webdav-url: "https://jike.teracloud.jp/dav/sub/"
+webdav-url: "https://jike.teracloud.jp/v2/dav/sub/"
 webdav-username: "zhouzhou12203"
 webdav-password: "95TvFwyrJRNXVxwA"
 
@@ -143,7 +143,7 @@ sub-urls-retry: 3
 
 # Github Proxy，获取订阅使用，结尾要带的 /
 # github-proxy: "https://ghfast.top/"
-github-proxy: "https://ghfast.top/"
+github-proxy: ""
 
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
@@ -153,34 +153,4 @@ sub-urls:
   # - https://example.com/sub2.txt
   # - https://example.com/sub?token=43fa8f0dc9bb00dcfec2afb21b14378a
   # - https://example.com/sub?token=43fa8f0dc9bb00dcfec2afb21b14378a?flag=clash.meta
-  - "https://raw.githubusercontent.com/firefoxmmx2/v2rayshare_subcription/main/subscription/clash_sub.yaml"
-  - "https://raw.githubusercontent.com/Roywaller/clash_subscription/refs/heads/main/clash_subscription.txt"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc0.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc1.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc2.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc3.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc4.yaml"
-  - "https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/naidounode.txt"
-  - "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-  - "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
-  - "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
-  - "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-  - "https://raw.githubusercontent.com/leetomlee123/freenode/refs/heads/main/README.md"
-  - "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
-  - "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
-  - "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
-  - "https://raw.githubusercontent.com/mgit0001/test_clash/refs/heads/main/heima.txt"
-  - "https://raw.githubusercontent.com/mai19950/clashgithub_com/refs/heads/main/site"
-  - "https://raw.githubusercontent.com/aiboboxx/v2rayfree/refs/heads/main/README.md"
-  - "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub"
-  - "https://raw.githubusercontent.com/shahidbhutta/Clash/refs/heads/main/Router"
-  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
-  - "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
-  - "https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml"
-  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
-  - "https://raw.githubusercontent.com/mfbpn/tg_mfbpn_sub/main/trial.yaml"
-  - "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-  - "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt"
-  - "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
-  - "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
-  - "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+  - "https://sub.zhou12203.top/bkwzsyzy/download/collection/total?target=ClashMeta"
