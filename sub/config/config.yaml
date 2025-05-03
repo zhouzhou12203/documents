@@ -119,7 +119,7 @@ mihomo-api-secret: ""
 save-method: webdav
 
 # webdav
-webdav-url: "https://jike.teracloud.jp/v2/dav/sub/"
+webdav-url: "https://jike.teracloud.jp/dav/sub/"
 webdav-username: "zhouzhou12203"
 webdav-password: "95TvFwyrJRNXVxwA"
 
