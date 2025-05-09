@@ -19,8 +19,8 @@ T_in_ammonia = 120 + 273.15  # 基氨水溶液入口温度 (K)
 w_ammonia = 0.5  # 氨水质量分数
 
 # R245fa循环参数
-P_in_R245fa = 200000  # R245fa蒸发器入口压力 (Pa)
-T_in_R245fa = 120 + 273.15  # R245fa入口温度 (K)
+P_in_R245fa = 178000  # R245fa蒸发器入口压力 (Pa)
+T_in_R245fa = 119.8 + 273.15  # R245fa入口温度 (K)
 
 # 计算状态点的热物性
 h_CO2, s_CO2 = calculate_thermodynamic_properties(P_in_CO2, T_in_CO2, 'CO2')
