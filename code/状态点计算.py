@@ -14,10 +14,11 @@ def calculate_state_R245fa(p, T):
     s = PropsSI('S', 'P', p, 'T', T, 'R245fa')  # 熵 J/kg/K
     return h, s
 
-def calculate_state_ammonia(w, T):
-    """假设基氨水溶液的焓和熵（简化模型）"""
-    h = w * (2000 + 4 * T) + (1 - w) * (1000 + 2 * T)  # 焓（简化估算公式）
-    s = w * (6 + 0.1 * T) + (1 - w) * (2 + 0.05 * T)  # 熵（简化估算公式）
+def calculate_state_ammonia(p, w, T):
+    """计算氨水溶液的焓和熵（改进模型）"""
+    # 通过CoolProp计算氨水的焓和熵
+    h = PropsSI('H', 'P', p, 'T', T + 273.15, 'NH3') * w + (1 - w) * PropsSI('H', 'P', p, 'T', 25 + 273.15, 'H2O')
+    s = PropsSI('S', 'P', p, 'T', T + 273.15, 'NH3') * w + (1 - w) * PropsSI('S', 'P', p, 'T', 25 + 273.15, 'H2O')
     return h, s
 
 # 系统参数
@@ -37,6 +38,8 @@ print(f'R245fa: 焓 = {h_R245fa:.2f} J/kg, 熵 = {s_R245fa:.2f} J/kg/K')
 
 # 计算氨水
 w_ammonia = 0.5  # 氨水质量分数
-T_ammonia_in = 120  # 氨水入口温度 (°C)
-h_ammonia, s_ammonia = calculate_state_ammonia(w_ammonia, T_ammonia_in)
+T_ammonia_in = 90.52  # 氨水入口温度 (°C)
+P_ammonia = 1500e3  # 假设的氨水入口压力 (Pa)
+
+h_ammonia, s_ammonia = calculate_state_ammonia(P_ammonia, w_ammonia, T_ammonia_in)
 print(f'氨水溶液: 焓 = {h_ammonia:.2f} J/kg, 熵 = {s_ammonia:.2f} J/kg/K')
