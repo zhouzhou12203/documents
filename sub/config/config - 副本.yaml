@@ -2,10 +2,10 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 500
+concurrent: 10
 
 # 检查间隔(分钟)
-check-interval: 1
+check-interval: 60
 
 # cron表达式，如果配置了此项，将忽略check-interval
 # 支持标准cron表达式，如：
@@ -16,18 +16,18 @@ check-interval: 1
 # cron-expression: "*/30 * * * *"
 
 # 超时时间(毫秒)(节点的最大延迟)
-timeout: 500
+timeout: 4000
 
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
 # 如果找不到稳定的测速地址，可以自建测速地址
-speed-test-url: http://speed.zhou12203.top/speedtest?bytes=104857600
+speed-test-url: https://y.demo.lhyang.org/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
 
 # 最低测速结果舍弃(KB/s)
 min-speed: 2048
 
 # 下载测试时间(s)(与下载链接大小相关，默认最大测试10s)
-download-timeout: 5
+download-timeout: 10
 
 # 监听端口，用于直接返回节点信息，方便订阅转换
 # http://127.0.0.1:8199/all.yaml
@@ -59,7 +59,7 @@ keep-success-proxies: false
 # 保存几个成功的节点，为0代表不限制 
 # 如果你的并发数量超过这个参数，那么成功的结果可能会大于这个数值
 # success-limit <= success <= success-limit+concurrent
-success-limit: 30
+success-limit: 0
 
 # 输出目录
 # 如果为空，则为程序所在目录的config目录
@@ -96,7 +96,7 @@ notify-title: "🔔 节点状态更新"
 # sub-store的启动端口，为空则不启动sub-store
 # 更新需重启程序，不可监听局域网IP，只有三种写法 :8299, 127.0.0.1:8299, 0.0.0.0:8299
 # sub-store-port: ":8299"
-sub-store-port: ":8299"
+sub-store-port: ""
 
 # sub-store自定义访问路径，必须以/开头，后续访问订阅也要带上此路径
 # 设置path之后，还可以开启订阅分享功能，无需暴露真实的path
@@ -119,7 +119,7 @@ mihomo-api-secret: ""
 save-method: webdav
 
 # webdav
-webdav-url: "https://jike.teracloud.jp/v2/dav/sub/"
+webdav-url: "https://jike.teracloud.jp/dav/sub/"
 webdav-username: "zhouzhou12203"
 webdav-password: "95TvFwyrJRNXVxwA"
 
@@ -143,7 +143,7 @@ sub-urls-retry: 3
 
 # Github Proxy，获取订阅使用，结尾要带的 /
 # github-proxy: "https://ghfast.top/"
-github-proxy: ""
+github-proxy: "https://ghfast.top/"
 
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
@@ -153,34 +153,6 @@ sub-urls:
   # - https://example.com/sub2.txt
   # - https://example.com/sub?token=43fa8f0dc9bb00dcfec2afb21b14378a
   # - https://example.com/sub?token=43fa8f0dc9bb00dcfec2afb21b14378a?flag=clash.meta
-  - "https://raw.githubusercontent.com/firefoxmmx2/v2rayshare_subcription/main/subscription/clash_sub.yaml"
-  - "https://raw.githubusercontent.com/Roywaller/clash_subscription/refs/heads/main/clash_subscription.txt"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc0.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc1.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc2.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc3.yaml"
-  - "https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc4.yaml"
-  - "https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/naidounode.txt"
-  - "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-  - "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
-  - "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
-  - "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-  - "https://raw.githubusercontent.com/leetomlee123/freenode/refs/heads/main/README.md"
-  - "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
-  - "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
-  - "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
-  - "https://raw.githubusercontent.com/mgit0001/test_clash/refs/heads/main/heima.txt"
-  - "https://raw.githubusercontent.com/mai19950/clashgithub_com/refs/heads/main/site"
-  - "https://raw.githubusercontent.com/aiboboxx/v2rayfree/refs/heads/main/README.md"
-  - "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub"
-  - "https://raw.githubusercontent.com/shahidbhutta/Clash/refs/heads/main/Router"
-  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
-  - "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
-  - "https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml"
-  - "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
-  - "https://raw.githubusercontent.com/mfbpn/tg_mfbpn_sub/main/trial.yaml"
-  - "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-  - "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt"
-  - "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
-  - "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
-  - "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+  - "https://sub.zhou12203.top/bkwzsyzy/download/collection/total?target=ClashMeta"
+  - "https://sub.zhou12203.top/bkwzsyzy/download/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0"
+  - "https://sub.zhou12203.top/bkwzsyzy/download/%E6%B1%9F%E6%B1%9F%E5%85%AC%E7%9B%8A"
