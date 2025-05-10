@@ -2,66 +2,83 @@
 import CoolProp.CoolProp as CP
 import numpy as np
 
+def check_state(p_Pa, T_K, fluid_name):
+    """检查工质状态是否在有效范围内"""
+    try:
+        # 获取临界参数
+        T_crit = CP.PropsSI('Tcrit', fluid_name)
+        p_crit = CP.PropsSI('Pcrit', fluid_name)
+        
+        # 检查是否在临界点以上
+        if T_K > T_crit and p_Pa > p_crit:
+            return "超临界"
+            
+        # 获取饱和参数
+        p_sat = CP.PropsSI('P', 'T', T_K, 'Q', 0, fluid_name)
+        
+        if abs(p_Pa - p_sat) < 1e3:  # 允许1kPa的误差
+            return "饱和"
+        elif p_Pa > p_sat:
+            return "过冷"
+        else:
+            return "过热"
+    except:
+        return "未知"
+
 def print_state(description, pressure_pa, temperature_c, fluid_name):
     """ 计算并打印工质在指定状态下的热物理性质 """
     T_K = temperature_c + 273.15
     p_Pa = pressure_pa
+    
     try:
+        # 检查状态
+        state = check_state(p_Pa, T_K, fluid_name)
+        
+        # 计算基本物性
         h = CP.PropsSI('H', 'P', p_Pa, 'T', T_K, fluid_name) / 1000  # kJ/kg
         s = CP.PropsSI('S', 'P', p_Pa, 'T', T_K, fluid_name) / 1000  # kJ/kg·K
+        rho = CP.PropsSI('D', 'P', p_Pa, 'T', T_K, fluid_name)  # kg/m³
+        
         print(f"{description} ({fluid_name}):")
         print(f"  压力 = {pressure_pa/1e5:.3f} bar")
         print(f"  温度 = {temperature_c:.2f} °C")
+        print(f"  状态 = {state}")
         print(f"  焓值 = {h:.2f} kJ/kg")
-        print(f"  熵值 = {s:.4f} kJ/kg·K\n")
+        print(f"  熵值 = {s:.4f} kJ/kg·K")
+        print(f"  密度 = {rho:.2f} kg/m³")
+        
+        # 尝试计算其他物性
+        try:
+            cp = CP.PropsSI('C', 'P', p_Pa, 'T', T_K, fluid_name) / 1000  # kJ/kg·K
+            print(f"  比热容 = {cp:.3f} kJ/kg·K")
+        except:
+            pass
+            
+        try:
+            mu = CP.PropsSI('V', 'P', p_Pa, 'T', T_K, fluid_name) * 1e6  # μPa·s
+            print(f"  动力粘度 = {mu:.2f} μPa·s")
+        except:
+            pass
+            
+        try:
+            k = CP.PropsSI('L', 'P', p_Pa, 'T', T_K, fluid_name) * 1000  # mW/m·K
+            print(f"  导热系数 = {k:.3f} mW/m·K")
+        except:
+            pass
+            
+        print()  # 空行
     except Exception as e:
         print(f"计算{fluid_name}物性时出错: {e}\n")
-
-def nh3_water_properties(temperature_c, pressure_pa, ammonia_mass_fraction):
-    """
-    模拟计算氨水溶液焓和熵
-    这里只做示范，实际氨水复杂，需要详细模型或数据库。
-    采用简单线性经验近似作为示例：
-
-    h = h_water + w*(h_ammonia - h_water)
-    s = s_water + w*(s_ammonia - s_water)
-    """
-    T = temperature_c + 273.15  # K
-    p = pressure_pa
-
-    # 水对应状态（饱和水近似）
-    h_water = 4180 * temperature_c * 1e-3  # kJ/kg，粗略估计
-    s_water = 4.18 * np.log(T/273.15) * 1e-3  # kJ/kg*K，粗略估计
-
-    # 氨气对应状态（用理想气近似）
-    # 下面数值仅举例，不代表真实物性
-    h_ammonia = 1500 + 2 * temperature_c  # kJ/kg
-    s_ammonia = 5.0 + 0.01 * temperature_c  # kJ/kg*K
-
-    w = ammonia_mass_fraction
-    h_mix = h_water * (1-w) + h_ammonia * w
-    s_mix = s_water * (1-w) + s_ammonia * w
-
-    return h_mix, s_mix
-
-def print_nh3water_state(description, temperature_c, pressure_pa, ammonia_mass_fraction):
-    h, s = nh3_water_properties(temperature_c, pressure_pa, ammonia_mass_fraction)
-    print(f"{description} (氨水溶液):")
-    print(f"  压力 = {pressure_pa/1e5:.3f} bar")
-    print(f"  温度 = {temperature_c:.2f} °C")
-    print(f"  氨质量分数 = {ammonia_mass_fraction:.2f}")
-    print(f"  焓值（估算）= {h:.2f} kJ/kg")
-    print(f"  熵值（估算）= {s:.4f} kJ/kg·K\n")
 
 # 示例输入
 if __name__ == "__main__":
     print("=== 超临界CO₂工质状态计算示例 ===")
     print_state("顶循环状态点，例如透平入口", 8e6, 550, 'CO2')
+    print_state("底循环状态点，例如压缩机入口", 7.4e6, 32, 'CO2')
 
     print("=== R245fa有机朗肯循环工质状态计算示例 ===")
-    print_state("蒸发器入口状态", 1.7e5, 120, 'R245fa')
+    # 调整到有效范围内的参数
+    print_state("蒸发器入口状态", 2.5e5, 80, 'R245fa')  # 过冷状态
+    print_state("蒸发器出口状态", 2.5e5, 120, 'R245fa')  # 过热状态
 
-    print("=== 氨水溶液热物性估算示例 ===")
-    print_nh3water_state("基氨水溶液状态点", 120, 1.5e5, 0.45)
 
-    print("=== 其他可计算状态点，请根据实际需要自行调用以上函数 ===")
