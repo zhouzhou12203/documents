@@ -5,7 +5,7 @@ print-progress: true
 concurrent: 10
 
 # 检查间隔(分钟)
-check-interval: 60
+check-interval: 30
 
 # cron表达式，如果配置了此项，将忽略check-interval
 # 支持标准cron表达式，如：
@@ -16,12 +16,12 @@ check-interval: 60
 # cron-expression: "*/30 * * * *"
 
 # 超时时间(毫秒)(节点的最大延迟)
-timeout: 4000
+timeout: 5000
 
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
 # 如果找不到稳定的测速地址，可以自建测速地址
-speed-test-url: https://y.demo.lhyang.org/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
+speed-test-url: https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
 
 # 最低测速结果舍弃(KB/s)
 min-speed: 2048
@@ -96,7 +96,7 @@ notify-title: "🔔 节点状态更新"
 # sub-store的启动端口，为空则不启动sub-store
 # 更新需重启程序，不可监听局域网IP，只有三种写法 :8299, 127.0.0.1:8299, 0.0.0.0:8299
 # sub-store-port: ":8299"
-sub-store-port: ""
+sub-store-port: ":8299"
 
 # sub-store自定义访问路径，必须以/开头，后续访问订阅也要带上此路径
 # 设置path之后，还可以开启订阅分享功能，无需暴露真实的path
@@ -116,12 +116,12 @@ mihomo-api-secret: ""
 
 # 保存方法
 # 目前支持的保存方法: r2, local, gist, webdav
-save-method: webdav
+save-method: local
 
 # webdav
-webdav-url: "https://jike.teracloud.jp/dav/sub/"
-webdav-username: "zhouzhou12203"
-webdav-password: "95TvFwyrJRNXVxwA"
+webdav-url: "https://example.com/dav/"
+webdav-username: "admin"
+webdav-password: "admin"
 
 # gist id
 github-gist-id: ""
@@ -143,7 +143,7 @@ sub-urls-retry: 3
 
 # Github Proxy，获取订阅使用，结尾要带的 /
 # github-proxy: "https://ghfast.top/"
-github-proxy: "https://ghfast.top/"
+github-proxy: ""
 
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
