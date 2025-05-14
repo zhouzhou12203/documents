@@ -8,3 +8,5 @@
 **/.DS_Store
 .DS_Store
 **/node.exe
+**/clash.exe
+**/_pycache_/
