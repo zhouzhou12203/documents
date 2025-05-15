@@ -1,5 +1,9 @@
 import requests
 import concurrent.futures
+import logging
+
+# 前置代理，默认为空
+proxy_url = ""
 
 urls_to_test = [
     "https://raw.githubusercontent.com/firefoxmmx2/v2rayshare_subcription/main/subscription/clash_sub.yaml",
@@ -43,7 +47,19 @@ headers = {
 # For raw.githubusercontent.com, 'text/plain' is very common. YAML files might also be served as 'application/x-yaml' or 'text/yaml'.
 # 'application/octet-stream' can be a generic binary/text type.
 # We will primarily filter out 'text/html' for raw.githubusercontent.com links if status is 200.
-EXPECTED_RAW_CONTENT_TYPES_SUBSTRINGS = ['text/plain', 'application/yaml', 'application/x-yaml', 'octet-stream']
+import yaml
+
+EXPECTED_RAW_CONTENT_TYPES = ['text/plain; charset=utf-8', 'text/plain', 'application/yaml', 'application/x-yaml', 'application/octet-stream']
+
+def is_valid_yaml_content(content):
+    """
+    Checks if the content is likely a valid YAML file by trying to parse the first few lines.
+    """
+    try:
+        yaml.safe_load(content)
+        return True
+    except yaml.YAMLError:
+        return False
 
 
 def check_url(url):
@@ -52,68 +68,118 @@ def check_url(url):
     Returns the URL if successful, None otherwise.
     """
     try:
+        # 使用前置代理
+        proxies = {"http": proxy_url, "https": proxy_url} if proxy_url else None
+
         # Using GET with stream=True to avoid downloading full content if not needed,
         # but allowing us to check headers.
-        response = requests.get(url, timeout=15, headers=headers, stream=True, allow_redirects=True)
+        response = requests.get(url, timeout=30, headers=headers, stream=True, allow_redirects=True, proxies=proxies)
         status_code = response.status_code
         content_type = response.headers.get('Content-Type', '').lower()
-        
         # It's important to close the response to free up resources, especially with stream=True
         response.close()
 
         if status_code == 200:
-            # For raw.githubusercontent.com, if the Content-Type is HTML,
-            # it's often a GitHub "file not found" or "repo not found" page that still returns 200,
-            # or a rendered Markdown page instead of the raw Markdown.
-            # We want the raw content.
             if "raw.githubusercontent.com" in url and 'text/html' in content_type:
-                print(f"[INFO]    {url} (Status: 200, but Content-Type is HTML: {content_type} - Likely not a raw subscription file)")
+                logging.info(f"[INFO]    {url} (Status: 200, but Content-Type is HTML: {content_type} - Likely not a raw subscription file)")
                 return None
 
-            # A more general check for typical subscription file content types
-            # This part can be adjusted based on how strict you want to be.
-            # If the content_type is empty or one of the expected ones, consider it good.
-            is_expected_type = False
-            if not content_type: # If no content-type, we might still try (could be plain text)
-                is_expected_type = True
-            else:
-                for expected_substring in EXPECTED_RAW_CONTENT_TYPES_SUBSTRINGS:
-                    if expected_substring in content_type:
-                        is_expected_type = True
-                        break
-            
-            if is_expected_type:
-                 # Check if it's a README.md on GitHub, these are often not direct subscription files.
-                if "raw.githubusercontent.com" in url and url.lower().endswith("readme.md"):
-                    print(f"[INFO]    {url} (Status: 200, Content-Type: {content_type} - Is a README.md, might not be a direct sub)")
-                    # Depending on your needs, you might want to return None here or keep it.
-                    # For now, we'll assume READMEs are not desired as *direct* subscription files.
-                    return None # Or return url if you want to include them
+            if content_type not in EXPECTED_RAW_CONTENT_TYPES:
+                logging.info(f"{url} (Status: 200, but unexpected Content-Type: {content_type})")
+                return None
 
-                print(f"[SUCCESS] {url} (Status: {status_code}, Content-Type: {content_type})")
+            #if "raw.githubusercontent.com" in url and url.lower().endswith("readme.md"):
+            #    logging.info(f"{url} (Status: 200, Content-Type: {content_type} - Is a README.md, might not be a direct sub)")
+            #    return None
+
+            # Attempt to read the first 2048 bytes to validate content
+            try:
+                response = requests.get(url, timeout=30, headers=headers, stream=True, allow_redirects=True)
+                chunk = next(response.iter_content(2048, decode_unicode=True), None)
+                response.close()
+
+                if chunk:
+                    if 'yaml' in content_type:
+                        if not is_valid_yaml_content(chunk):
+                            logging.info(f"{url} (Status: 200, Content-Type: {content_type}, but invalid YAML content)")
+                            return None
+                    # Add more content validation checks here for other content types if needed
+
+                logging.info(f"[SUCCESS] {url} (Status: {status_code}, Content-Type: {content_type})")
                 return url
-            else:
-                print(f"[INFO]    {url} (Status: 200, but unexpected Content-Type: {content_type})")
+            except Exception as e:
+                logging.error(f"[FAILED]  {url} (Content Validation Error: {e})")
+                return None
+        else:
+            logging.warning(f"{url} (Status: {status_code}, Content-Type: {content_type})")
+            return None
+    except Exception as e:
+        logging.error(f"{url} (Request Error: {e})")
+        return None
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def check_url(url, proxy_url=""):
+    """
+    Checks if a URL is accessible and likely a raw subscription file.
+    Returns the URL if successful, None otherwise.
+    """
+    try:
+        response = requests.get(url, timeout=15, headers=headers, stream=True, allow_redirects=True)
+        status_code = response.status_code
+        content_type = response.headers.get('Content-Type', '').lower()
+        response.close()
+
+        if status_code == 200:
+            if "raw.githubusercontent.com" in url and 'text/html' in content_type:
+                logging.info(f"{url} (Status: 200, but Content-Type is HTML: {content_type} - Likely not a raw subscription file)")
                 return None
 
+            if content_type not in EXPECTED_RAW_CONTENT_TYPES:
+                logging.info(f"{url} (Status: 200, but unexpected Content-Type: {content_type})")
+                return None
+
+            if "raw.githubusercontent.com" in url and url.lower().endswith("readme.md"):
+                logging.info(f"{url} (Status: 200, Content-Type: {content_type} - Is a README.md, might not be a direct sub)")
+                return None
+
+            # Attempt to read the first 2048 bytes to validate content
+            try:
+                response = requests.get(url, timeout=15, headers=headers, stream=True, allow_redirects=True)
+                chunk = next(response.iter_content(2048, decode_unicode=True), None)
+                response.close()
+
+                if chunk:
+                    if 'yaml' in content_type:
+                        if not is_valid_yaml_content(chunk):
+                            logging.info(f"{url} (Status: 200, Content-Type: {content_type}, but invalid YAML content)")
+                            return None
+                    # Add more content validation checks here for other content types if needed
+
+                logging.info(f"[SUCCESS] {url} (Status: {status_code}, Content-Type: {content_type})")
+                return url
+            except requests.exceptions.RequestException as e:
+                logging.error(f"{url} (Content Validation Error: {e})")
+                return None
         else:
-            print(f"[FAILED]  {url} (Status: {status_code}, Content-Type: {content_type})")
+            logging.warning(f"{url} (Status: {status_code}, Content-Type: {content_type})")
             return None
-            
+
     except requests.exceptions.Timeout:
-        print(f"[FAILED]  {url} (Timeout)")
+        logging.warning(f"{url} (Timeout)")
         return None
     except requests.exceptions.ConnectionError as e:
-        print(f"[FAILED]  {url} (Connection Error: {e})")
+        logging.error(f"{url} (Connection Error: {e})")
         return None
     except requests.exceptions.RequestException as e:
-        print(f"[FAILED]  {url} (Error: {e})")
+        logging.error(f"{url} (Request Error: {e})")
         return None
 
-print("Testing links...\n")
+logging.info("Testing links...\n")
 accessible_links = []
 
-# Use ThreadPoolExecutor for concurrent requests
+# 使用 ThreadPoolExecutor 进行并发请求
 with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
     future_to_url = {executor.submit(check_url, url): url for url in urls_to_test}
     for future in concurrent.futures.as_completed(future_to_url):
@@ -123,18 +189,16 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             if result_url:
                 accessible_links.append(result_url)
         except Exception as exc:
-            print(f"[ERROR]   {url} generated an exception: {exc}")
+            logging.error(f"{url} generated an exception: {exc}")
 
 # Sort the list to maintain a somewhat consistent order if needed, though concurrent execution doesn't guarantee original order for processing
 # accessible_links.sort() # Optional: if you want them sorted alphabetically
 
-print("\nSuccessfully accessible and likely valid subscription links:")
+logging.info("\nSuccessfully accessible and likely valid subscription links:")
 if accessible_links:
-    # Re-check original order for printing if desired, or print as collected
-    # For exact original order of successful links:
-    ordered_successful_links = [url for url in urls_to_test if url in accessible_links]
-    for link in ordered_successful_links:
-        print(f'  - "{link}"')
+    # 按照指定格式输出成功链接
+    print("成功测试的链接:")
+    for link in accessible_links:
+        print(f'- "{link}"')
 else:
-    print("No links were deemed accessible and valid subscription files.")
-
+    logging.info("No links were deemed accessible and valid subscription files.")
