@@ -116,12 +116,12 @@ mihomo-api-secret: ""
 
 # 保存方法
 # 目前支持的保存方法: r2, local, gist, webdav
-save-method: local
+save-method: webdav
 
 # webdav
-webdav-url: "https://example.com/dav/"
-webdav-username: "admin"
-webdav-password: "admin"
+webdav-url: "https://jike.teracloud.jp/dav/sub/"
+webdav-username: "zhouzhou12203"
+webdav-password: "95TvFwyrJRNXVxwA"
 
 # gist id
 github-gist-id: ""
