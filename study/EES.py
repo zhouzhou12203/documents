@@ -40,25 +40,14 @@ def get_ammonia_water_properties_ees(pressure_kPa, temperature_C, mass_fraction_
         ees_script_content = f"""
 $UnitSystem SI KPA C Mass
 P = {pressure_kPa} // [kPa]
-T = {temperature_C}   // [C]
 x_NH3 = {mass_fraction_nh3} // Mass fraction of NH3
 
 Fluid$ = 'NH3H2O'
-h = Enthalpy(Fluid$, P=P, T=T, x=x_NH3)
-s = Entropy(Fluid$, P=P, T=T, x=x_NH3)
-rho = Density(Fluid$, P=P, T=T, x=x_NH3)
-Cp = Cp(Fluid$, P=P, T=T, x=x_NH3)
-k_cond = Conductivity(Fluid$, P=P, T=T, x=x_NH3)
-mu_visc = Viscosity(Fluid$, P=P, T=T, x=x_NH3)
+Tsat = T_sat(Fluid$, P=P, x=x_NH3)
 
 // Output results to a file
 OPEN('{ees_results_filepath_for_script}', 'w')
-WRITE('{ees_results_filepath_for_script}', h)
-WRITE('{ees_results_filepath_for_script}', s)
-WRITE('{ees_results_filepath_for_script}', rho)
-WRITE('{ees_results_filepath_for_script}', Cp)
-WRITE('{ees_results_filepath_for_script}', k_cond)
-WRITE('{ees_results_filepath_for_script}', mu_visc)
+WRITE('{ees_results_filepath_for_script}', Tsat)
 CLOSE('{ees_results_filepath_for_script}')
 $NOSOLVE // Prevents EES from trying to solve if only lookups are present
 // QUIT // Optional: to close EES after execution. /NOSPLASH might be enough.
@@ -75,9 +64,9 @@ $NOSOLVE // Prevents EES from trying to solve if only lookups are present
         try:
             # Run EES, wait for it to complete. Timeout can be useful.
             # capture_output=True can help debug EES stdout/stderr if issues arise
-            process = subprocess.run(command, check=True, timeout=30, capture_output=True, text=True)
-            # print("EES stdout:", process.stdout) # For debugging EES messages
-            # print("EES stderr:", process.stderr) # For debugging EES errors
+            process = subprocess.run(command, check=True, timeout=60, capture_output=True, text=True)
+            print("EES stdout:", process.stdout) # For debugging EES messages
+            print("EES stderr:", process.stderr) # For debugging EES errors
         except subprocess.CalledProcessError as e:
             print(f"Error during EES execution: {e}")
             print(f"EES stdout: {e.stdout}")
@@ -96,18 +85,13 @@ $NOSOLVE // Prevents EES from trying to solve if only lookups are present
             with open(results_filename, 'r') as f:
                 results_data = [float(line.strip()) for line in f]
 
-            if len(results_data) == 6: # Ensure we have all expected properties
+            if len(results_data) == 1: # Ensure we have all expected properties
                 properties = {
-                    'Enthalpy (kJ/kg)': results_data[0],
-                    'Entropy (kJ/kg-K)': results_data[1],
-                    'Density (kg/m^3)': results_data[2],
-                    'Cp (kJ/kg-K)': results_data[3],
-                    'Conductivity (W/m-K)': results_data[4],
-                    'Viscosity (Pa-s or kg/m-s)': results_data[5] # Check EES units for viscosity
+                    'Saturation Temperature (C)': results_data[0] # Only one value: Tsat
                 }
                 return properties
             else:
-                print(f"Error: Unexpected number of results in {results_filename}. Content:\n{results_data}")
+                print(f"Error: Unexpected number of results in {results_filename}. Content:\\n{results_data}")
                 return None
         except FileNotFoundError:
             print(f"Error: EES output file '{results_filename}' not found.")
@@ -125,9 +109,9 @@ if __name__ == "__main__":
     # ees_path = "C:\\EES32\\EES.EXE" # Example
     ees_path = None # Let the function try to find it
 
-    pressure = 101.325  # kPa
-    temperature = 20    # Celsius
-    nh3_mass_fraction = 0.5
+    pressure = 101.3  # kPa
+    temperature = 25 # Celsius
+    nh3_mass_fraction = 0.0 # mass fraction of NH3
 
     props = get_ammonia_water_properties_ees(pressure, temperature, nh3_mass_fraction, ees_executable_path=ees_path)
 
