@@ -19,10 +19,7 @@ def get_ammonia_water_properties_ees(pressure_kPa, temperature_C, mass_fraction_
     if ees_executable_path is None:
         # Attempt to find EES.exe in common locations (adjust as needed)
         possible_paths = [
-            "D:\\EES32\\EES.EXE",
-            "D:\\Program Files (x86)\\EES32\\EES.EXE",
-            "D:\\EES64\\EES.EXE", # If you have a 64-bit version
-            "D:\\Program Files\\EES64\\EES.EXE"
+            "D:\EES32\EES.exe"
         ]
         for path in possible_paths:
             if os.path.exists(path):
