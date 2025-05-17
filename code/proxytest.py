@@ -10,10 +10,13 @@ import requests
 import shutil
 import random
 import threading
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from queue import Queue
 from urllib.parse import urlparse
 import base64
+import ipaddress
+import geoip2.database
 
 # --- 配置 ---
 V2RAY_CORE_EXECUTABLE = r"D:\v2rayN-windows-64\bin\xray\xray.exe" # 请确保这是你 v2ray.exe 的正确路径
@@ -257,13 +260,181 @@ def is_url(string):
     except:
         return False
 
+def load_rename_rules(rename_file):
+    """加载重命名规则"""
+    try:
+        # 默认路径
+        default_path = r"C:\Users\30752\Desktop\guest\edit\sub\config\rename.yaml"
+        
+        # 如果未指定rename文件，使用默认路径
+        if not rename_file:
+            rename_file = default_path
+            
+        # 检查是否是URL
+        if is_url(rename_file):
+            try:
+                # 添加请求头，模拟浏览器行为
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+                response = requests.get(rename_file, headers=headers, timeout=30)
+                response.raise_for_status()
+                return yaml.safe_load(response.text)
+            except Exception as e:
+                print(f"从远程加载重命名规则失败: {e}")
+                return []
+        
+        # 处理本地文件
+        # 尝试直接使用提供的路径
+        if os.path.exists(rename_file):
+            try:
+                with open(rename_file, 'r', encoding='utf-8') as f:
+                    return yaml.safe_load(f)
+            except Exception as e:
+                print(f"读取重命名规则文件失败: {e}")
+        
+        # 如果直接路径失败，尝试在脚本目录下查找
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        local_path = os.path.join(script_dir, 'rename.yaml')
+        if os.path.exists(local_path):
+            try:
+                with open(local_path, 'r', encoding='utf-8') as f:
+                    return yaml.safe_load(f)
+            except Exception as e:
+                print(f"读取本地重命名规则文件失败: {e}")
+        
+        # 如果都失败了，尝试使用默认路径
+        if os.path.exists(default_path):
+            try:
+                with open(default_path, 'r', encoding='utf-8') as f:
+                    return yaml.safe_load(f)
+            except Exception as e:
+                print(f"读取默认重命名规则文件失败: {e}")
+        
+        print("警告: 未找到重命名规则文件")
+        return []
+        
+    except Exception as e:
+        print(f"加载重命名规则失败: {e}")
+        return []
+
+def get_ip_location_api(ip):
+    """使用在线API获取IP地理位置信息"""
+    try:
+        # 使用免费的ip-api.com服务
+        response = requests.get(f'http://ip-api.com/json/{ip}', timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') == 'success':
+                return data.get('countryCode')
+    except:
+        pass
+    return None
+
+def get_ip_location(ip):
+    """获取IP地址的地理位置信息"""
+    try:
+        # 首先尝试使用本地数据库
+        if os.path.exists('GeoLite2-Country.mmdb'):
+            reader = geoip2.database.Reader('GeoLite2-Country.mmdb')
+            response = reader.country(ip)
+            country_code = response.country.iso_code
+            reader.close()
+            return country_code
+    except Exception as e:
+        print(f"本地数据库查询失败: {e}")
+    
+    # 如果本地数据库不可用，使用在线API
+    return get_ip_location_api(ip)
+
+def get_country_name_from_ip(server):
+    """从服务器地址获取国家代码"""
+    try:
+        # 尝试解析域名
+        ip = socket.gethostbyname(server)
+        return get_ip_location(ip)
+    except:
+        return None
+
+def rename_proxy(proxy_name, rename_rules, server=None):
+    """根据规则重命名代理节点"""
+    # 提取速度信息
+    speed_match = re.search(r'⬇️\s*([\d.]+)\s*MB/s', proxy_name)
+    speed_info = speed_match.group(1) if speed_match else ""
+    
+    # 首先尝试使用正则表达式匹配
+    for rule in rename_rules:
+        if re.search(rule['recognition'], proxy_name):
+            # 如果是中国节点，返回None表示需要排除
+            if 'CN' in rule['name']:
+                return None
+            # 构建新名称
+            new_name = f"{rule['name']} | {speed_info}MB/s"
+            return new_name
+    
+    # 如果正则匹配失败，尝试通过IP获取地理位置
+    if server:
+        country_code = get_country_name_from_ip(server)
+        if country_code:
+            # 如果是中国节点，返回None表示需要排除
+            if country_code == 'CN':
+                return None
+            # 构建新名称
+            new_name = f"{country_code} | {speed_info}MB/s"
+            return new_name
+    
+    # 如果都失败了，返回原始名称
+    return proxy_name
+
+def remove_duplicate_proxies(proxies):
+    """去除重复的代理节点"""
+    unique_proxies = {}
+    for proxy in proxies:
+        if not isinstance(proxy, dict) or 'server' not in proxy or 'port' not in proxy:
+            continue
+            
+        # 创建唯一标识
+        key = f"{proxy['server']}:{proxy['port']}"
+        
+        # 如果节点已存在，保留延迟较低的节点
+        if key in unique_proxies:
+            existing_proxy = unique_proxies[key]
+            # 如果新节点有延迟信息，且比现有节点延迟低，则替换
+            if 'tcp_latency' in proxy and 'tcp_latency' in existing_proxy:
+                try:
+                    new_latency = float(proxy['tcp_latency'].replace('ms', ''))
+                    existing_latency = float(existing_proxy['tcp_latency'].replace('ms', ''))
+                    if new_latency < existing_latency:
+                        unique_proxies[key] = proxy
+                except ValueError:
+                    pass
+        else:
+            unique_proxies[key] = proxy
+    
+    return list(unique_proxies.values())
+
 # --- 主逻辑 ---
 def main():
     # 定义默认文件名
     default_output_file = r"C:\Users\30752\Desktop\guest\edit\sub\output\output.yaml"
     
+    # 获取用户输入的rename文件路径
+    print("请输入重命名规则文件路径（支持本地文件路径或远程URL）：")
+    print("示例：")
+    print("  https://raw.githubusercontent.com/username/repo/main/rename.yaml")
+    print("  C:\\path\\to\\your\\rename.yaml")
+    print("  /path/to/your/rename.yaml")
+    print("  （直接回车使用默认路径）")
+    
+    rename_file = input().strip()
+    
+    # 加载重命名规则
+    rename_rules = load_rename_rules(rename_file)
+    if not rename_rules:
+        print("警告: 未找到重命名规则，将使用原始节点名称")
+    
     # 获取用户输入的订阅源
-    print("请输入订阅源（支持本地文件路径或远程URL，每行一个，输入空行结束）：")
+    print("\n请输入订阅源（支持本地文件路径或远程URL，每行一个，输入空行结束）：")
     print("示例：")
     print("  https://example.com/sub")
     print("  C:\\path\\to\\your\\config.yaml")
@@ -332,6 +503,10 @@ def main():
         return
     
     print(f"\n总共找到 {len(all_proxies)} 个代理节点")
+    
+    # 去除重复节点
+    all_proxies = remove_duplicate_proxies(all_proxies)
+    print(f"去重后剩余 {len(all_proxies)} 个代理节点")
     
     # 先进行TCP测试
     tcp_passed_proxies = []
@@ -407,11 +582,19 @@ def main():
 
     print(f"\n测试完成。{len(available_proxies)} / {len(all_proxies)} 个代理节点完全可用。")
 
+    # 在保存配置之前重命名节点
+    renamed_proxies = []
+    for proxy in available_proxies:
+        if 'name' in proxy and 'server' in proxy:
+            new_name = rename_proxy(proxy['name'], rename_rules, proxy['server'])
+            if new_name is not None:  # 排除中国节点
+                proxy['name'] = new_name
+                renamed_proxies.append(proxy)
+    
     # 更新配置文件
-    config_data["proxies"] = available_proxies
+    config_data["proxies"] = renamed_proxies
     try:
         with open(output_yaml_file, "w", encoding="utf-8") as f:
-            # 使用 allow_unicode=True 保留中文等非ASCII字符, sort_keys=False 保持原有顺序
             yaml.dump(config_data, f, allow_unicode=True, sort_keys=False, indent=2)
         print(f"筛选后的配置已保存到 '{output_yaml_file}'")
     except IOError as e:

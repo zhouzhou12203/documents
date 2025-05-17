@@ -1,0 +1,54 @@
+- name: CA-加拿大
+  recognition: (?:^|\s)(?:🇨🇦|加拿大|CA|Canada)(?:\s|$)
+- name: US-美国
+  recognition: (?:^|\s)(?:🇺🇸|美国|US|United States)(?:\s|$)
+- name: JP-日本
+  recognition: (?:^|\s)(?:🇯🇵|日本|JP|Japan)(?:\s|$)
+- name: GB-英国
+  recognition: (?:^|\s)(?:🇬🇧|英国|GB|United Kingdom)(?:\s|$)
+- name: DE-德国
+  recognition: (?:^|\s)(?:🇩🇪|德国|DE|Germany)(?:\s|$)
+- name: FR-法国
+  recognition: (?:^|\s)(?:🇫🇷|法国|FR|France)(?:\s|$)
+- name: CN
+  recognition: (?:^|\s)(?:🇨🇳|中国|CN|China)(?:\s|$)
+- name: IN-印度
+  recognition: (?:^|\s)(?:🇮🇳|印度|IN|India)(?:\s|$)
+- name: BR-巴西
+  recognition: (?:^|\s)(?:🇧🇷|巴西|BR|Brazil)(?:\s|$)
+- name: IT-意大利
+  recognition: (?:^|\s)(?:🇮🇹|意大利|IT|Italy)(?:\s|$)
+- name: RU-俄罗斯
+  recognition: (?:^|\s)(?:🇷🇺|俄罗斯|RU|Russia)(?:\s|$)
+- name: SA-沙特阿拉伯
+  recognition: (?:^|\s)(?:🇸🇦|沙特阿拉伯|SA|Saudi Arabia)(?:\s|$)
+- name: TW-台湾
+  recognition: (?:^|\s)(?:🇹🇼|台湾|TW|Taiwan)(?:\s|$)
+- name: HK-香港
+  recognition: (?:^|\s)(?:🇭🇰|香港|HK|Hong Kong)(?:\s|$)
+- name: PK-巴基斯坦
+  recognition: (?:^|\s)(?:🇵🇰|巴基斯坦|PK|Pakistan)(?:\s|$)
+- name: IR-伊朗
+  recognition: (?:^|\s)(?:🇮🇷|伊朗|IR|Iran)(?:\s|$)
+- name: SG-新加坡
+  recognition: (?:^|\s)(?:🇸🇬|新加坡|SG|Singapore)(?:\s|$)
+- name: NL-荷兰
+  recognition: (?:^|\s)(?:🇳🇱|荷兰|NL|Netherlands)(?:\s|$)
+- name: KR-韩国
+  recognition: (?:^|\s)(?:🇰🇷|韩国|KR|Korea)(?:\s|$)
+- name: AT-奥地利
+  recognition: (?:^|\s)(?:🇦🇹|奥地利|AT|Austria)(?:\s|$)
+- name: CH-瑞士
+  recognition: (?:^|\s)(?:🇨🇭|瑞士|CH|Switzerland)(?:\s|$)
+- name: BE-比利时
+  recognition: (?:^|\s)(?:🇧🇪|比利时|BE|Belgium)(?:\s|$)
+- name: SC-塞舌尔
+  recognition: (?:^|\s)(?:🇸🇨|塞舌尔|SC|Seychelles)(?:\s|$)
+- name: UA-乌克兰
+  recognition: (?:^|\s)(?:🇺🇦|乌克兰|UA|Ukraine)(?:\s|$)
+- name: PT-葡萄牙
+  recognition: (?:^|\s)(?:🇵🇹|葡萄牙|PT|Portugal)(?:\s|$)
+- name: RO-罗马尼亚
+  recognition: (?:^|\s)(?:🇷🇴|罗马尼亚|RO|Romania)(?:\s|$)
+- name: IE-爱尔兰
+  recognition: (?:^|\s)(?:🇮🇪|爱尔兰|IE|Ireland)(?:\s|$)
