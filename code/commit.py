@@ -31,7 +31,7 @@ SYSTEM_PROMPT = """你是一个专业的Git提交信息生成器。
 - scope: 可选，指明影响范围
 - subject: 动词开头，现在时态，简洁描述。
 
-只输出最终的commit信息本身，不要包含任何解释、前缀如 "Commit message:" 或 markdown 代码块标记。
+只输出最终的commit信息本身，不要包含任何解释、前缀如 "Commit message:" 或 markdown 代码块标记。请使用中文回答
 """
 
 def get_staged_diff():
