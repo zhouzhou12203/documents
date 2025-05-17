@@ -2,6 +2,8 @@ import subprocess
 import json
 import os
 import requests # 需要安装: pip install requests
+import sys
+import codecs
 
 # --- 配置 ---
 # 你的 OpenAI 兼容 API 的 Base URL
@@ -62,7 +64,7 @@ def generate_commit_message(diff_content):
         return None
 
     headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
     }
     if API_KEY and API_KEY != "YOUR_API_KEY":
         headers["Authorization"] = f"Bearer {API_KEY}"
@@ -115,6 +117,19 @@ def generate_commit_message(diff_content):
 
 
 if __name__ == "__main__":
+    if sys.platform.startswith('win'):
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+        kernel32.SetConsoleOutputCP(65001)  # 设置控制台输出为 UTF-8
+        kernel32.SetConsoleCP(65001)        # 设置控制台输入为 UTF-8
+
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
+
+    my_env = os.environ.copy()
+    my_env["PYTHONIOENCODING"] = "utf-8"
+    my_env["LANG"] = "zh_CN.UTF-8"
+    my_env["LC_ALL"] = "zh_CN.UTF-8"
+
     diff = get_staged_diff()
     if diff is None: # 错误已在 get_staged_diff 中打印
         exit(1)
