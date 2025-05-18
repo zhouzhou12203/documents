@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
 # 设置中文字体
-plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # 使用支持中文的字体
+# plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # Mac使用支持中文的字体
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用支持中文的字体
 plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 
 def analyze_stability():
