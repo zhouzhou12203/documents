@@ -1,3 +1,13 @@
+
+
+# PS C:\Users\30752> python -u "c:\Users\30752\Desktop\guest\edit\code\verify_order.py"
+# 局部截断误差的泰勒展开：
+# h*(2*x/sqrt(2*x + 1) - sqrt(2*x + 1) + 1/sqrt(2*x + 1)) + h**2*(x/sqrt(2*x + 1) - x/(2*x + 1)**(3/2) - sqrt(2*x + 1)/2 + 1/sqrt(2*x + 1) - 1/(2*(2*x + 1)**(3/2))) + O(h**3)
+
+# h^2项的系数： x/sqrt(2*x + 1) - x/(2*x + 1)**(3/2) - sqrt(2*x + 1)/2 + 1/sqrt(2*x + 1) - 1/(2*(2*x + 1)**(3/2))
+
+# 结论：该格式是二阶格式
+
 import numpy as np
 import sympy as sp
 
