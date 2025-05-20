@@ -22,7 +22,7 @@ import geoip2.database
 V2RAY_CORE_EXECUTABLE = r"D:\v2rayN-windows-64\bin\xray\xray.exe" # 请确保这是你 v2ray.exe 的正确路径
 # 确保此文件有执行权限
 
-TEST_URL = "https://www.google.com"  # 使用更稳定的URL
+TEST_URL = "https://www.google.com/"  # 使用更稳定的URL
 TCP_TIMEOUT = 2
 URL_TEST_TIMEOUT = 30  # 增加超时时间
 V2RAY_LOCAL_SOCKS_PORT =  10808
