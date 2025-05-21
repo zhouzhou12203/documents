@@ -362,14 +362,25 @@ def rename_proxy(proxy_name, rename_rules, server=None):
     speed_match = re.search(r'⬇️\s*([\d.]+)\s*MB/s', proxy_name)
     speed_info = speed_match.group(1) if speed_match else ""
     
+    # 用于跟踪每个地区的节点数量
+    if not hasattr(rename_proxy, 'country_counters'):
+        rename_proxy.country_counters = {}
+    
     # 首先尝试使用正则表达式匹配
     for rule in rename_rules:
         if re.search(rule['recognition'], proxy_name):
             # 如果是中国节点，返回None表示需要排除
             if 'CN' in rule['name']:
                 return None
+            # 获取地区名称
+            country_name = rule['name']
+            # 更新计数器
+            if country_name not in rename_proxy.country_counters:
+                rename_proxy.country_counters[country_name] = 1
+            else:
+                rename_proxy.country_counters[country_name] += 1
             # 构建新名称
-            new_name = f"{rule['name']} | {speed_info}MB/s"
+            new_name = f"{country_name}{rename_proxy.country_counters[country_name]} | {speed_info}MB/s"
             return new_name
     
     # 如果正则匹配失败，尝试通过IP获取地理位置
@@ -379,8 +390,13 @@ def rename_proxy(proxy_name, rename_rules, server=None):
             # 如果是中国节点，返回None表示需要排除
             if country_code == 'CN':
                 return None
+            # 更新计数器
+            if country_code not in rename_proxy.country_counters:
+                rename_proxy.country_counters[country_code] = 1
+            else:
+                rename_proxy.country_counters[country_code] += 1
             # 构建新名称
-            new_name = f"{country_code} | {speed_info}MB/s"
+            new_name = f"{country_code}{rename_proxy.country_counters[country_code]} | {speed_info}MB/s"
             return new_name
     
     # 如果都失败了，返回原始名称

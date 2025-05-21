@@ -1,203 +1,807 @@
 proxies:
-- name: JP-日本 | 2.3MB/s
-  server: 183.240.116.252
-  port: 27005
-  client-fingerprint: chrome
+- client-fingerprint: chrome
+  name: HK1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: ar.mjt000.com
+  skip-cert-verify: false
+  sni: ar.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 130ms
+  url_latency: 1502ms
+- cipher: aes-256-gcm
+  name: BE-比利时1 | MB/s
+  password: T8XHR3NVENTQ9P8A
+  port: 20026
+  server: 185.213.22.93
   type: ss
-  cipher: 2022-blake3-aes-128-gcm
-  password: MGU2Nzk1ZjI4MjNlYzk4Yw==:NDQ3N2Y4NzYtNWYzZS00OQ==
-  tfo: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 42ms
-  url_latency: 503ms
-- name: US-美国 | 1.2MB/s
-  server: 183.240.116.235
-  port: 27301
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 43ms
-  url_latency: 924ms
-- name: IN-印度 | 1.1MB/s
-  server: 183.2.150.64
-  port: 42882
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 29ms
-  url_latency: 2045ms
-- name: RU-俄罗斯 | 1.3MB/s
-  server: 183.2.150.90
-  port: 46925
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 31ms
-  url_latency: 2286ms
-- name: US-美国 | 1.0MB/s
-  server: 120.232.220.45
-  port: 33506
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 41ms
-  url_latency: 3628ms
-- name: US-美国 | 1.0MB/s
-  server: 8a9e8dd4-swexs0-sxhurg-1th8j.cu.plebai.net
-  port: 15229
-  client-fingerprint: chrome
-  type: trojan
-  password: 7d7c111e-fbc1-11ef-ab5f-f23c913c8d2b
-  sni: 8a9e8dd4-swexs0-sxhurg-1th8j.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 55ms
-  url_latency: 2828ms
-- name: US-美国 | 2.1MB/s
-  server: 4560c642-swin40-tjuq6l-wf62.cu.plebai.net
-  port: 15229
-  client-fingerprint: chrome
-  type: trojan
-  password: def14a51-e0d9-11ec-8429-f23c91cfbbc9
-  sni: 4560c642-swin40-tjuq6l-wf62.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 45ms
-  url_latency: 2551ms
-- name: US-美国 | 1.0MB/s
-  server: d735468a-swexs0-t1mspf-1k25p.cu.plebai.net
-  port: 15229
-  client-fingerprint: chrome
-  type: trojan
-  password: 6e8482fb-1f9b-11ed-af5f-f23c91cfbbc9
-  sni: d735468a-swexs0-t1mspf-1k25p.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 34ms
-  url_latency: 3480ms
-- name: US-美国 | 1.4MB/s
-  server: 141.101.120.253
-  port: 2096
-  client-fingerprint: chrome
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 231ms
+  url_latency: 776ms
+- cipher: aes-256-gcm
+  name: BR-巴西1 | MB/s
+  password: a869ba7e-e46c-46bf-9d0a-2a4ddecc0627
+  port: 7705
+  server: fell4.dogsvpn.top
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 363ms
+  url_latency: 1504ms
+- name: CA-加拿大1 | MB/s
   type: vmess
-  uuid: 381cb6d1-6ad4-4909-8494-b8d786cf78ce
+  server: yes.mojcn.com
+  port: 16641
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
   alterId: 0
   cipher: auto
-  tls: true
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 24ms
+  url_latency: 2118ms
+- name: CA-加拿大2 | MB/s
+  type: vmess
+  server: m.cnmjcn.com
+  port: 16641
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 40ms
+  url_latency: 2214ms
+- name: CA-加拿大3 | MB/s
+  type: vmess
+  server: t.cnmjcn.cyou
+  port: 16641
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 48ms
+  url_latency: 2538ms
+- name: CA-加拿大4 | MB/s
+  network: ws
+  password: d6b8011a-c725-435a-9fec-bf6d3530392c
+  port: 443
+  server: 172.67.30.171
+  skip-cert-verify: true
+  sni: vle.amclubsvip.dpdns.org
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: vle.amclubsvip.dpdns.org
+    path: /?ed=2560&PROT_TYPE=trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 62ms
+  url_latency: 763ms
+- cipher: aes-256-gcm
+  name: CA-加拿大5 | MB/s
+  password: WDVMX37E3KZF1871
+  port: 20006
+  server: 31.40.212.221
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 383ms
+  url_latency: 1260ms
+- name: CA-加拿大6 | MB/s
+  network: ws
+  password: d6b8011a-c725-435a-9fec-bf6d3530392c
+  port: 2053
+  server: 103.160.204.26
+  skip-cert-verify: true
+  sni: vle.amclubsvip.dpdns.org
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: vle.amclubsvip.dpdns.org
+    path: /?ed=2560&PROT_TYPE=trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 68ms
+  url_latency: 498ms
+- name: CA-加拿大7 | MB/s
+  network: ws
+  password: d6b8011a-c725-435a-9fec-bf6d3530392c
+  port: 8443
+  server: 154.83.2.61
+  skip-cert-verify: true
+  sni: vle.amclubsvip.dpdns.org
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: vle.amclubsvip.dpdns.org
+    path: /?ed=2560&PROT_TYPE=trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 60ms
+  url_latency: 452ms
+- name: DE-德国1 | MB/s
+  type: vmess
+  server: m.cnmjcn.com
+  port: 16644
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 43ms
+  url_latency: 1868ms
+- name: DE-德国2 | MB/s
+  type: vmess
+  server: yes.mojcn.com
+  port: 16644
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 25ms
+  url_latency: 2671ms
+- country: DE
+  name: DE-德国3 | MB/s
+  password: 4732adfa16c6450bbef87264e41332db
+  port: 443
+  server: nextstepcareer.online
+  skip-cert-verify: true
+  type: trojan
+  udp: true
+  sni: nextstepcareer.online
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 228ms
+  url_latency: 1521ms
+- client-fingerprint: chrome
+  name: FR-法国1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: uk.mjt000.com
+  skip-cert-verify: false
+  sni: uk.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 124ms
+  url_latency: 1197ms
+- alterId: 0
+  cipher: auto
+  name: FR-法国2 | MB/s
+  network: ws
+  port: 16645
+  server: m.cnmjin.net
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 39ms
+  url_latency: 1347ms
+- name: GB-英国1 | MB/s
+  type: vmess
+  server: t.cnmjcn.cyou
+  port: 16645
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 20ms
+  url_latency: 2039ms
+- name: GB-英国2 | MB/s
+  type: vmess
+  server: yes.mojcn.com
+  port: 16645
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 32ms
+  url_latency: 2792ms
+- cipher: chacha20-ietf-poly1305
+  country: GB
+  name: GB-英国3 | MB/s
+  password: 5373816546GV5U8BxZ1L4
+  port: 443
+  server: nl1.outline-vpn.top
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 264ms
+  url_latency: 950ms
+- alterId: 0
+  cipher: auto
+  name: HK-香港1 | MB/s
+  network: ws
+  port: 16632
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 25ms
+  url_latency: 2217ms
+- alterId: 0
+  cipher: auto
+  name: HK-香港2 | MB/s
+  network: ws
+  port: 16632
+  server: m.cnmjin.net
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 15ms
+  url_latency: 1688ms
+- alterId: 0
+  cipher: auto
+  name: HK-香港3 | MB/s
+  network: ws
+  port: 16622
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 39ms
+  url_latency: 1823ms
+- alterId: 0
+  cipher: auto
+  name: HK-香港4 | MB/s
+  network: ws
+  port: 16622
+  server: m.cnmjin.net
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 13ms
+  url_latency: 2298ms
+- cipher: aes-256-gcm
+  name: HK-香港5 | MB/s
+  password: UWCWLNPHNURCZBDY
+  port: 15016
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 1043ms
+  url_latency: 564ms
+- cipher: chacha20-ietf-poly1305
+  name: HK-香港6 | MB/s
+  password: f87772ed-cef9-444a-a8e8-bcf299c850ec
+  port: 23331
+  server: link.karleynetwork.xyz
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 41ms
+  url_latency: 623ms
+- name: HK-香港7 | MB/s
+  server: 120.198.44.126
+  port: 47883
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 0
+  cipher: auto
+  tls: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 120ms
+  url_latency: 1780ms
+- name: HK-香港8 | MB/s
+  password: RlzoEILU
+  port: 34041
+  server: 36.156.102.115
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 13ms
+  url_latency: 277ms
+- name: HK-香港9 | MB/s
+  password: RlzoEILU
+  port: 5800
+  server: 36.156.102.124
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 40ms
+  url_latency: 2756ms
+- name: HK-香港10 | MB/s
+  password: RlzoEILU
+  port: 45569
+  server: 36.156.102.124
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 14ms
+  url_latency: 4195ms
+- name: HK-香港11 | MB/s
+  password: RlzoEILU
+  port: 28296
+  server: 36.151.251.60
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 19ms
+  url_latency: 341ms
+- name: HK-香港12 | MB/s
+  server: b3abf6c7-swq1s0-sxd0pj-1rgsa.hgc1.tcpbbr.net
+  port: 8080
+  client-fingerprint: chrome
+  type: vmess
+  uuid: 096d1c9a-9e52-11ef-87a8-f23c9164ca5d
+  alterId: 0
+  cipher: auto
+  tls: false
   tfo: false
   skip-cert-verify: false
   network: ws
   ws-opts:
     path: /
     headers:
-      Host: 1746882891.speed.adl.cccp.freefly.pp.ua
-  servername: 1746882891.speed.adl.cccp.freefly.pp.ua
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
+      Host: broadcastlv.chat.bilibili.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
   tcp_latency: 60ms
-  url_latency: 1579ms
-- name: US-美国 | 1.0MB/s
-  server: 5f9d335d-swexs0-t5juhn-4tue.cu.plebai.net
-  port: 15229
+  url_latency: 802ms
+- name: HK-香港13 | MB/s
+  server: b7e2efb4-swq1s0-t6570q-1q3dm.hgc1.tcpbbr.net
+  port: 8080
   client-fingerprint: chrome
-  type: trojan
-  password: fe506496-24eb-11ef-abd3-f23c91cfbbc9
-  sni: 5f9d335d-swexs0-t5juhn-4tue.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 36ms
-  url_latency: 1532ms
-- name: SG-新加坡 | 1.9MB/s
-  server: singapore02.sqx001.com
-  port: 8444
-  client-fingerprint: chrome
-  type: http
-  username: podbbylf@mayorlogistic.com
-  password: 25d55ad283aa400af464c76d713c07ad
-  tls: true
-  skip-cert-verify: false
-  sni: singapore02.sqx001.com
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 41ms
-  url_latency: 996ms
-- name: FR-法国 | 3.1MB/s
-  server: 183.2.150.64
-  port: 43498
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 33ms
-  url_latency: 1057ms
-- name: IN-印度 | 3.6MB/s
-  server: 183.2.150.98
-  port: 42882
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 29ms
-  url_latency: 2068ms
-- name: US-美国 | 1.7MB/s
-  server: 98af6055-swexs0-t5w83q-1slpx.cu.plebai.net
-  port: 15229
-  client-fingerprint: chrome
-  type: trojan
-  password: b55123f4-0ba2-11f0-a2ef-f23c91cfbbc9
-  sni: 98af6055-swexs0-t5w83q-1slpx.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 34ms
-  url_latency: 1637ms
-- name: US-美国 | 1.2MB/s
-  server: 89856bdb-swexs0-tdahby-1tnab.cu.plebai.net
-  port: 15229
-  client-fingerprint: chrome
-  type: trojan
-  password: ca9c0c54-1513-11f0-8a7b-f23c913c8d2b
-  sni: 89856bdb-swexs0-tdahby-1tnab.cu.plebai.net
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 33ms
-  url_latency: 1452ms
-- name: JP-日本 | 1.2MB/s
-  server: 183.240.116.235
-  port: 27002
-  client-fingerprint: chrome
-  type: trojan
-  password: 4477f876-5f3e-49e5-a72b-568f385685a4
-  sni: q08m.vgraxiw73s.hasyaf.cn
-  skip-cert-verify: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 43ms
-  url_latency: 644ms
-- name: FR-法国 | 1.5MB/s
-  server: brookseek.trafficmanager.net
-  port: 17605
-  client-fingerprint: chrome
-  type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 5986f3d1-5f35-45e3-bc36-545d34e0a826
+  type: vmess
+  uuid: c1785de0-212f-11ef-92aa-f23c9164ca5d
+  alterId: 0
+  cipher: auto
+  tls: false
   tfo: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 11ms
-  url_latency: 1015ms
-- name: SG-新加坡 | 1.0MB/s
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: broadcastlv.chat.bilibili.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 61ms
+  url_latency: 703ms
+- cipher: aes-256-gcm
+  name: HK-香港14 | MB/s
+  password: GXUTEVGNLHEJ8GQN
+  port: 15009
+  server: 8tv68qhq.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 43ms
+  url_latency: 655ms
+- client-fingerprint: chrome
+  name: JP1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: il.mjt000.com
+  skip-cert-verify: false
+  sni: il.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 128ms
+  url_latency: 1538ms
+- cipher: aes-256-gcm
+  name: IL1 | MB/s
+  password: ZW60JDNWUVVKDL8Y
+  port: 20020
+  server: 147.78.2.35
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 326ms
+  url_latency: 1449ms
+- alterId: 0
+  cipher: auto
+  name: IN-印度1 | MB/s
+  network: ws
+  port: 16626
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 25ms
+  url_latency: 1172ms
+- client-fingerprint: chrome
+  name: IT-意大利1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: it.mjt000.com
+  skip-cert-verify: false
+  sni: it.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 109ms
+  url_latency: 1334ms
+- client-fingerprint: chrome
+  name: JP-日本1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: jp.mjt000.com
+  skip-cert-verify: true
+  sni: jp.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 112ms
+  url_latency: 597ms
+- alterId: 0
+  cipher: auto
+  name: JP-日本2 | MB/s
+  network: ws
+  port: 16617
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 22ms
+  url_latency: 2200ms
+- name: JP-日本3 | MB/s
+  type: vmess
+  server: m.cnmjin.net
+  port: 16617
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 55ms
+  url_latency: 1140ms
+- name: JP-日本4 | MB/s
+  type: vmess
+  server: t.cnmjcn.cyou
+  port: 16617
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 13ms
+  url_latency: 1703ms
+- cipher: aes-256-gcm
+  name: JP-日本5 | MB/s
+  password: QSLQNIWZR7RS3K86
+  port: 18003
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 99ms
+  url_latency: 533ms
+- cipher: aes-256-gcm
+  name: JP-日本6 | MB/s
+  password: O818OGDOXY2J92A7
+  port: 18015
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 106ms
+  url_latency: 1890ms
+- cipher: chacha20-ietf-poly1305
+  name: JP-日本7 | MB/s
+  password: f87772ed-cef9-444a-a8e8-bcf299c850ec
+  port: 23335
+  server: link.karleynetwork.xyz
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 45ms
+  url_latency: 467ms
+- cipher: aes-256-gcm
+  name: JP-日本8 | MB/s
+  password: BX8XNRWNO8H8V1JD
+  port: 18006
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 102ms
+  url_latency: 783ms
+- cipher: aes-256-gcm
+  name: JP-日本9 | MB/s
+  password: PCKBRZD8CVUR9YRT
+  port: 18016
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 98ms
+  url_latency: 878ms
+- name: HK2 | MB/s
+  type: trojan
+  server: kh.mjt000.com
+  port: 443
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  udp: true
+  sni: kh.mjt000.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 109ms
+  url_latency: 7970ms
+- cipher: chacha20-ietf-poly1305
+  name: KR-韩国1 | MB/s
+  password: b25727df-15ea-453c-a006-13fe98fee1d2
+  port: 30936
+  server: 141.164.63.32
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 169ms
+  url_latency: 865ms
+- name: KR-韩国2 | MB/s
+  password: RlzoEILU
+  port: 44907
+  server: 36.151.251.59
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 44ms
+  url_latency: 787ms
+- name: KR-韩国3 | MB/s
+  password: RlzoEILU
+  port: 28910
+  server: 36.151.251.59
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 42ms
+  url_latency: 675ms
+- name: KR-韩国4 | MB/s
+  password: RlzoEILU
+  port: 28548
+  server: 36.151.251.62
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 39ms
+  url_latency: 786ms
+- name: KR-韩国5 | MB/s
+  network: ws
+  password: d6b8011a-c725-435a-9fec-bf6d3530392c
+  port: 443
+  server: 104.22.37.243
+  skip-cert-verify: true
+  sni: vle.amclubsvip.dpdns.org
+  type: trojan
+  udp: true
+  ws-opts:
+    headers:
+      Host: vle.amclubsvip.dpdns.org
+    path: /?ed=2560&PROT_TYPE=trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 61ms
+  url_latency: 454ms
+- client-fingerprint: chrome
+  name: HK3 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: kz.mjt000.com
+  skip-cert-verify: false
+  sni: kz.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 131ms
+  url_latency: 4125ms
+- name: HK4 | MB/s
+  type: trojan
+  server: ni.mjt000.com
+  port: 443
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  udp: true
+  sni: ni.mjt000.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 128ms
+  url_latency: 1970ms
+- cipher: chacha20-ietf-poly1305
+  country: ' LT'
+  name: NL-荷兰1 | MB/s
+  password: QCXDxuDlTTMD7jtgHUjIoj
+  port: 8080
+  server: 45.87.175.166
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 410ms
+  url_latency: 14702ms
+- client-fingerprint: chrome
+  name: PT-葡萄牙1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: pt.mjt000.com
+  skip-cert-verify: false
+  sni: pt.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 110ms
+  url_latency: 3546ms
+- client-fingerprint: chrome
+  name: RU-俄罗斯1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: ru.mjt000.com
+  skip-cert-verify: false
+  sni: ru.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 130ms
+  url_latency: 3071ms
+- cipher: chacha20-ietf-poly1305
+  country: RU
+  name: RU-俄罗斯2 | MB/s
+  password: 1112935345TCfzfJ5Qw5o
+  port: 443
+  server: node1-dufgl.vpnvless.com
+  type: ss
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 307ms
+  url_latency: 1395ms
+- alterId: 0
+  cipher: auto
+  name: SG-新加坡1 | MB/s
+  network: ws
+  port: 16618
+  server: t.cnmjcn.cyou
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 43ms
+  url_latency: 570ms
+- alterId: 0
+  cipher: auto
+  name: SG-新加坡2 | MB/s
+  network: ws
+  port: 16618
+  server: m.cnmjin.net
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 42ms
+  url_latency: 574ms
+- alterId: 0
+  cipher: auto
+  name: SG-新加坡3 | MB/s
+  network: ws
+  port: 16618
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 20ms
+  url_latency: 615ms
+- name: SG-新加坡4 | MB/s
   server: guang.ccwink.cc
   port: 2015
   client-fingerprint: chrome
@@ -205,21 +809,275 @@ proxies:
   cipher: 2022-blake3-aes-128-gcm
   password: M2JmZjZkMWQyOGE0Yjg2NQ==:Yjc1MWU5OTUtYjI0Yy00Zg==
   tfo: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 32ms
-  url_latency: 816ms
-- name: DE-德国 | 2.8MB/s
-  server: nodeseek.trafficmanager.net
-  port: 17604
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 30ms
+  url_latency: 1004ms
+- alpn: []
+  name: SG-新加坡5 | MB/s
+  password: RlzoEILU
+  port: 17166
+  server: 36.156.102.123
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  udp: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 38ms
+  url_latency: 671ms
+- cipher: aes-256-gcm
+  name: SG-新加坡6 | MB/s
+  password: VL0F74T3VH6VN8JA
+  port: 16009
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 67ms
+  url_latency: 269ms
+- alterId: 64
+  cipher: auto
+  name: SG-新加坡7 | MB/s
+  port: 49302
+  server: 183.236.51.38
+  skip-cert-verify: true
+  tls: false
+  type: vmess
+  udp: true
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 57ms
+  url_latency: 821ms
+- cipher: aes-256-gcm
+  name: SG-新加坡8 | MB/s
+  password: S2T4YKKVD5EUQSUS
+  port: 16010
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 74ms
+  url_latency: 446ms
+- name: SG-新加坡9 | MB/s
+  password: RlzoEILU
+  port: 29220
+  server: 36.151.251.62
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 39ms
+  url_latency: 487ms
+- cipher: aes-256-gcm
+  name: SG-新加坡10 | MB/s
+  password: Y7L7VYVVHZCI3X1F
+  port: 16016
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 78ms
+  url_latency: 1568ms
+- alterId: 64
+  cipher: auto
+  name: SG-新加坡11 | MB/s
+  port: 49121
+  server: 183.236.51.38
+  tls: false
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 92ms
+  url_latency: 2036ms
+- name: JP2 | MB/s
+  type: trojan
+  server: tr.mjt000.com
+  port: 443
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  udp: true
+  sni: tr.mjt000.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 134ms
+  url_latency: 3281ms
+- client-fingerprint: chrome
+  name: UA-乌克兰1 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: ua.mjt000.com
+  skip-cert-verify: false
+  sni: ua.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 109ms
+  url_latency: 5397ms
+- name: US-美国1 | MB/s
+  server: 97bb3e67-swmcg0-t1bnjq-1krtb.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d
+  sni: 97bb3e67-swmcg0-t1bnjq-1krtb.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 31ms
+  url_latency: 1383ms
+- name: US-美国2 | MB/s
+  server: abeeaaca-swq1s0-sxkd63-17z95.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 0a335fd6-be0b-11ec-8dfa-f23c91cfbbc9
+  sni: abeeaaca-swq1s0-sxkd63-17z95.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 35ms
+  url_latency: 1520ms
+- name: US-美国3 | MB/s
+  server: 111.29.57.104
+  port: 11511
   client-fingerprint: chrome
   type: ss
-  cipher: chacha20-ietf-poly1305
-  password: 5986f3d1-5f35-45e3-bc36-545d34e0a826
+  cipher: aes-256-gcm
+  password: 77a12a3d-6df0-48c8-a189-b071fcda1456
   tfo: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 13ms
-  url_latency: 973ms
-- name: US | MB/s
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 61ms
+  url_latency: 7598ms
+- name: US-美国4 | MB/s
+  server: d1ee6282-swq1s0-sx0fe4-1j6h0.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: dcccacba-fa44-11ef-8400-f23c9164ca5d
+  sni: d1ee6282-swq1s0-sx0fe4-1j6h0.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 34ms
+  url_latency: 1355ms
+- name: US-美国5 | MB/s
+  server: 72df6fa3-swq1s0-syfwbx-1k0yf.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 9cc3c03e-21fd-11ee-a642-f23c91369f2d
+  sni: 72df6fa3-swq1s0-syfwbx-1k0yf.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 37ms
+  url_latency: 1421ms
+- name: US-美国6 | MB/s
+  server: 21df6ca0-swq1s0-sx9b4u-1sd8z.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 861b5684-062c-11f0-8eb0-f23c9164ca5d
+  sni: 21df6ca0-swq1s0-sx9b4u-1sd8z.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 33ms
+  url_latency: 1531ms
+- name: US-美国7 | MB/s
+  server: 6e03acc9-swq1s0-sy4bp2-1pr35.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 6b7c1278-ff9d-11ee-84ca-f23c913c8d2b
+  sni: 6e03acc9-swq1s0-sy4bp2-1pr35.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 44ms
+  url_latency: 2071ms
+- name: US-美国8 | MB/s
+  server: bbe9f678-swq1s0-sy3zfb-ezjz.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 591ac730-bd6f-11ed-a8bf-f23c91cfbbc9
+  sni: bbe9f678-swq1s0-sy3zfb-ezjz.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 34ms
+  url_latency: 1474ms
+- name: US-美国9 | MB/s
+  server: 83c0ab3a-swq1s0-sy439s-laev.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: ef18aaca-4711-11ec-a8bf-f23c91cfbbc9
+  sni: 83c0ab3a-swq1s0-sy439s-laev.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 34ms
+  url_latency: 1398ms
+- name: US-美国10 | MB/s
+  server: eac1462b-swxgg0-sxkd63-17z95.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 0a335fd6-be0b-11ec-8dfa-f23c91cfbbc9
+  sni: eac1462b-swxgg0-sxkd63-17z95.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 34ms
+  url_latency: 1545ms
+- name: US-美国11 | MB/s
+  server: 120.232.153.123
+  port: 50352
+  client-fingerprint: chrome
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  alterId: 64
+  cipher: auto
+  tls: false
+  tfo: false
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 51ms
+  url_latency: 452ms
+- name: US-美国12 | MB/s
+  server: 6f6a0889-swo740-t02jph-ugw2.cu.plebai.net
+  port: 15229
+  client-fingerprint: chrome
+  type: trojan
+  password: 41d69b1e-cbf3-11ea-82ef-f23c9164ca5d
+  sni: 6f6a0889-swo740-t02jph-ugw2.cu.plebai.net
+  skip-cert-verify: false
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 35ms
+  url_latency: 1464ms
+- name: US-美国13 | MB/s
+  server: 104.16.83.8
+  port: 443
+  client-fingerprint: chrome
+  type: trojan
+  password: Ng35283528
+  sni: c2.validbv3528.eu.org
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: c2.validbv3528.eu.org
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 60ms
+  url_latency: 415ms
+- name: US-美国14 | MB/s
+  server: 123.interld123456789.com
+  port: 443
+  client-fingerprint: chrome
+  type: trojan
+  password: a21bd0f9-e11a-4c69-aa66-31fb9d31c1cb
+  sni: 8858vssei.us1234567891.xyz
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /music
+    headers:
+      Host: 8858vssei.us1234567891.xyz
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 60ms
+  url_latency: 3179ms
+- name: US-美国15 | MB/s
   type: trojan
   server: mg7.gy6688.xyz
   port: 443
@@ -227,383 +1085,9 @@ proxies:
   udp: true
   skip-cert-verify: true
   sni: mg7.gy6688.xyz
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/first?target=ClashMeta
-  tcp_latency: 195ms
-  url_latency: 1088ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=212.183.88.172:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 212.183.88.172
-  port: 443
-  name: AT | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 430ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=212.183.88.194:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 212.183.88.194
-  port: 443
-  name: AT | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 436ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=212.183.88.156:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 212.183.88.156
-  port: 443
-  name: AT | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 591ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=212.183.88.29:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 212.183.88.29
-  port: 443
-  name: AT | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 1226ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=212.183.88.58:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 212.183.88.58
-  port: 443
-  name: AT | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 401ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.227:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.227
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 392ms
-- skip-cert-verify: false
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.89:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.89
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 427ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.254:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.254
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 508ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.237:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.237
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 59ms
-  url_latency: 393ms
-- skip-cert-verify: false
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.51:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.51
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 1187ms
-- skip-cert-verify: false
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=194.76.18.122:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 194.76.18.122
-  port: 443
-  name: KZ | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 77ms
-  url_latency: 414ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=194.76.18.129:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 194.76.18.129
-  port: 443
-  name: KZ | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 405ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=217.163.76.221:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 217.163.76.221
-  port: 443
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 1195ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=45.67.215.5:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 45.67.215.5
-  port: 443
-  name: RU | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 413ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=45.67.215.196:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 45.67.215.196
-  port: 443
-  name: RU | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 406ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=45.67.215.234:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 45.67.215.234
-  port: 443
-  name: RU | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 405ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=202.37.33.80:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 202.37.33.80
-  port: 443
-  name: NZ | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 1180ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=192.0.54.194:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 192.0.54.194
-  port: 443
-  name: US | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 406ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=160.79.105.81:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 160.79.105.81
-  port: 443
-  name: US | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 396ms
-- skip-cert-verify: false
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=45.67.215.153:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 45.67.215.153
-  port: 443
-  name: RU | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 1196ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=192.0.54.184:443
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 192.0.54.184
-  port: 443
-  name: US | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 61ms
-  url_latency: 1186ms
-- name: CA | MB/s
-  type: vmess
-  server: cloudgetservice.mcloudservice.site
-  port: 443
-  cipher: auto
-  uuid: 8f922e2e-18f3-4bd9-a097-09c2d7c139be
-  alterId: 0
-  tls: true
-  network: ws
-  ws-opts:
-    path: /linkws?ed=2560
-    headers:
-      Host: MAxNEtViP-gEr-vp1.MaXnETcLOuDSErVice.com
-  servername: MAxNEtViP-gEr-vp1.MaXnETcLOuDSErVice.com
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 1829ms
-- name: US | MB/s
-  type: vmess
-  server: 65.75.194.28
-  port: 49930
-  cipher: auto
-  uuid: 75191b1e-74a5-4f54-ad94-3bc09ff61322
-  alterId: 0
-  tls: false
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 192ms
-  url_latency: 875ms
-- skip-cert-verify: true
-  sni: Xxs345rf.857856.xYZ
-  network: ws
-  ws-opts:
-    path: /71M8Ov1I5Gk9247fHC0XGZG6
-    headers:
-      Host: Xxs345rf.857856.xYZ
-  type: trojan
-  password: 70776bb4-d791-4cbd-9c9b-c76e937f9e60
-  server: 172.67.216.240
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 214ms
-  url_latency: 1458ms
-- skip-cert-verify: true
-  sni: icecream.955850.xyz
-  network: ws
-  ws-opts:
-    path: /proxyip=45.154.98.124:12001&proxyIP=null
-    headers:
-      Host: icecream.955850.xyz
-  type: trojan
-  password: 6884d714-d3c4-4b49-aa20-767ea92837d6
-  server: 45.154.98.124
-  port: 12001
-  name: NL | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 228ms
-  url_latency: 1509ms
-- name: BG | 2.8MB/s
-  network: ws
-  password: bpb-trojan
-  port: 443
-  server: bg.madison.eu.org
-  skip-cert-verify: true
-  sni: skwygx.top
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: skwygx.top
-    path: /tr?ed=2560
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 251ms
-  url_latency: 1655ms
-- skip-cert-verify: false
-  sni: skwygx.top
-  network: ws
-  ws-opts:
-    path: /tr
-  type: trojan
-  password: bpb-trojan
-  server: 91.227.77.87
-  port: 443
-  name: BG | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 244ms
-  url_latency: 1580ms
-- sni: epccx.ambercc.filegear-sg.me
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: epccx.ambercc.filegear-sg.me
-  type: trojan
-  password: Aimer
-  server: 167.68.5.85
-  port: 2053
-  name: US | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 60ms
-  url_latency: 374ms
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 197ms
+  url_latency: 1087ms
 - skip-cert-verify: true
   sni: EEeEee4.hUAngSHANG2030.dPdNS.org
   network: ws
@@ -613,172 +1097,307 @@ proxies:
   password: c8eac4b7-95ba-4ce0-920d-c3279eb3b391
   server: 172.67.181.193
   port: 443
-  name: US-美国 | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 214ms
-  url_latency: 1465ms
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  name: CA | 15.3MB/s
-  network: ws
-  password: 44ed7a37-af89-4cd1-8680-83a7207810d9
+  name: US-美国16 | MB/s
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 220ms
+  url_latency: 2435ms
+- name: US-美国17 | MB/s
+  type: vmess
+  server: 64.176.52.132
   port: 443
-  server: 104.21.64.1
+  cipher: auto
+  uuid: 0160afb7-f896-45af-a790-41b0ada08ed7
+  alterId: 0
+  tls: true
+  network: ws
+  ws-opts:
+    path: /t.me/lzjjjjjjjjjjj
+    headers:
+      Host: freesg-win.lzj520hxw.dpdns.org
+  servername: freesg-win.lzj520hxw.dpdns.org
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 214ms
+  url_latency: 1599ms
+- name: US-美国18 | MB/s
+  password: 5e2f888c-68ef-11ef-96ca-f23c9164ca5d
+  port: 15229
+  server: 3784f70a-swo740-swy6li-tni2.cu.plebai.net
+  type: trojan
+  sni: 3784f70a-swo740-swy6li-tni2.cu.plebai.net
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 33ms
+  url_latency: 1584ms
+- name: US-美国19 | MB/s
+  password: 0da8651e-e1f6-11ec-bd7c-f23c913c8d2b
+  port: 15229
+  server: a828e0b8-swo740-tcinla-hrtf.cu.plebai.net
+  type: trojan
+  udp: true
+  sni: a828e0b8-swo740-tcinla-hrtf.cu.plebai.net
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 32ms
+  url_latency: 2394ms
+- name: US-美国20 | MB/s
+  password: 60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d
+  port: 15229
+  server: f8021ada-swo740-t1bnjq-1krtb.cu.plebai.net
+  type: trojan
+  sni: f8021ada-swo740-t1bnjq-1krtb.cu.plebai.net
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 34ms
+  url_latency: 1425ms
+- client-fingerprint: chrome
+  name: US-美国21 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: usla.mjt000.com
   skip-cert-verify: false
-  sni: 21sWDE.7777128.xYZ
+  sni: usla.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 112ms
+  url_latency: 1103ms
+- alterId: 0
+  cipher: auto
+  name: US-美国22 | MB/s
+  network: ws
+  port: 16648
+  server: yes.mojcn.com
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  ws-opts:
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+    path: /
+  xudp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 25ms
+  url_latency: 5871ms
+- alterId: 64
+  cipher: auto
+  name: US-美国23 | MB/s
+  port: 44915
+  server: 120.198.71.219
+  tls: false
+  type: vmess
+  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 105ms
+  url_latency: 548ms
+- name: US-美国24 | MB/s
+  type: vmess
+  server: t.cnmjcn.cyou
+  port: 16648
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 43ms
+  url_latency: 2208ms
+- name: US-美国25 | MB/s
+  type: vmess
+  server: m.cnmjin.net
+  port: 16648
+  uuid: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  alterId: 0
+  cipher: auto
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: a75b165b6212875c9aa9db1e247d1912.mobgslb.tbcache.com
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 38ms
+  url_latency: 3102ms
+- cipher: aes-256-gcm
+  name: US-美国26 | MB/s
+  password: 0R7H2LHO54CJ5RI4
+  port: 17001
+  server: ti3hyra4.slashdevslashnetslashtun.net
+  type: ss
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 186ms
+  url_latency: 2419ms
+- client-fingerprint: chrome
+  name: US-美国27 | MB/s
+  password: czaOZA3OxRYDl4u0RxT7D62FyNI3aC98ZCDDRnDax6zECS5I35wSqSKTXYAy3Nw3eXYaO
+  port: 28331
+  server: 154.17.11.217
+  skip-cert-verify: false
+  sni: cutting.homeofbrave.net
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 130ms
+  url_latency: 639ms
+- name: US-美国28 | MB/s
+  password: RlzoEILU
+  port: 13542
+  server: 36.151.251.62
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 19ms
+  url_latency: 897ms
+- name: US-美国29 | MB/s
+  password: RlzoEILU
+  port: 3330
+  server: 36.151.251.62
+  skip-cert-verify: true
+  sni: cdn.egvra.cn
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 47ms
+  url_latency: 986ms
+- name: US-美国30 | MB/s
+  port: 8888
+  server: sf3.epicbrowser.net
+  skip-cert-verify: false
+  tls: true
+  type: http
+  sni: sf3.epicbrowser.net
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 198ms
+  url_latency: 1443ms
+- name: US-美国31 | MB/s
+  network: ws
+  password: 061ec9d5-ba40-428a-8be0-1947b10b5cfc
+  port: 443
+  server: 104.21.22.211
+  skip-cert-verify: true
+  sni: T.taipEi108.Dpdns.Org
+  tfo: false
   type: trojan
   udp: true
   ws-opts:
     headers:
-      User-Agent: Mozilla/5.0 (Linux; Android 7.1.2; Redmi 4X Build/N2G47H) AppleWebKit/537.36
-        (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
-    path: /HpYP4foAlpTKtfYnjLYhU30U
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
+      Host: T.taipEi108.Dpdns.Org
+    path: /Dmby2AKiZKvMo1YauoQwY5
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
   tcp_latency: 213ms
-  url_latency: 1633ms
-- type: ss
-  server: 92.119.199.33
-  port: 443
-  cipher: aes-256-gcm
-  password: I1hTma0BoL
-  name: GB | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 292ms
-  url_latency: 4401ms
-- sni: torjan.xn--xhq44j.eu.org
+  url_latency: 1571ms
+- name: US-美国32 | MB/s
   network: ws
+  password: 072f4db4-d89d-420d-9d9e-045ed8d5c9cc
+  port: 443
+  server: 104.21.57.88
+  skip-cert-verify: false
+  sni: 10tyu.iran.pp.ua
+  type: trojan
   ws-opts:
-    path: /
     headers:
-      Host: torjan.xn--xhq44j.eu.org
-  type: trojan
-  password: tg-fq521free
-  server: 216.24.57.30
-  port: 443
-  name: US | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 59ms
-  url_latency: 421ms
-- sni: torjan.xn--xhq44j.eu.org
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: torjan.xn--xhq44j.eu.org
-  type: trojan
-  password: tg-fq521free
-  server: 45.67.215.95
-  port: 443
-  name: RU | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 71ms
-  url_latency: 416ms
-- sni: XXXcddDe.IRaN2035.dpdNs.orG
-  client-fingerprint: chrome
-  alpn:
-  - http/1.1
-  network: ws
-  ws-opts:
-    path: /bdtuD5eD7Q29WxRG8DqNAB
-    headers:
-      Host: xxxcddde.iran2035.dpdns.org
-  type: trojan
-  password: 2734c14b-e4ce-48b3-b3de-f80788cb4c47
-  server: 104.21.84.58
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 208ms
-  url_latency: 1644ms
-- sni: main.xicun.us.kg
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: main.xicun.us.kg
-  type: trojan
-  password: trojan
-  server: 104.18.2.150
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 59ms
-  url_latency: 1212ms
-- skip-cert-verify: true
-  sni: kfjdi.pages.dev
-  network: ws
-  ws-opts:
-    path: /
-  type: trojan
-  password: er668
-  server: 104.21.96.1
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 213ms
-  url_latency: 1216ms
-- skip-cert-verify: true
-  sni: kfjdi.pages.dev
-  network: ws
-  ws-opts:
-    path: /
-  type: trojan
-  password: er668
-  server: 104.21.48.1
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 213ms
-  url_latency: 1220ms
-- sni: CdVftY.7282728.xYz
-  client-fingerprint: chrome
-  alpn:
-  - http/1.1
-  network: ws
-  ws-opts:
-    path: /ptGwaGzcA4KNAXX
-    headers:
-      Host: cdvfty.7282728.xyz
-  type: trojan
-  password: c8eac4b7-95ba-4ce0-920d-c3279eb3b391
-  server: 172.67.138.187
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 213ms
-  url_latency: 1471ms
-- sni: ab2c7f0b-bf1b-4eb3-9884-256f4de3d.2030.pp.ua
-  client-fingerprint: chrome
-  alpn:
-  - http/1.1
-  network: ws
-  ws-opts:
-    path: /4p35eUnmGxQ8YJFJxz
-    headers:
-      Host: ab2c7f0b-bf1b-4eb3-9884-256f4de3d.2030.pp.ua
-  type: trojan
-  password: 15b24b56-d667-4fa8-b548-f3dc942fb461
-  server: 104.21.15.232
-  port: 443
-  name: CA | MB/s
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 213ms
-  url_latency: 3665ms
-- name: CA | MB/s
+      Host: 10tyu.iran.pp.ua
+    path: /VEP415T5mby2DulPWRIwOavJd
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 214ms
+  url_latency: 1399ms
+- name: US-美国33 | MB/s
+  server: 104.21.64.1
+  port: 2083
   type: vmess
-  server: 172.67.214.33
-  port: 2082
-  cipher: auto
-  uuid: 2f821152-c3e9-4074-9185-2790e7425f42
+  uuid: 8f78e709-2c5f-4c19-9f44-b5b5f80ab74c
   alterId: 0
-  tls: false
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
   network: ws
   ws-opts:
     path: /
-    headers:
-      Host: cs.flha.ru
-  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/second?target=ClashMeta
-  tcp_latency: 209ms
-  url_latency: 2098ms
+  servername: cc2d3.988988.shop
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 215ms
+  url_latency: 1599ms
+- name: US-美国34 | MB/s
+  server: 104.21.48.1
+  port: 2096
+  type: vmess
+  uuid: 8f78e709-2c5f-4c19-9f44-b5b5f80ab74c
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /
+  servername: cc2d1.988988.shop
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 213ms
+  url_latency: 1579ms
+- name: US-美国35 | MB/s
+  server: 104.21.80.1
+  port: 2083
+  type: vmess
+  uuid: 8f78e709-2c5f-4c19-9f44-b5b5f80ab74c
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /
+  servername: cc2d3.988988.shop
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 214ms
+  url_latency: 1532ms
+- name: US-美国36 | MB/s
+  server: 104.21.48.1
+  port: 2083
+  type: vmess
+  uuid: 8f78e709-2c5f-4c19-9f44-b5b5f80ab74c
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /
+  servername: cc2d3.988988.shop
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 208ms
+  url_latency: 1550ms
+- name: US-美国37 | MB/s
+  password: 24099fd0-1fc4-11eb-8684-f23c913c8d2b
+  port: 15229
+  server: febda836-swq1s0-sxluj3-5jrf.cu.plebai.net
+  type: trojan
+  sni: febda836-swq1s0-sxluj3-5jrf.cu.plebai.net
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 35ms
+  url_latency: 1423ms
+- client-fingerprint: chrome
+  name: JP3 | MB/s
+  password: ad2b5cee-f61d-4060-8726-5fedf509ff5d
+  port: 443
+  server: vn.mjt000.com
+  skip-cert-verify: false
+  sni: vn.mjt000.com
+  type: trojan
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 128ms
+  url_latency: 1790ms
+- name: US1 | MB/s
+  type: trojan
+  server: notice.2513142.xyz
+  password: 8b381a6ed665ebc4420ab82197310c4b
+  port: 443
+  skip-cert-verify: true
+  sni: www.cloudflare.com
+  udp: true
+  source: https://sub.zhou12203.top/bkwzsyzy/download/collection/sub-store%E9%85%8D%E7%BD%AE?target=ClashMeta
+  tcp_latency: 267ms
+  url_latency: 1265ms
