@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>当代大学生六大美德</title>
+    <style>
+        /* 将所有样式内联，确保在论坛中能正常显示 */
+        .美德卡片 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: url('https://image.zhou12203.top/file/1740855309070_IMG1738763064636-topaz-upscale-2.4x.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        .美德卡片::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.85);
+            z-index: 1;
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #b19cd9;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(177, 156, 217, 0.5);
+            font-size: 2.5em;
+            margin: 20px 0;
+            background: rgba(45, 27, 77, 0.7);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(45, 27, 77, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(147, 112, 219, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), transparent);
+            z-index: -1;
+        }
+        .idiom {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #b19cd9;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(177, 156, 217, 0.3);
+        }
+        .explanation {
+            color: #e0e0e0;
+            font-size: 1.2em;
+            text-align: center;
+            line-height: 1.6;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        /* 保持原有的卡片独特样式 */
+        .card:nth-child(1) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(147, 112, 219, 0.8));
+            border: 2px solid #9370db;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            animation: cardGlow1 4s ease-in-out infinite;
+        }
+        .card:nth-child(1)::after {
+            content: '📚';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .card:nth-child(2) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(138, 43, 226, 0.8));
+            border: 2px solid #8a2be2;
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 15%);
+            animation: cardGlow2 4s ease-in-out infinite;
+        }
+        .card:nth-child(2)::after {
+            content: '🔄';
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .card:nth-child(3) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(153, 50, 204, 0.8));
+            border: 2px solid #9932cc;
+            border-radius: 30px;
+            animation: cardGlow3 4s ease-in-out infinite;
+        }
+        .card:nth-child(3)::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #9932cc, #ba55d3, #da70d6, #ee82ee);
+            border-radius: 32px;
+            z-index: -1;
+            animation: borderRotate 4s linear infinite;
+        }
+        .card:nth-child(4) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(186, 85, 211, 0.8));
+            border: 2px solid #ba55d3;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 85%);
+            animation: cardGlow4 4s ease-in-out infinite;
+        }
+        .card:nth-child(4)::after {
+            content: '🎯';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .card:nth-child(5) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(218, 112, 214, 0.8));
+            border: 2px solid #da70d6;
+            clip-path: polygon(0 15%, 15% 0, 100% 0, 100% 100%, 0 100%);
+            animation: cardGlow5 4s ease-in-out infinite;
+        }
+        .card:nth-child(5)::after {
+            content: '♾️';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .card:nth-child(6) {
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(238, 130, 238, 0.8));
+            border: 2px solid #ee82ee;
+            clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 0 100%);
+            animation: cardGlow6 4s ease-in-out infinite;
+        }
+        .card:nth-child(6)::after {
+            content: '📖';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes cardGlow1 {
+            0%, 100% { box-shadow: 0 0 30px rgba(147, 112, 219, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(147, 112, 219, 0.5); }
+        }
+        @keyframes cardGlow2 {
+            0%, 100% { box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(138, 43, 226, 0.5); }
+        }
+        @keyframes cardGlow3 {
+            0%, 100% { box-shadow: 0 0 30px rgba(153, 50, 204, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(153, 50, 204, 0.5); }
+        }
+        @keyframes cardGlow4 {
+            0%, 100% { box-shadow: 0 0 30px rgba(186, 85, 211, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(186, 85, 211, 0.5); }
+        }
+        @keyframes cardGlow5 {
+            0%, 100% { box-shadow: 0 0 30px rgba(218, 112, 214, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(218, 112, 214, 0.5); }
+        }
+        @keyframes cardGlow6 {
+            0%, 100% { box-shadow: 0 0 30px rgba(238, 130, 238, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(238, 130, 238, 0.5); }
+        }
+        .card:nth-child(1):hover {
+            transform: translateY(-5px) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(147, 112, 219, 0.9));
+        }
+        .card:nth-child(2):hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(138, 43, 226, 0.9));
+        }
+        .card:nth-child(3):hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(153, 50, 204, 0.9));
+        }
+        .card:nth-child(4):hover {
+            transform: translateY(-5px) skew(-2deg);
+            box-shadow: 0 10px 30px rgba(186, 85, 211, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(186, 85, 211, 0.9));
+        }
+        .card:nth-child(5):hover {
+            transform: translateY(-5px) skew(2deg);
+            box-shadow: 0 10px 30px rgba(218, 112, 214, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(218, 112, 214, 0.9));
+        }
+        .card:nth-child(6):hover {
+            transform: translateY(-5px) rotate(-1deg) scale(1.02);
+            box-shadow: 0 10px 30px rgba(238, 130, 238, 0.5);
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.95), rgba(238, 130, 238, 0.9));
+        }
+        .card:nth-child(1) .idiom::before {
+            content: '✨';
+            margin-right: 8px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        .card:nth-child(2) .idiom::after {
+            content: '✨';
+            margin-left: 8px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        .card:nth-child(3) .idiom::before {
+            content: '🌟';
+            margin-right: 8px;
+            animation: rotate 3s linear infinite;
+        }
+        .card:nth-child(4) .idiom::after {
+            content: '🌟';
+            margin-left: 8px;
+            animation: rotate 3s linear infinite;
+        }
+        .card:nth-child(5) .idiom::before {
+            content: '💫';
+            margin-right: 8px;
+            animation: float 2s ease-in-out infinite;
+        }
+        .card:nth-child(6) .idiom::after {
+            content: '💫';
+            margin-left: 8px;
+            animation: float 2s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes backgroundPulse {
+            0% { background: rgba(26, 26, 46, 0.85); }
+            50% { background: rgba(45, 27, 77, 0.85); }
+            100% { background: rgba(26, 26, 46, 0.85); }
+        }
+        @media (max-width: 600px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            .card {
+                padding: 15px;
+            }
+            .idiom {
+                font-size: 1.5em;
+            }
+            .explanation {
+                font-size: 1.1em;
+            }
+            h1 {
+                font-size: 2em;
+                margin: 10px;
+            }
+        }
+        /* 添加装饰动画的基础样式 */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 第一个卡片 - 小烟花效果 */
+        .card:nth-child(1)::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                transparent 0%, 
+                transparent 40%, 
+                rgba(147, 112, 219, 0.2) 45%, 
+                transparent 50%);
+            animation: firework 2s ease-out infinite;
+            z-index: 0;
+        }
+        @keyframes firework {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* 第二个卡片 - 小火箭效果 */
+        .card:nth-child(2)::before {
+            content: '🚀';
+            position: absolute;
+            font-size: 20px;
+            animation: rocket 3s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes rocket {
+            0% { transform: translate(-50px, 100px) rotate(45deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(150px, -50px) rotate(45deg); opacity: 0; }
+        }
+
+        /* 第三个卡片保持原有的旋转边框效果 */
+        .card:nth-child(3)::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #9932cc, #ba55d3, #da70d6, #ee82ee);
+            border-radius: 32px;
+            z-index: -1;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        /* 第四个卡片 - 小雨滴效果 */
+        .card:nth-child(4)::before {
+            content: '💧';
+            position: absolute;
+            font-size: 20px;
+            animation: raindrop 2s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes raindrop {
+            0% { transform: translateY(-50px) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(50px) scale(1); opacity: 0; }
+        }
+
+        /* 第五个卡片 - 小火焰效果 */
+        .card:nth-child(5)::before {
+            content: '🔥';
+            position: absolute;
+            font-size: 20px;
+            animation: flame 2s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes flame {
+            0% { transform: scale(0.8) rotate(-10deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+            100% { transform: scale(0.8) rotate(-10deg); opacity: 0.5; }
+        }
+
+        /* 第六个卡片 - 小雪花效果 */
+        .card:nth-child(6)::before {
+            content: '❄️';
+            position: absolute;
+            font-size: 20px;
+            animation: snowflake 3s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes snowflake {
+            0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(30px) rotate(360deg); opacity: 0; }
+        }
+
+        /* 调整卡片内容层级，确保在装饰效果之上 */
+        .card .idiom,
+        .card .explanation {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 为装饰图标添加额外的动画效果 */
+        .card:nth-child(1) .idiom::before {
+            content: '✨';
+            margin-right: 8px;
+            animation: sparkle 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        .card:nth-child(2) .idiom::after {
+            content: '✨';
+            margin-left: 8px;
+            animation: sparkle 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        .card:nth-child(3) .idiom::before {
+            content: '🌟';
+            margin-right: 8px;
+            animation: rotate 3s linear infinite;
+            display: inline-block;
+        }
+        .card:nth-child(4) .idiom::after {
+            content: '🌟';
+            margin-left: 8px;
+            animation: rotate 3s linear infinite;
+            display: inline-block;
+        }
+        .card:nth-child(5) .idiom::before {
+            content: '💫';
+            margin-right: 8px;
+            animation: float 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        .card:nth-child(6) .idiom::after {
+            content: '💫';
+            margin-left: 8px;
+            animation: float 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* 确保装饰效果不会影响卡片内容的可读性 */
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(45, 27, 77, 0.9), rgba(45, 27, 77, 0.7));
+            z-index: 1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="美德卡片">
+    <div class="container">
+        <h1>当代大学生六大美德</h1>
+        <div class="cards-container">
+            <div class="card">
+                <div class="idiom">始料不及</div>
+                <div class="explanation">开始料到不及格了</div>
+            </div>
+            <div class="card">
+                <div class="idiom">温故知新</div>
+                <div class="explanation">温习旧知识 发现都是新的</div>
+            </div>
+            <div class="card">
+                <div class="idiom">五花八门</div>
+                <div class="explanation">花五天时间 学八门课程</div>
+            </div>
+            <div class="card">
+                <div class="idiom">百里挑一</div>
+                <div class="explanation">花了一百个重点考了一个</div>
+            </div>
+            <div class="card">
+                <div class="idiom">学无止境</div>
+                <div class="explanation">学了就忘 根本学不完</div>
+            </div>
+            <div class="card">
+                <div class="idiom">日行千里</div>
+                <div class="explanation">平均一天要看一千页书</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
