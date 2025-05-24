@@ -2,9 +2,9 @@ import os
 import re
 
 # Define default file paths
-default_input_file = r"C:\Users\30752\Desktop\available_github_usernames_.txt"
-output_dir = r"C:\Users\30752\OneDrive\Code-win\py-win\build"
-script_dir = r"C:\Users\30752\OneDrive\Code-win\py-win\test"
+default_input_file = r"C:\Users\30752\Desktop\available_github_usernames_all.txt"
+# 设置输出目录为代码所在目录的上一级的build文件夹
+output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "build")
 
 # Get input file path from user
 print("Enter input file path (press Enter to use default):")
