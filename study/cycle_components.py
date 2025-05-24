@@ -703,20 +703,22 @@ def model_evaporator_GO(
     return state_hot_out, state_cold_out, Q_exchanged_J
 
 def model_cooler_set_T_out(
-    state_in: StatePoint, 
-    T_out_K: float, 
+    state_in: StatePoint,
+    T_out_K: float, # 目标出口温度, 如果 target_state_is_saturated_liquid=True, 此参数可能被忽略或仅作参考
     pressure_drop_Pa: float = 0.0,
-    name_suffix: str = "Cooler"
+    name_suffix: str = "Cooler",
+    target_state_is_saturated_liquid: bool = False # 新增参数
 ):
     """
-    模拟冷却器，将工质冷却到指定的出口温度。
-    (适用于 SCBC主冷却器CS 和 ORC次冷却器CO)
+    模拟冷却器，将工质冷却到指定的出口温度或饱和液体状态。
+    (适用于 SCBC主冷却器CS 和 ORC次冷却器CO/冷凝器)
 
     参数:
         state_in (StatePoint): 进口状态。
-        T_out_K (float): 目标出口温度 (K)。
+        T_out_K (float): 目标出口温度 (K)。如果 target_state_is_saturated_liquid 为 True，此值可能被忽略。
         pressure_drop_Pa (float): 冷却器内压降 (Pa)，默认为0。
         name_suffix (str): 用于命名出口状态点的后缀。
+        target_state_is_saturated_liquid (bool): 如果为True，则出口设为给定出口压力下的饱和液体(Q=0)，忽略T_out_K。
 
     返回:
         tuple: (state_out, Q_rejected_J)
@@ -731,7 +733,15 @@ def model_cooler_set_T_out(
     P_out_Pa = state_in.P - pressure_drop_Pa
     
     state_out = StatePoint(fluid_name=state_in.fluid, name=f"{state_in.name}_out_{name_suffix}")
-    state_out.props_from_PT(P_out_Pa, T_out_K)
+    
+    if target_state_is_saturated_liquid:
+        print(f"信息: 冷却器 {name_suffix} 目标为饱和液体，将使用 P, Q=0 设置出口状态。")
+        state_out.props_from_PQ(P_out_Pa, 0)
+        if state_out.T is not None and abs(state_out.T - T_out_K) > 1.0 : # 检查计算的饱和温度与给定的T_out_K是否差异过大
+            print(f"  警告: 冷却器 {name_suffix} 计算得到的饱和温度 {state_out.T-273.15:.2f}°C 与参数T_out_K {T_out_K-273.15:.2f}°C 差异较大。")
+    else:
+        state_out.props_from_PT(P_out_Pa, T_out_K)
+        
     state_out.m_dot = state_in.m_dot # 传递质量流量
 
     if state_out.h is None or state_in.h is None:

@@ -99,15 +99,24 @@ class StatePoint:
         return self
 
     def __str__(self):
+        P_str = f"{self.P/1e6:.3f}" if self.P is not None else "N/A"
+        T_str = f"{self.T - 273.15:.2f}" if self.T is not None else "N/A"
+        h_str = f"{self.h/1e3:.2f}" if self.h is not None else "N/A"
+        s_str = f"{self.s/1e3:.4f}" if self.s is not None else "N/A"
+        d_str = f"{self.d:.2f}" if self.d is not None else "N/A"
+        e_str = f"{self.e/1e3:.2f}" if self.e is not None else "N/A"
+        q_str = f"{self.q:.4f}" if self.q is not None and self.q != -1.0 else ("N/A" if self.q is None else "过热/超临界") # Q=-1 often means single phase from CoolProp
+        m_dot_str = f"{self.m_dot:.2f}" if self.m_dot is not None else "N/A"
+
         return (f"状态点: {self.name} ({self.fluid})\n"
-                f"  P = {self.P/1e6 if self.P else 'N/A':.3f} MPa\n"
-                f"  T = {self.T - 273.15 if self.T else 'N/A':.2f} °C\n"
-                f"  h = {self.h/1e3 if self.h else 'N/A':.2f} kJ/kg\n"
-                f"  s = {self.s/1e3 if self.s else 'N/A':.4f} kJ/kgK\n"
-                f"  d = {self.d if self.d else 'N/A':.2f} kg/m³\n"
-                f"  e = {self.e/1e3 if self.e else 'N/A':.2f} kJ/kg\n"
-                f"  Q = {self.q if self.q is not None else 'N/A'}\n"
-                f"  m_dot = {self.m_dot if self.m_dot is not None else 'N/A'} kg/s")
+                f"  P = {P_str} MPa\n"
+                f"  T = {T_str} °C\n"
+                f"  h = {h_str} kJ/kg\n"
+                f"  s = {s_str} kJ/kgK\n"
+                f"  d = {d_str} kg/m³\n"
+                f"  e = {e_str} kJ/kg\n"
+                f"  Q = {q_str}\n"
+                f"  m_dot = {m_dot_str} kg/s")
 
 # --- T0/P0反推相关函数定义 (全局作用域) ---
 table10_data_for_fitting = [
@@ -229,15 +238,24 @@ if __name__ == "__main__":
         "reference_conditions": {"T0_C": T0_CELSIUS, "P0_kPa": P0_KPA},
         "scbc_parameters": {
             "p1_compressor_inlet_kPa": 7400.0, "T1_compressor_inlet_C": 35.0,
-            "T5_turbine_inlet_C": 550.0, "PR_main_cycle_pressure_ratio": 3.0,
-            "eta_T_turbine": 0.9, "eta_C_compressor": 0.85,
+            "T5_turbine_inlet_C": 599.85, "PR_main_cycle_pressure_ratio": 3.27, # 更新为论文表8优化值
+            "eta_T_turbine": 0.9, "eta_C_compressor": 0.85, # 效率保持不变，除非表8有特定说明
             "eta_H_HTR_effectiveness": 0.86, "eta_L_LTR_effectiveness": 0.86
         },
         "orc_parameters": {
-            "T_turbine_inlet_C": 120.0, "PR_turbine_expansion_ratio": 3.0,
-            "eta_TO_turbine": 0.8, "eta_PO_pump": 0.75
+            # "T_turbine_inlet_C": 120.0, # 将由蒸发压力+过热度决定，或作为参考
+            # "PR_turbine_expansion_ratio": 3.0, # 将由蒸发和冷凝压力决定
+            "P_eva_kPa_orc": 1500.0,             # ORC蒸发压力, kPa (参考论文点09)
+            "P_cond_kPa_orc": 445.10,            # ORC冷凝压力, kPa (参考论文点011)
+            "T_pump_in_C_orc": 58.66,            # ORC泵进口温度, °C (参考论文点011)
+            "delta_T_superheat_orc_K": 20.96,    # ORC透平进口目标过热度, K (参考论文点09: T=127.76C, Tsat@1.5MPa~106.8C)
+            "eta_TO_turbine": 0.8,
+            "eta_PO_pump": 0.75
         },
-        "heat_exchangers_common": {"min_temp_diff_pinch_C": 10.0},
+        "heat_exchangers_common": {
+            "min_temp_diff_pinch_C": 10.0, # 通用最小温差约束
+            "approach_temp_eva_K_orc": 5.0 # GO中ORC侧出口与SCBC热源进口的最小接近温差 (可调整)
+        },
         "notes": {
             "phi_ER_MW_heat_input": 600.0,
             "cost_fuel_cQ_dollar_per_MWh": 7.4 
