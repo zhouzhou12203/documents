@@ -1,6 +1,6 @@
 # cycle_components.py
 
-from 状态点计算 import StatePoint # 假设 '状态点计算.py' 在同一目录或Python路径中
+from state_point_calculator import StatePoint # 假设 'state_point_calculator.py' 在同一目录或Python路径中
 # 如果 StatePoint 类依赖全局的 T0_K, P0_PA 进行㶲计算，
 # 确保 '状态点计算.py' 中的这些值是您希望使用的。
 
@@ -258,7 +258,7 @@ if __name__ == '__main__':
     # --- 测试 model_compressor_MC ---
     # (此部分测试代码保持不变)
     print("--- 测试主压缩机 (MC) 模型 ---")
-    from 状态点计算 import to_kelvin, to_pascal
+    from state_point_calculator import to_kelvin, to_pascal
 
     P1_Pa_test_mc = to_pascal(7400.00, 'kpa') # Renamed for clarity
     T1_K_test_mc = to_kelvin(35.00)    # Renamed for clarity
@@ -530,3 +530,542 @@ if __name__ == '__main__':
             print(f"  供参考: LTR冷出口(点3'') 计算h: {state3_prime_ltr_out_calc.h/1000:.2f} kJ/kg (论文混合后点3的h: {h3_mixed_paper_kJ:.2f} kJ/kg)")
     else:
         print("创建LTR测试用进口状态点失败。")
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试再压缩机 (RC) 模型 ---
+    print("--- 测试再压缩机 (RC) 模型 ---")
+    # RC进口: 状态与点8相同 (P=7.4MPa, T=147.55C)
+    # RC流量: m_dot_rc = m_dot_H_cold_in (m3_paper) - m_dot_L_cold_out (m_dot_MC_main_flow)
+    # m_dot_rc = 2641.42 - 1945.09 = 696.33 kg/s
+    # RC出口压力: 与MC出口压力相同 (P_点2 = 24.198 MPa)
+    # RC效率: eta_C = 0.85
+
+    P8_rc_in_Pa_test = to_pascal(7400.00, 'kpa')
+    T8_rc_in_K_test = to_kelvin(147.55)
+    m_dot_rc_test = 696.33 # kg/s (calculated for flow balance at node 3)
+    eta_rc_test = 0.85     # Same as MC
+
+    state8_rc_in_test = StatePoint("CO2", "RC_In(P8_state)")
+    state8_rc_in_test.props_from_PT(P8_rc_in_Pa_test, T8_rc_in_K_test)
+    state8_rc_in_test.m_dot = m_dot_rc_test
+    
+    # RC出口压力应与MC出口压力相同，即P2 (24.198 MPa)
+    P_rc_out_Pa_test = to_pascal(24198.00, 'kpa') 
+
+    if state8_rc_in_test.h:
+        print("\nRC 进口状态 (基于点8参数,流量调整):")
+        print(state8_rc_in_test)
+
+        state_rc_out_calc, W_rc_calc = model_compressor_MC(
+            state_in=state8_rc_in_test, 
+            P_out_Pa=P_rc_out_Pa_test, 
+            eta_isen=eta_rc_test
+        )
+
+        if state_rc_out_calc and W_rc_calc:
+            print("\n计算得到的RC出口状态 (点3'_rc - RC单独出口):")
+            print(state_rc_out_calc)
+            print(f"RC单位质量压缩功: {W_rc_calc/1000:.2f} kJ/kg")
+            print(f"RC总消耗功率: {W_rc_calc * m_dot_rc_test / (1000*1000):.2f} MW")
+
+            # --- 验证混合点3的焓和温度 ---
+            # 为了验证，我们需要LTR的冷出口状态 (state3_prime_ltr_out_calc)
+            # LTR冷进口是点2, LTR热进口是点7
+            
+            # LTR冷进口 (点2) - 参数来自之前的LTR测试或直接定义
+            P2_for_mix_Pa = to_pascal(24198.00, 'kpa')
+            T2_for_mix_K = to_kelvin(121.73)
+            m_dot_ltr_cold_val = 1945.09 # kg/s (MC主流路流量)
+            state2_for_mix_val = StatePoint("CO2", "LTR_ColdIn_for_mix_val(P2)")
+            state2_for_mix_val.props_from_PT(P2_for_mix_Pa, T2_for_mix_K)
+            state2_for_mix_val.m_dot = m_dot_ltr_cold_val
+
+            # LTR热进口 (点7) - 参数来自之前的LTR测试或直接定义
+            P7_for_mix_Pa = to_pascal(7400.00, 'kpa')
+            T7_for_mix_K = to_kelvin(306.16)
+            m_dot_ltr_hot_val = 2641.42 # kg/s (总流量在LTR热侧)
+            state7_for_mix_val = StatePoint("CO2", "LTR_HotIn_for_mix_val(P7)")
+            state7_for_mix_val.props_from_PT(P7_for_mix_Pa, T7_for_mix_K)
+            state7_for_mix_val.m_dot = m_dot_ltr_hot_val
+            
+            # 调用LTR模型获取其冷出口状态
+            _, ltr_cold_out_for_mix_calc, _ = model_heat_exchanger_effectiveness(
+                state_hot_in=state7_for_mix_val,
+                state_cold_in=state2_for_mix_val,
+                effectiveness=0.86, # eta_L
+                hot_fluid_is_C_min_side=True, # Based on previous LTR test matching
+                name_suffix="LTR_for_RC_mix_val"
+            )
+
+            if ltr_cold_out_for_mix_calc and ltr_cold_out_for_mix_calc.h:
+                h_ltr_c_out_J_kg = ltr_cold_out_for_mix_calc.h
+                m_ltr_c_out_kg_s = ltr_cold_out_for_mix_calc.m_dot # Should be 1945.09
+
+                h_rc_out_J_kg = state_rc_out_calc.h
+                m_rc_out_kg_s = state_rc_out_calc.m_dot # Should be 696.33
+
+                # 混合点3的计算焓
+                m3_mixed_calc_kg_s = m_ltr_c_out_kg_s + m_rc_out_kg_s
+                if abs(m3_mixed_calc_kg_s) < 1e-6: # Avoid division by zero if流量为0
+                    print("错误: 混合流量为零，无法计算混合焓。")
+                    h3_mixed_calc_J_kg = None
+                else:
+                    h3_mixed_calc_J_kg = (m_ltr_c_out_kg_s * h_ltr_c_out_J_kg + m_rc_out_kg_s * h_rc_out_J_kg) / m3_mixed_calc_kg_s
+                
+                # 论文中点3的参数
+                h3_paper_kJ_kg = 696.46 
+                m3_paper_kg_s = 2641.42 
+                T3_paper_C = 281.92
+                
+                print(f"\n混合点3 (RC出口 + LTR冷出口) 验证:")
+                print(f"  计算得到的混合流量: {m3_mixed_calc_kg_s:.2f} kg/s (论文点3流量: {m3_paper_kg_s:.2f} kg/s)")
+                if h3_mixed_calc_J_kg is not None:
+                    print(f"  计算得到的混合焓h3_calc: {h3_mixed_calc_J_kg / 1000:.2f} kJ/kg (论文点3焓h3_paper: {h3_paper_kJ_kg:.2f} kJ/kg)")
+                
+                    P3_mixed_Pa = to_pascal(24198.00, 'kpa') # 假设混合后压力与RC出口/MC出口相同
+                    state3_mixed_calc_obj = StatePoint("CO2", "Mixed_Point3_Calc")
+                    state3_mixed_calc_obj.props_from_PH(P3_mixed_Pa, h3_mixed_calc_J_kg)
+                    state3_mixed_calc_obj.m_dot = m3_mixed_calc_kg_s
+                    if state3_mixed_calc_obj.T:
+                        print(f"  计算得到的混合温度T3_calc: {state3_mixed_calc_obj.T - 273.15:.2f} °C (论文点3温度T3_paper: {T3_paper_C:.2f} °C)")
+                else:
+                    print("  未能计算混合焓。")
+            else:
+                print("错误：无法获取LTR冷出口状态用于混合点验证。")
+        else:
+            print("错误：RC模型计算失败。")
+    else:
+        print("创建RC测试用进口状态点失败。")
+
+    print("\n" + "="*50 + "\n") # Separator
+
+def model_evaporator_GO(
+    state_hot_in: StatePoint,   # SCBC side (e.g., point 8m)
+    state_cold_in: StatePoint,  # ORC side (e.g., point 012)
+    # Specify one of the outlet conditions to define the heat exchange
+    T_hot_out_K: float = None,
+    h_hot_out_J_kg: float = None,
+    T_cold_out_K: float = None,
+    h_cold_out_J_kg: float = None,
+    pressure_drop_hot_Pa: float = 0.0,
+    pressure_drop_cold_Pa: float = 0.0,
+    name_suffix: str = "GO"
+):
+    """
+    模拟蒸发器/气体冷却器 (GO)。
+    需要指定一侧的出口条件（温度或焓）来确定换热量。
+    """
+    P_hot_out_Pa = state_hot_in.P - pressure_drop_hot_Pa
+    P_cold_out_Pa = state_cold_in.P - pressure_drop_cold_Pa
+
+    state_hot_out = StatePoint(state_hot_in.fluid, name=f"{state_hot_in.name}_out_{name_suffix}")
+    state_cold_out = StatePoint(state_cold_in.fluid, name=f"{state_cold_in.name}_out_{name_suffix}")
+    state_hot_out.m_dot = state_hot_in.m_dot
+    state_cold_out.m_dot = state_cold_in.m_dot
+    
+    Q_exchanged_J = None
+
+    if h_hot_out_J_kg is not None: # Hot side outlet enthalpy is given
+        state_hot_out.props_from_PH(P_hot_out_Pa, h_hot_out_J_kg)
+    elif T_hot_out_K is not None: # Hot side outlet temperature is given
+        state_hot_out.props_from_PT(P_hot_out_Pa, T_hot_out_K)
+    # Add similar conditions if cold side outlet is specified instead
+    elif h_cold_out_J_kg is not None: # Cold side outlet enthalpy is given
+        state_cold_out.props_from_PH(P_cold_out_Pa, h_cold_out_J_kg)
+    elif T_cold_out_K is not None: # Cold side outlet temperature is given
+        state_cold_out.props_from_PT(P_cold_out_Pa, T_cold_out_K)
+    else:
+        print(f"错误: 蒸发器 {name_suffix} 未指定任何出口条件。")
+        return None, None, None
+
+    if state_hot_out.h and state_cold_in.h and state_hot_in.h: # If hot side outlet was determined
+        if Q_exchanged_J is None: # Calculate Q based on hot side if not already set
+             Q_exchanged_J = state_hot_in.m_dot * (state_hot_in.h - state_hot_out.h)
+        
+        # Calculate cold side outlet
+        if state_cold_out.h is None: # If cold side outlet was not the one specified
+            _h_cold_out_J_kg = state_cold_in.h + Q_exchanged_J / state_cold_in.m_dot
+            state_cold_out.props_from_PH(P_cold_out_Pa, _h_cold_out_J_kg)
+
+    elif state_cold_out.h and state_hot_in.h and state_cold_in.h: # If cold side outlet was determined
+        if Q_exchanged_J is None: # Calculate Q based on cold side if not already set
+            Q_exchanged_J = state_cold_in.m_dot * (state_cold_out.h - state_cold_in.h)
+
+        # Calculate hot side outlet
+        if state_hot_out.h is None: # If hot side outlet was not the one specified
+            _h_hot_out_J_kg = state_hot_in.h - Q_exchanged_J / state_hot_in.m_dot
+            state_hot_out.props_from_PH(P_hot_out_Pa, _h_hot_out_J_kg)
+            
+    if not (state_hot_out.h and state_cold_out.h and Q_exchanged_J is not None):
+        print(f"错误: 蒸发器 {name_suffix} 计算失败。")
+        return None, None, None
+        
+    return state_hot_out, state_cold_out, Q_exchanged_J
+
+def model_cooler_set_T_out(
+    state_in: StatePoint, 
+    T_out_K: float, 
+    pressure_drop_Pa: float = 0.0,
+    name_suffix: str = "Cooler"
+):
+    """
+    模拟冷却器，将工质冷却到指定的出口温度。
+    (适用于 SCBC主冷却器CS 和 ORC次冷却器CO)
+
+    参数:
+        state_in (StatePoint): 进口状态。
+        T_out_K (float): 目标出口温度 (K)。
+        pressure_drop_Pa (float): 冷却器内压降 (Pa)，默认为0。
+        name_suffix (str): 用于命名出口状态点的后缀。
+
+    返回:
+        tuple: (state_out, Q_rejected_J)
+            state_out (StatePoint): 出口状态。
+            Q_rejected_J (float): 排出的总热量 (J)，正值。
+    """
+    # Allow T_in to be very close to T_out, in which case Q_rejected is near zero.
+    # A more significant T_in < T_out would be a logical issue for a cooler.
+    if state_in.T < T_out_K and not (-1e-3 < (state_in.T - T_out_K) < 1e-3): # If T_in is meaningfully less than T_out
+        print(f"警告: 冷却器 {name_suffix} 进口温度 {state_in.T-273.15:.2f}C 低于目标出口温度 {T_out_K-273.15:.2f}C。")
+
+    P_out_Pa = state_in.P - pressure_drop_Pa
+    
+    state_out = StatePoint(fluid_name=state_in.fluid, name=f"{state_in.name}_out_{name_suffix}")
+    state_out.props_from_PT(P_out_Pa, T_out_K)
+    state_out.m_dot = state_in.m_dot # 传递质量流量
+
+    if state_out.h is None or state_in.h is None:
+        print(f"错误: 无法计算冷却器 {name_suffix} 的进口或出口焓。")
+        return None, None
+
+    Q_rejected_J = state_in.m_dot * (state_in.h - state_out.h) # h_in > h_out for cooling
+    
+    # For a cooler, we expect Q_rejected_J to be positive.
+    # Negative Q might occur if T_out_K was set higher than T_in, or due to complex fluid behavior.
+    if Q_rejected_J < -1e-9: # Allow for very small negative due to precision, but flag larger ones.
+         print(f"警告: 冷却器 {name_suffix} 计算得到的排出热量为负 ({Q_rejected_J/(state_in.m_dot*1000) if state_in.m_dot and state_in.m_dot > 1e-9 else Q_rejected_J:.2f} kJ/kg or J)。检查进口和目标出口温度。")
+
+    return state_out, Q_rejected_J
+
+def model_heater_set_T_out(
+    state_in: StatePoint,
+    T_out_K: float,
+    pressure_drop_Pa: float = 0.0,
+    name_suffix: str = "Heater"
+):
+    """
+    模拟加热器 (如SCBC吸热器ER)，将工质加热到指定的出口温度。
+
+    参数:
+        state_in (StatePoint): 进口状态。
+        T_out_K (float): 目标出口温度 (K)。
+        pressure_drop_Pa (float): 加热器内压降 (Pa)，默认为0。
+        name_suffix (str): 用于命名出口状态点的后缀。
+
+    返回:
+        tuple: (state_out, Q_absorbed_J)
+            state_out (StatePoint): 出口状态。
+            Q_absorbed_J (float): 吸收的总热量 (J)，正值。
+    """
+    if state_in.T >= T_out_K and not (-1e-3 < (state_in.T - T_out_K) < 1e-3): # If T_in is meaningfully greater than T_out
+        print(f"警告: 加热器 {name_suffix} 进口温度 {state_in.T-273.15:.2f}C 高于或等于目标出口温度 {T_out_K-273.15:.2f}C。")
+
+    P_out_Pa = state_in.P - pressure_drop_Pa
+    
+    state_out = StatePoint(fluid_name=state_in.fluid, name=f"{state_in.name}_out_{name_suffix}")
+    state_out.props_from_PT(P_out_Pa, T_out_K)
+    state_out.m_dot = state_in.m_dot # 传递质量流量
+
+    if state_out.h is None or state_in.h is None:
+        print(f"错误: 无法计算加热器 {name_suffix} 的进口或出口焓。")
+        return None, None
+
+    Q_absorbed_J = state_in.m_dot * (state_out.h - state_in.h) # h_out > h_in for heating
+    
+    if Q_absorbed_J < -1e-9: # Allow for very small negative due to precision
+         print(f"警告: 加热器 {name_suffix} 计算得到的吸收热量为负 ({Q_absorbed_J/(state_in.m_dot*1000) if state_in.m_dot and state_in.m_dot > 1e-9 else Q_absorbed_J:.2f} kJ/kg or J)。检查进口和目标出口温度。")
+
+    return state_out, Q_absorbed_J
+
+if __name__ == '__main__':
+    # ... (之前的测试代码保持不变) ...
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试蒸发器 (GO) 模型 ---
+    print("--- 测试蒸发器 (GO) / 气体冷却器 模型 ---")
+    # SCBC侧 (热): 点8m (同点8状态) -> 点9
+    # ORC侧 (冷): 点012 -> 点09
+
+    # 点8m (热进口 - CO2)
+    P8m_go_in_Pa = to_pascal(7400.00, 'kpa')
+    T8m_go_in_K = to_kelvin(147.55)
+    m_dot_8m_go = 1945.09 # kg/s (m_total - m_rc = 2641.42 - 696.33)
+    state8m_go_in = StatePoint("CO2", "GO_HotIn(P8m)")
+    state8m_go_in.props_from_PT(P8m_go_in_Pa, T8m_go_in_K)
+    state8m_go_in.m_dot = m_dot_8m_go
+    h8m_kJ_kg_paper = 582.06 # 论文点8焓
+
+    # 点9 (热出口 - CO2) - 目标状态
+    P9_go_out_Pa_target = to_pascal(7400.00, 'kpa') # 假设无压降
+    T9_go_out_K_target = to_kelvin(84.26)
+    h9_kJ_kg_paper_target = 503.44 # 论文点9焓
+
+    # 点012 (冷进口 - R245fa)
+    P012_go_in_Pa = to_pascal(1500.00, 'kpa')
+    T012_go_in_K = to_kelvin(59.37) # 使用论文点012温度
+    m_dot_012_go = 677.22 # kg/s
+    state012_go_in = StatePoint("R245fa", "GO_ColdIn(P012)")
+    # 为获得与论文焓值更接近的进口点，我们用P,h初始化（如果论文h已知）
+    # 或者坚持P,T然后接受CoolProp的h。这里用P,T。
+    state012_go_in.props_from_PT(P012_go_in_Pa, T012_go_in_K)
+    state012_go_in.m_dot = m_dot_012_go
+    h012_kJ_kg_paper = 279.52 # 论文点012焓
+
+    # 点09 (冷出口 - R245fa) - 目标状态
+    P09_go_out_Pa_target = to_pascal(1500.00, 'kpa') # 假设无压降
+    T09_go_out_K_target = to_kelvin(127.76)
+    h09_kJ_kg_paper_target = 505.35 # 论文点09焓
+
+    if state8m_go_in.h and state012_go_in.h:
+        print("\nGO 热流进口 (点8m):")
+        print(state8m_go_in)
+        print("GO 冷流进口 (点012):")
+        print(state012_go_in)
+
+        # 测试1: 给定热侧出口焓，计算冷侧出口
+        print("\n--- 测试1: 给定热侧出口焓 (h9_paper) ---")
+        go_hot_out_1, go_cold_out_1, Q_go_1 = model_evaporator_GO(
+            state_hot_in=state8m_go_in,
+            state_cold_in=state012_go_in,
+            h_hot_out_J_kg=h9_kJ_kg_paper_target * 1000
+        )
+        if go_hot_out_1 and go_cold_out_1:
+            print("计算得到的GO热流出口 (点9):")
+            print(go_hot_out_1)
+            print("计算得到的GO冷流出口 (点09):")
+            print(go_cold_out_1)
+            print(f"GO换热量 Q1: {Q_go_1 / (1000*1000) if Q_go_1 is not None else 'N/A'} MW")
+            print(f"  对比冷出口焓: 计算 {go_cold_out_1.h/1000:.2f} kJ/kg vs 论文点09 {h09_kJ_kg_paper_target:.2f} kJ/kg")
+            print(f"  对比冷出口温度: 计算 {go_cold_out_1.T-273.15:.2f} °C vs 论文点09 {T09_go_out_K_target-273.15:.2f} °C")
+
+        # 测试2: 给定冷侧出口焓，计算热侧出口
+        print("\n--- 测试2: 给定冷侧出口焓 (h09_paper) ---")
+        go_hot_out_2, go_cold_out_2, Q_go_2 = model_evaporator_GO(
+            state_hot_in=state8m_go_in,
+            state_cold_in=state012_go_in,
+            h_cold_out_J_kg=h09_kJ_kg_paper_target * 1000
+        )
+        if go_hot_out_2 and go_cold_out_2:
+            print("计算得到的GO热流出口 (点9):")
+            print(go_hot_out_2)
+            print("计算得到的GO冷流出口 (点09):")
+            print(go_cold_out_2)
+            print(f"GO换热量 Q2: {Q_go_2 / (1000*1000) if Q_go_2 is not None else 'N/A'} MW")
+            print(f"  对比热出口焓: 计算 {go_hot_out_2.h/1000:.2f} kJ/kg vs 论文点9 {h9_kJ_kg_paper_target:.2f} kJ/kg")
+            print(f"  对比热出口温度: 计算 {go_hot_out_2.T-273.15:.2f} °C vs 论文点9 {T9_go_out_K_target-273.15:.2f} °C")
+            
+            # 验证热平衡
+            Q_released_scbc_calc = state8m_go_in.m_dot * (state8m_go_in.h - go_hot_out_2.h) if state8m_go_in.h and go_hot_out_2.h else 0
+            Q_absorbed_orc_calc = state012_go_in.m_dot * (go_cold_out_2.h - state012_go_in.h) if state012_go_in.h and go_cold_out_2.h else 0
+            print(f"  热平衡校验: Q_hot_side={Q_released_scbc_calc/(1e6):.2f} MW, Q_cold_side={Q_absorbed_orc_calc/(1e6):.2f} MW")
+
+    else:
+        print("创建GO测试用进口状态点失败。")
+
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试ORC透平 (TO) 模型 ---
+    print("--- 测试ORC透平 (TO) 模型 ---")
+    # ORC透平进口: 点09 (P=1500 kPa, T=127.76C, R245fa, m_dot=677.22 kg/s)
+    # ORC透平出口: 点010 (P=445.10 kPa)
+    # ORC透平效率: eta_TO = 0.8 (来自论文表6)
+
+    P09_to_in_Pa = to_pascal(1500.00, 'kpa')
+    T09_to_in_K = to_kelvin(127.76)
+    m_dot09_to = 677.22 # kg/s
+    eta_to_test = 0.80  # 来自论文表6
+
+    state09_to_in_test = StatePoint("R245fa", "TO_In(P09)")
+    state09_to_in_test.props_from_PT(P09_to_in_Pa, T09_to_in_K)
+    state09_to_in_test.m_dot = m_dot09_to
+    
+    P010_to_out_Pa_test = to_pascal(445.10, 'kpa')
+    if state09_to_in_test.h:
+        print("\nORC透平 进口状态 (点09):")
+        print(state09_to_in_test)
+
+        state010_to_out_calc, W_to_calc = model_turbine_T( # 复用透平模型
+            state_in=state09_to_in_test,
+            P_out_Pa=P010_to_out_Pa_test,
+            eta_isen=eta_to_test
+        )
+
+        if state010_to_out_calc and W_to_calc:
+            print("\n计算得到的ORC透平出口状态 (点010):")
+            print(state010_to_out_calc)
+            print(f"ORC透平单位质量做功: {W_to_calc/1000:.2f} kJ/kg")
+            print(f"ORC透平总输出功率: {W_to_calc * m_dot09_to / (1000*1000):.2f} MW")
+
+            # 与论文表10中点010对比
+            T010_paper_C = 94.67
+            h010_paper_kJ = 485.51
+            print("\n与论文表10 ORC点010 对比:")
+            print(f"  计算出口温度 T: {state010_to_out_calc.T - 273.15:.2f}°C (论文: {T010_paper_C:.2f}°C)")
+            print(f"  计算出口焓 h: {state010_to_out_calc.h / 1000:.2f} kJ/kg (论文: {h010_paper_kJ:.2f} kJ/kg)")
+
+            # 论文做功: h09_paper - h010_paper = 505.35 - 485.51 = 19.84 kJ/kg
+            h09_paper_kJ = 505.35
+            w_to_paper_kj = h09_paper_kJ - h010_paper_kJ
+            print(f"  计算ORC透平做功: {W_to_calc/1000:.2f} kJ/kg (论文焓差近似值: {w_to_paper_kj:.2f} kJ/kg)")
+        else:
+            print("错误: ORC透平模型计算失败。")
+    else:
+        print("创建ORC透平测试用进口状态点09失败。")
+
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试SCBC主冷却器 (CS) 模型 ---
+    print("--- 测试SCBC主冷却器 (CS) 模型 ---")
+    # CS进口: 点9 (P=7.4MPa, T=84.26C, m_dot=1945.09 kg/s, CO2)
+    # CS出口: 点1 (P=7.4MPa, T=35.00C)
+    
+    P9_cs_in_Pa = to_pascal(7400.00, 'kpa')
+    T9_cs_in_K = to_kelvin(84.26)
+    m_dot_cs = 1945.09 # kg/s
+    
+    state9_cs_in_test = StatePoint("CO2", "CS_In(P9)")
+    state9_cs_in_test.props_from_PT(P9_cs_in_Pa, T9_cs_in_K)
+    state9_cs_in_test.m_dot = m_dot_cs
+
+    T1_cs_out_K_target = to_kelvin(35.00) # 论文点1温度
+
+    if state9_cs_in_test.h:
+        print("\n主冷却器CS 进口状态 (点9):")
+        print(state9_cs_in_test)
+
+        state1_cs_out_calc, Q_cs_calc = model_cooler_set_T_out(
+            state_in=state9_cs_in_test,
+            T_out_K=T1_cs_out_K_target,
+            name_suffix="CS"
+        )
+
+        if state1_cs_out_calc and Q_cs_calc is not None:
+            print("\n计算得到的主冷却器CS出口状态 (点1):")
+            print(state1_cs_out_calc)
+            print(f"主冷却器CS排出的总热量 Q_CS: {Q_cs_calc / (1000*1000):.2f} MW")
+
+            # 与论文表10中点1对比
+            T1_paper_C_cs = 35.00 
+            h1_paper_kJ_cs = 402.40
+            # 论文中排出热量 Q_CS_paper = m_dot_cs * (h9_paper - h1_paper)
+            # h9_paper (来自表10点9) = 503.44 kJ/kg 
+            h9_paper_kJ_cs = 503.44 
+            Q_cs_paper_MW = m_dot_cs * (h9_paper_kJ_cs - h1_paper_kJ_cs) / 1000
+
+            print("\n与论文表10 SCBC点1 对比:")
+            print(f"  计算出口温度 T: {state1_cs_out_calc.T - 273.15:.2f}°C (论文: {T1_paper_C_cs:.2f}°C)")
+            print(f"  计算出口焓 h: {state1_cs_out_calc.h / 1000:.2f} kJ/kg (论文: {h1_paper_kJ_cs:.2f} kJ/kg)")
+            print(f"  计算排出热量 Q_CS: {Q_cs_calc / (1000*1000):.2f} MW (论文近似值: {Q_cs_paper_MW:.2f} MW)")
+        else:
+            print("错误: 主冷却器CS模型计算失败。")
+    else:
+        print("创建主冷却器CS测试用进口状态点9失败。")
+
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试ORC次冷却器 (CO) / 冷凝器 模型 ---
+    print("--- 测试ORC次冷却器 (CO) / 冷凝器 模型 ---")
+    # CO进口: 点010 (P=445.10 kPa, T=94.67C, m_dot=677.22 kg/s, R245fa)
+    # CO出口: 点011 (P=445.10 kPa, T=58.66C)
+    
+    P010_co_in_Pa = to_pascal(445.10, 'kpa')
+    T010_co_in_K = to_kelvin(94.67)
+    m_dot_co = 677.22 # kg/s
+    
+    state010_co_in_test = StatePoint("R245fa", "CO_In(P010)")
+    state010_co_in_test.props_from_PT(P010_co_in_Pa, T010_co_in_K)
+    state010_co_in_test.m_dot = m_dot_co
+
+    T011_co_out_K_target = to_kelvin(58.66) # 论文点011温度
+
+    if state010_co_in_test.h:
+        print("\nORC次冷却器CO 进口状态 (点010):")
+        print(state010_co_in_test)
+
+        state011_co_out_calc, Q_co_calc = model_cooler_set_T_out(
+            state_in=state010_co_in_test,
+            T_out_K=T011_co_out_K_target,
+            name_suffix="CO"
+        )
+
+        if state011_co_out_calc and Q_co_calc is not None:
+            print("\n计算得到的ORC次冷却器CO出口状态 (点011):")
+            print(state011_co_out_calc)
+            print(f"ORC次冷却器CO排出的总热量 Q_CO: {Q_co_calc / (1000*1000):.2f} MW")
+
+            # 与论文表10中点011对比
+            T011_paper_C_co = 58.66 
+            h011_paper_kJ_co = 278.39 # 注意：这是论文值，CoolProp在P,T下算出的点011焓可能略有不同
+            
+            # 论文中排出热量 Q_CO_paper = m_dot_co * (h010_paper - h011_paper)
+            # h010_paper (来自表10点010) = 485.51 kJ/kg 
+            h010_paper_kJ_co = 485.51
+            Q_co_paper_MW = m_dot_co * (h010_paper_kJ_co - h011_paper_kJ_co) / 1000
+
+            print("\n与论文表10 ORC点011 对比:")
+            print(f"  计算出口温度 T: {state011_co_out_calc.T - 273.15:.2f}°C (论文: {T011_paper_C_co:.2f}°C)")
+            print(f"  计算出口焓 h: {state011_co_out_calc.h / 1000:.2f} kJ/kg (论文: {h011_paper_kJ_co:.2f} kJ/kg)")
+            print(f"  计算排出热量 Q_CO: {Q_co_calc / (1000*1000):.2f} MW (论文近似值: {Q_co_paper_MW:.2f} MW)")
+        else:
+            print("错误: ORC次冷却器CO模型计算失败。")
+    else:
+        print("创建ORC次冷却器CO测试用进口状态点010失败。")
+
+    print("\n" + "="*50 + "\n") # Separator
+
+    # --- 测试SCBC吸热器 (ER) 模型 ---
+    print("--- 测试SCBC吸热器 (ER) 模型 ---")
+    # ER进口: 点4 (P=24.198MPa, T=417.94C, m_dot=2641.42 kg/s, CO2)
+    # ER出口: 点5 (P=24.198MPa, T=599.85C)
+    
+    P4_er_in_Pa = to_pascal(24198.00, 'kpa')
+    T4_er_in_K = to_kelvin(417.94)
+    m_dot_er = 2641.42 # kg/s
+    
+    state4_er_in_test = StatePoint("CO2", "ER_In(P4)")
+    state4_er_in_test.props_from_PT(P4_er_in_Pa, T4_er_in_K)
+    state4_er_in_test.m_dot = m_dot_er
+
+    T5_er_out_K_target = to_kelvin(599.85) # 论文点5温度
+
+    if state4_er_in_test.h:
+        print("\n吸热器ER 进口状态 (点4):")
+        print(state4_er_in_test)
+
+        state5_er_out_calc, Q_er_calc = model_heater_set_T_out(
+            state_in=state4_er_in_test,
+            T_out_K=T5_er_out_K_target,
+            name_suffix="ER"
+        )
+
+        if state5_er_out_calc and Q_er_calc is not None:
+            print("\n计算得到的吸热器ER出口状态 (点5):")
+            print(state5_er_out_calc)
+            print(f"吸热器ER吸收的总热量 Q_ER: {Q_er_calc / (1000*1000):.2f} MW")
+
+            # 与论文表10中点5对比
+            T5_paper_C_er = 599.85
+            h5_paper_kJ_er = 1094.91
+            # 论文中吸热量 Q_ER_paper = m_dot_er * (h5_paper - h4_paper)
+            # h4_paper (来自表10点4) = 867.76 kJ/kg
+            h4_paper_kJ_er = 867.76
+            Q_er_paper_MW = m_dot_er * (h5_paper_kJ_er - h4_paper_kJ_er) / 1000
+
+            print("\n与论文表10 SCBC点5 对比:")
+            print(f"  计算出口温度 T: {state5_er_out_calc.T - 273.15:.2f}°C (论文: {T5_paper_C_er:.2f}°C)")
+            print(f"  计算出口焓 h: {state5_er_out_calc.h / 1000:.2f} kJ/kg (论文: {h5_paper_kJ_er:.2f} kJ/kg)")
+            print(f"  计算吸收热量 Q_ER: {Q_er_calc / (1000*1000):.2f} MW (论文近似值: {Q_er_paper_MW:.2f} MW)")
+        else:
+            print("错误: 吸热器ER模型计算失败。")
+    else:
+        print("创建吸热器ER测试用进口状态点4失败。")
