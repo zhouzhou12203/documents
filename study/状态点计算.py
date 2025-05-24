@@ -2,8 +2,8 @@ import numpy as np
 from CoolProp.CoolProp import PropsSI
 
 # --- 环境参考状态 (用于㶲计算) ---
-T0_CELSIUS = 25.0
-P0_KPA = 101.325
+T0_CELSIUS = 9.56
+P0_KPA = 101.382
 
 T0_K = T0_CELSIUS + 273.15
 P0_PA = P0_KPA * 1000
@@ -140,287 +140,206 @@ class StatePoint:
                 f"  Q = {self.q if self.q is not None else 'N/A'}\n"
                 f"  m_dot = {self.m_dot if self.m_dot is not None else 'N/A'} kg/s")
 
-# 假设你的 StatePoint 类定义，to_pascal, to_kelvin 函数，以及 T0_K, P0_Pa 已经定义好了
-# from your_module import StatePoint, to_pascal, to_kelvin, T0_K, P0_Pa
-# 例如：
-# T0_K = to_kelvin(25)
-# P0_Pa = to_pascal(101.325, 'kpa')
+# (之前的 StatePoint 类定义等保持不变)
 
-print("--- 正在验证表10中的所有状态点 (假设P,T或P,Q已知) ---")
+# --- 主程序块 ---
+if __name__ == "__main__":
+    print("--- 脚本开始执行 ---")
+    print(f"当前使用的全局参考状态: T0 = {T0_CELSIUS:.2f} °C ({T0_K:.2f} K), P0 = {P0_KPA:.3f} kPa ({P0_PA:.0f} Pa)")
+    print("--- 正在验证表10中的所有状态点 (基于论文给定的P,T) ---")
 
-# --- SCBC 工质: CO2 ---
-fluid_co2 = 'CO2'
+    # 表10 SCBC/ORC系统优化后的状态点数据 (与 run_t0_p0_fitting 中的 table10_data 结构一致)
+    # (name, fluid, P_kPa, T_C, h_kJ_kg_paper, s_kJ_kgK_paper, e_kJ_kg_paper, m_dot_kg_s)
+    # 注意：为清晰起见，这里重新定义，并增加了质量流量 m_dot
+    validation_data = [
+        ("SCBC 1", "CO2", 7400.00, 35.00, 402.40, 1.66, 200.84, 1945.09),
+        ("SCBC 2", "CO2", 24198.00, 121.73, 453.36, 1.68, 246.29, 1945.09),
+        ("SCBC 3", "CO2", 24198.00, 281.92, 696.46, 2.21, 341.30, 2641.42),
+        ("SCBC 4", "CO2", 24198.00, 417.94, 867.76, 2.48, 434.43, 2641.42),
+        ("SCBC 5", "CO2", 24198.00, 599.85, 1094.91, 2.77, 579.03, 2641.42),
+        ("SCBC 6", "CO2", 7400.00, 455.03, 932.38, 2.80, 409.40, 2641.42),
+        ("SCBC 7", "CO2", 7400.00, 306.16, 761.08, 2.54, 312.52, 2641.42),
+        ("SCBC 8", "CO2", 7400.00, 147.55, 582.06, 2.17, 235.75, 1945.09), # m_dot from table 10 for point 8
+        ("SCBC 9", "CO2", 7400.00, 84.26, 503.44, 1.97, 214.69, 1945.09), # m_dot from table 10 for point 9
+        ("ORC 09", "R245fa", 1500.00, 127.76, 505.35, 1.86, 61.21, 677.22),
+        ("ORC 010", "R245fa", 445.10, 94.67, 485.51, 1.88, 37.52, 677.22),
+        ("ORC 011", "R245fa", 445.10, 58.66, 278.39, 1.26, 5.40, 677.22),
+        ("ORC 012", "R245fa", 1500.00, 59.37, 279.52, 1.26, 6.29, 677.22),
+    ]
 
-# 点1
-P1_Pa = to_pascal(7400.00, 'kpa')
-T1_K = to_kelvin(35.00)
-state1 = StatePoint(fluid_name=fluid_co2, name="SCBC点1 (主压气机入口)")
-state1.props_from_PT(P1_Pa, T1_K)
-state1.m_dot = 1945.09 # kg/s
-print(state1)
-print(f"表10预期: P=7400.00 kPa, T=35.00 C, h=402.40 kJ/kg, s=1.66 kJ/kgK, e=200.84 kJ/kg, q_m=1945.09 kg/s\n")
+    output_csv_data = []
+    csv_header = [
+        "PointName", "Fluid",
+        "P_kPa_paper", "T_C_paper",
+        "h_kJ_kg_paper", "s_kJ_kgK_paper", "e_kJ_kg_paper",
+        "m_dot_kg_s",
+        "P_Pa_calc", "T_K_calc",
+        "h_J_kg_calc", "s_J_kgK_calc", "d_kg_m3_calc", "e_J_kg_calc",
+        "e_kJ_kg_calc", "e_diff_kJ_kg"
+    ]
+    output_csv_data.append(csv_header)
 
-# 点2 (已在你的示例中)
-P2_Pa = to_pascal(24198.00, 'kpa')
-T2_K = to_kelvin(121.73)
-state2 = StatePoint(fluid_name=fluid_co2, name="SCBC点2 (主压气机出口)")
-state2.props_from_PT(P2_Pa, T2_K)
-state2.m_dot = 1945.09
-print(state2)
-print(f"表10预期: P=24198.00 kPa, T=121.73 C, h=453.36 kJ/kg, s=1.68 kJ/kgK, e=246.29 kJ/kg, q_m=1945.09 kg/s\n")
+    print("\n详细状态点验证 (㶲对比):")
+    print("="*120) # 增加了宽度以容纳新列
+    print(f"{'状态点名':<18} {'流体':<6} {'P(kPa)':>8} {'T(C)':>7} {'h(kJ/kg)':>10} {'s(kJ/kgK)':>10} {'m_dot(kg/s)':>12} {'e_calc(kJ/kg)':>14} {'e_paper(kJ/kg)':>14} {'e_diff(kJ/kg)':>14}")
+    print("-"*120) # 增加了宽度
 
-# 点3
-P3_Pa = to_pascal(24198.00, 'kpa')
-T3_K = to_kelvin(281.92)
-state3 = StatePoint(fluid_name=fluid_co2, name="SCBC点3 (再压气机出口/HTR冷端入口)")
-state3.props_from_PT(P3_Pa, T3_K)
-state3.m_dot = 2641.42 # 注意流量变化
-print(state3)
-print(f"表10预期: P=24198.00 kPa, T=281.92 C, h=696.46 kJ/kg, s=2.21 kJ/kgK, e=341.30 kJ/kg, q_m=2641.42 kg/s\n")
+    for name, fluid, p_kpa, t_c, h_kj_kg_paper, s_kj_kgk_paper, e_kj_kg_paper, m_dot_kg_s in validation_data:
+        P_Pa = to_pascal(p_kpa, 'kpa')
+        T_K = to_kelvin(t_c)
+        
+        current_state = StatePoint(fluid_name=fluid, name=name)
+        current_state.props_from_PT(P_Pa, T_K)
+        current_state.m_dot = m_dot_kg_s # 确保StatePoint对象也记录了m_dot
 
-# 点4
-P4_Pa = to_pascal(24198.00, 'kpa')
-T4_K = to_kelvin(417.94)
-state4 = StatePoint(fluid_name=fluid_co2, name="SCBC点4 (HTR冷端出口/ER入口)")
-state4.props_from_PT(P4_Pa, T4_K)
-state4.m_dot = 2641.42
-print(state4)
-print(f"表10预期: P=24198.00 kPa, T=417.94 C, h=867.76 kJ/kg, s=2.48 kJ/kgK, e=434.43 kJ/kg, q_m=2641.42 kg/s\n")
+        e_calc_kj = current_state.e / 1000 if current_state.e is not None else float('nan')
+        e_diff_kj = e_calc_kj - e_kj_kg_paper if current_state.e is not None else float('nan')
 
-# 点5
-P5_Pa = to_pascal(24198.00, 'kpa')
-T5_K = to_kelvin(599.85)
-state5 = StatePoint(fluid_name=fluid_co2, name="SCBC点5 (ER出口/透平入口)")
-state5.props_from_PT(P5_Pa, T5_K)
-state5.m_dot = 2641.42
-print(state5)
-print(f"表10预期: P=24198.00 kPa, T=599.85 C, h=1094.91 kJ/kg, s=2.77 kJ/kgK, e=579.03 kJ/kg, q_m=2641.42 kg/s\n")
+        # 增加了 m_dot_kg_s 的打印
+        print(f"{name:<18} {fluid:<6} {p_kpa:>8.2f} {t_c:>7.2f} {current_state.h/1000 if current_state.h else 'N/A':>10.2f} {current_state.s/1000 if current_state.s else 'N/A':>10.4f} {m_dot_kg_s:>12.2f} {e_calc_kj:>14.2f} {e_kj_kg_paper:>14.2f} {e_diff_kj:>14.2f}")
+        
+        # 准备CSV行数据
+        # csv_row 的内容已经包含了 m_dot_kg_s，无需更改
+        csv_row = [
+            name, fluid,
+            p_kpa, t_c,
+            h_kj_kg_paper, s_kj_kgk_paper, e_kj_kg_paper,
+            m_dot_kg_s,
+            current_state.P, current_state.T,
+            current_state.h, current_state.s, current_state.d, current_state.e,
+            e_calc_kj, e_diff_kj
+        ]
+        output_csv_data.append(csv_row)
+    print("="*100)
 
-# 点6
-P6_Pa = to_pascal(7400.00, 'kpa')
-T6_K = to_kelvin(455.03)
-state6 = StatePoint(fluid_name=fluid_co2, name="SCBC点6 (透平出口/HTR热端入口)")
-state6.props_from_PT(P6_Pa, T6_K)
-state6.m_dot = 2641.42
-print(state6)
-print(f"表10预期: P=7400.00 kPa, T=455.03 C, h=932.38 kJ/kg, s=2.80 kJ/kgK, e=409.40 kJ/kg, q_m=2641.42 kg/s\n")
+    # 输出到CSV文件
+    csv_filename = "calculated_state_points_from_table10.csv"
+    try:
+        import csv
+        with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(output_csv_data)
+        print(f"\n状态点数据已成功导出到: {csv_filename}")
+    except Exception as e_csv:
+        print(f"\n导出到CSV文件时出错: {e_csv}")
 
-# 点7
-P7_Pa = to_pascal(7400.00, 'kpa')
-T7_K = to_kelvin(306.16)
-state7 = StatePoint(fluid_name=fluid_co2, name="SCBC点7 (HTR热端出口/LTR热端入口)")
-state7.props_from_PT(P7_Pa, T7_K)
-state7.m_dot = 2641.42
-print(state7)
-print(f"表10预期: P=7400.00 kPa, T=306.16 C, h=761.08 kJ/kg, s=2.54 kJ/kgK, e=312.52 kJ/kg, q_m=2641.42 kg/s\n")
+    # --- 以下是用于反推参考状态 T0 和 P0 的代码 ---
+    # (这部分代码保持不变，但其 table10_data 定义与上面的 validation_data 重复，可以考虑复用)
+    # (为了本次修改的聚焦，暂时不改动 run_t0_p0_fitting 内部的 table10_data)
+import scipy.optimize
 
-# 点8
-P8_Pa = to_pascal(7400.00, 'kpa')
-T8_K = to_kelvin(147.55)
-state8 = StatePoint(fluid_name=fluid_co2, name="SCBC点8 (LTR热端出口/再压气机入口)")
-state8.props_from_PT(P8_Pa, T8_K)
-state8.m_dot = 1945.09 # 注意流量变化 (分流点之后)
-print(state8)
-print(f"表10预期: P=7400.00 kPa, T=147.55 C, h=582.06 kJ/kg, s=2.17 kJ/kgK, e=235.75 kJ/kg, q_m=1945.09 kg/s\n")
+# 表10 SCBC/ORC系统优化后的状态点数据
+# 结构: (name, fluid, P_kPa, T_C, h_kJ_kg, s_kJ_kgK, e_kJ_kg_paper)
+table10_data = [
+    ("SCBC 1", "CO2", 7400.00, 35.00, 402.40, 1.66, 200.84),
+    ("SCBC 2", "CO2", 24198.00, 121.73, 453.36, 1.68, 246.29),
+    ("SCBC 3", "CO2", 24198.00, 281.92, 696.46, 2.21, 341.30),
+    ("SCBC 4", "CO2", 24198.00, 417.94, 867.76, 2.48, 434.43),
+    ("SCBC 5", "CO2", 24198.00, 599.85, 1094.91, 2.77, 579.03),
+    ("SCBC 6", "CO2", 7400.00, 455.03, 932.38, 2.80, 409.40),
+    ("SCBC 7", "CO2", 7400.00, 306.16, 761.08, 2.54, 312.52),
+    ("SCBC 8", "CO2", 7400.00, 147.55, 582.06, 2.17, 235.75),
+    ("SCBC 9", "CO2", 7400.00, 84.26, 503.44, 1.97, 214.69),
+    ("ORC 09", "R245fa", 1500.00, 127.76, 505.35, 1.86, 61.21),
+    ("ORC 010", "R245fa", 445.10, 94.67, 485.51, 1.88, 37.52),
+    ("ORC 011", "R245fa", 445.10, 58.66, 278.39, 1.26, 5.40),
+    ("ORC 012", "R245fa", 1500.00, 59.37, 279.52, 1.26, 6.29),
+]
 
-# 点9
-P9_Pa = to_pascal(7400.00, 'kpa')
-T9_K = to_kelvin(84.26)
-state9 = StatePoint(fluid_name=fluid_co2, name="SCBC点9 (LTR冷端出口/混合点)") # 也可能是GO入口
-state9.props_from_PT(P9_Pa, T9_K)
-state9.m_dot = 1945.09 # TODO: 这里的流量 q_m 在表中点9是1945.09，但这点应该是从LTR冷端流向GO的流量
-                       # 或者是 LTR 热端出口分流后去往 GO 的那部分？
-                       # 查图3a: 点9是LTR热端出口流向GO的。点8是LTR热端出口流向RC的。
-                       # 表10中点8和点9的q_m是不同的，这点需要注意，似乎与图不完全对应。
-                       # 假设点9是CO2流经GO之前的状态
-                       # 表10的点9 (CO2): P=7400 kPa, T=84.26 C, h=503.44, s=1.97, e=214.69, qm=1945.09
-                       # 这应该是CO2在GO（气体冷却器/ORC蒸发器）的入口状态
-print(state9)
-print(f"表10预期 (CO2点9): P=7400.00 kPa, T=84.26 C, h=503.44 kJ/kg, s=1.97 kJ/kgK, e=214.69 kJ/kg, q_m=1945.09 kg/s\n")
+def exergy_error_func(params_T0_P0, data_points):
+    """
+    计算给定参考状态 T0, P0 时，各状态点计算㶲与论文㶲的误差。
+    params_T0_P0: 包含 [T0_K, P0_Pa] 的数组
+    data_points: 包含多个状态点数据的列表
+    """
+    T0_K_fit, P0_Pa_fit = params_T0_P0
+    errors = []
 
+    if T0_K_fit <= 0 or P0_Pa_fit <= 0: # 避免无效的物理参数
+        return [1e6] * len(data_points) # 返回一个较大的误差值
 
-# --- ORC 工质: R245fa ---
-fluid_r245fa = 'R245fa'
+    for point_name, fluid, P_kPa, T_C, h_kJ_kg, s_kJ_kgK, e_kJ_kg_paper in data_points:
+        try:
+            h0_J_kg = PropsSI('H', 'T', T0_K_fit, 'P', P0_Pa_fit, fluid)
+            s0_J_kgK = PropsSI('S', 'T', T0_K_fit, 'P', P0_Pa_fit, fluid)
 
-# 点09 (已在你的示例中)
-P09_Pa = to_pascal(1500.00, 'kpa')
-T09_K = to_kelvin(127.76)
-state09_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点09 (ORC透平入口)")
-state09_orc.props_from_PT(P09_Pa, T09_K)
-state09_orc.m_dot = 677.22
-print(state09_orc)
-print(f"表10预期: P=1500.00 kPa, T=127.76 C, h=505.35 kJ/kg, s=1.86 kJ/kgK, e=61.21 kJ/kg, q_m=677.22 kg/s\n")
+            # 将论文中的h和s转换为J/kg和J/kgK
+            h_J_kg_paper = h_kJ_kg * 1000
+            s_J_kgK_paper = s_kJ_kgK * 1000
 
-# 点010
-P010_Pa = to_pascal(445.10, 'kpa')
-T010_K = to_kelvin(94.67)
-state010_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点010 (ORC透平出口)")
-state010_orc.props_from_PT(P010_Pa, T010_K)
-state010_orc.m_dot = 677.22
-print(state010_orc)
-print(f"表10预期: P=445.10 kPa, T=94.67 C, h=485.51 kJ/kg, s=1.88 kJ/kgK, e=37.52 kJ/kg, q_m=677.22 kg/s\n")
+            e_calc_J_kg = (h_J_kg_paper - h0_J_kg) - T0_K_fit * (s_J_kgK_paper - s0_J_kgK)
+            e_calc_kJ_kg = e_calc_J_kg / 1000
+            
+            errors.append(e_calc_kJ_kg - e_kJ_kg_paper)
+        except Exception as e:
+            # print(f"Error calculating for {point_name} with T0={T0_K_fit-273.15:.2f}C, P0={P0_Pa_fit/1000:.2f}kPa: {e}")
+            errors.append(1e6) # 如果计算出错，也返回一个较大的误差
+    return errors
 
-# 点011 (已在你的示例中, 但这里用P,T)
-P011_Pa = to_pascal(445.10, 'kpa')
-T011_K = to_kelvin(58.66) # 表中直接给了温度
-state011_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点011 (ORC冷凝器出口)")
-# 验证是否接近饱和液体
-# state011_orc_PQ = StatePoint(fluid_name=fluid_r245fa, name="ORC点011 (PQ法)")
-# state011_orc_PQ.props_from_PQ(P011_Pa, 0)
-# print("PQ法计算011:", state011_orc_PQ) # 输出 T 应该是 58.66 C 左右
-state011_orc.props_from_PT(P011_Pa, T011_K) # 使用表中的P,T
-state011_orc.m_dot = 677.22
-print(state011_orc)
-print(f"表10预期: P=445.10 kPa, T=58.66 C, h=278.39 kJ/kg, s=1.26 kJ/kgK, e=5.40 kJ/kg, q_m=677.22 kg/s\n")
+def run_t0_p0_fitting():
+    print("\n--- 开始反推参考状态 T0 和 P0 ---")
+    
+    # 初始猜测值 (T0 in Kelvin, P0 in Pascal)
+    initial_T0_K = 25.0 + 273.15
+    initial_P0_Pa = 101.325 * 1000
+    initial_params = [initial_T0_K, initial_P0_Pa]
 
-# 点012
-P012_Pa = to_pascal(1500.00, 'kpa')
-T012_K = to_kelvin(59.37)
-state012_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点012 (ORC泵出口)")
-state012_orc.props_from_PT(P012_Pa, T012_K)
-state012_orc.m_dot = 677.22
-print(state012_orc)
-print(f"表10预期: P=1500.00 kPa, T=59.37 C, h=279.52 kJ/kg, s=1.26 kJ/kgK, e=6.29 kJ/kg, q_m=677.22 kg/s\n")
+    # 参数边界 (T0: 0C to 50C, P0: 80kPa to 120kPa)
+    bounds_T0_P0 = ([273.15, 80000], [273.15 + 50, 120000])
 
-# 假设你的 StatePoint 类定义，to_pascal, to_kelvin 函数，以及 T0_K, P0_Pa 已经定义好了
-# from your_module import StatePoint, to_pascal, to_kelvin, T0_K, P0_Pa
-# 例如：
-# T0_K = to_kelvin(25)
-# P0_Pa = to_pascal(101.325, 'kpa')
+    try:
+        result = scipy.optimize.least_squares(
+            exergy_error_func,
+            initial_params,
+            args=(table10_data,),
+            bounds=bounds_T0_P0,
+            verbose=1 # 0 for no output, 1 for termination report, 2 for detailed progress
+        )
 
-print("--- 正在验证表10中的所有状态点 (假设P,T或P,Q已知) ---")
+        if result.success:
+            T0_fit_K, P0_fit_Pa = result.x
+            print(f"\n优化成功!")
+            print(f"  反推得到的参考温度 T0 = {T0_fit_K - 273.15:.2f} °C ({T0_fit_K:.2f} K)")
+            print(f"  反推得到的参考压力 P0 = {P0_fit_Pa / 1000:.3f} kPa ({P0_fit_Pa:.0f} Pa)")
 
-# --- SCBC 工质: CO2 ---
-fluid_co2 = 'CO2'
-
-# 点1
-P1_Pa = to_pascal(7400.00, 'kpa')
-T1_K = to_kelvin(35.00)
-state1 = StatePoint(fluid_name=fluid_co2, name="SCBC点1 (主压气机入口)")
-state1.props_from_PT(P1_Pa, T1_K)
-state1.m_dot = 1945.09 # kg/s
-print(state1)
-print(f"表10预期: P=7400.00 kPa, T=35.00 C, h=402.40 kJ/kg, s=1.66 kJ/kgK, e=200.84 kJ/kg, q_m=1945.09 kg/s\n")
-
-# 点2 (已在你的示例中)
-P2_Pa = to_pascal(24198.00, 'kpa')
-T2_K = to_kelvin(121.73)
-state2 = StatePoint(fluid_name=fluid_co2, name="SCBC点2 (主压气机出口)")
-state2.props_from_PT(P2_Pa, T2_K)
-state2.m_dot = 1945.09
-print(state2)
-print(f"表10预期: P=24198.00 kPa, T=121.73 C, h=453.36 kJ/kg, s=1.68 kJ/kgK, e=246.29 kJ/kg, q_m=1945.09 kg/s\n")
-
-# 点3
-P3_Pa = to_pascal(24198.00, 'kpa')
-T3_K = to_kelvin(281.92)
-state3 = StatePoint(fluid_name=fluid_co2, name="SCBC点3 (再压气机出口/HTR冷端入口)")
-state3.props_from_PT(P3_Pa, T3_K)
-state3.m_dot = 2641.42 # 注意流量变化
-print(state3)
-print(f"表10预期: P=24198.00 kPa, T=281.92 C, h=696.46 kJ/kg, s=2.21 kJ/kgK, e=341.30 kJ/kg, q_m=2641.42 kg/s\n")
-
-# 点4
-P4_Pa = to_pascal(24198.00, 'kpa')
-T4_K = to_kelvin(417.94)
-state4 = StatePoint(fluid_name=fluid_co2, name="SCBC点4 (HTR冷端出口/ER入口)")
-state4.props_from_PT(P4_Pa, T4_K)
-state4.m_dot = 2641.42
-print(state4)
-print(f"表10预期: P=24198.00 kPa, T=417.94 C, h=867.76 kJ/kg, s=2.48 kJ/kgK, e=434.43 kJ/kg, q_m=2641.42 kg/s\n")
-
-# 点5
-P5_Pa = to_pascal(24198.00, 'kpa')
-T5_K = to_kelvin(599.85)
-state5 = StatePoint(fluid_name=fluid_co2, name="SCBC点5 (ER出口/透平入口)")
-state5.props_from_PT(P5_Pa, T5_K)
-state5.m_dot = 2641.42
-print(state5)
-print(f"表10预期: P=24198.00 kPa, T=599.85 C, h=1094.91 kJ/kg, s=2.77 kJ/kgK, e=579.03 kJ/kg, q_m=2641.42 kg/s\n")
-
-# 点6
-P6_Pa = to_pascal(7400.00, 'kpa')
-T6_K = to_kelvin(455.03)
-state6 = StatePoint(fluid_name=fluid_co2, name="SCBC点6 (透平出口/HTR热端入口)")
-state6.props_from_PT(P6_Pa, T6_K)
-state6.m_dot = 2641.42
-print(state6)
-print(f"表10预期: P=7400.00 kPa, T=455.03 C, h=932.38 kJ/kg, s=2.80 kJ/kgK, e=409.40 kJ/kg, q_m=2641.42 kg/s\n")
-
-# 点7
-P7_Pa = to_pascal(7400.00, 'kpa')
-T7_K = to_kelvin(306.16)
-state7 = StatePoint(fluid_name=fluid_co2, name="SCBC点7 (HTR热端出口/LTR热端入口)")
-state7.props_from_PT(P7_Pa, T7_K)
-state7.m_dot = 2641.42
-print(state7)
-print(f"表10预期: P=7400.00 kPa, T=306.16 C, h=761.08 kJ/kg, s=2.54 kJ/kgK, e=312.52 kJ/kg, q_m=2641.42 kg/s\n")
-
-# 点8
-P8_Pa = to_pascal(7400.00, 'kpa')
-T8_K = to_kelvin(147.55)
-state8 = StatePoint(fluid_name=fluid_co2, name="SCBC点8 (LTR热端出口/再压气机入口)")
-state8.props_from_PT(P8_Pa, T8_K)
-state8.m_dot = 1945.09 # 注意流量变化 (分流点之后)
-print(state8)
-print(f"表10预期: P=7400.00 kPa, T=147.55 C, h=582.06 kJ/kg, s=2.17 kJ/kgK, e=235.75 kJ/kg, q_m=1945.09 kg/s\n")
-
-# 点9
-P9_Pa = to_pascal(7400.00, 'kpa')
-T9_K = to_kelvin(84.26)
-state9 = StatePoint(fluid_name=fluid_co2, name="SCBC点9 (LTR冷端出口/混合点)") # 也可能是GO入口
-state9.props_from_PT(P9_Pa, T9_K)
-state9.m_dot = 1945.09 # TODO: 这里的流量 q_m 在表中点9是1945.09，但这点应该是从LTR冷端流向GO的流量
-                       # 或者是 LTR 热端出口分流后去往 GO 的那部分？
-                       # 查图3a: 点9是LTR热端出口流向GO的。点8是LTR热端出口流向RC的。
-                       # 表10中点8和点9的q_m是不同的，这点需要注意，似乎与图不完全对应。
-                       # 假设点9是CO2流经GO之前的状态
-                       # 表10的点9 (CO2): P=7400 kPa, T=84.26 C, h=503.44, s=1.97, e=214.69, qm=1945.09
-                       # 这应该是CO2在GO（气体冷却器/ORC蒸发器）的入口状态
-print(state9)
-print(f"表10预期 (CO2点9): P=7400.00 kPa, T=84.26 C, h=503.44 kJ/kg, s=1.97 kJ/kgK, e=214.69 kJ/kg, q_m=1945.09 kg/s\n")
+            print("\n使用反推的T0, P0重新计算各点㶲值与论文值的对比:")
+            print("状态点名\t\t流体\t论文e (kJ/kg)\t计算e (kJ/kg)\t差值 (kJ/kg)")
+            # 需要重新获取PropsSI，因为 exergy_error_func 内部的 T0_K, P0_Pa 是局部变量
+            # 或者直接使用 result.fun (即误差)
+            final_errors = result.fun # exergy_error_func([T0_fit_K, P0_fit_Pa], table10_data)
+            for i, (point_name, fluid, _, _, _, _, e_kJ_kg_paper) in enumerate(table10_data):
+                # 确保 final_errors[i] 是 e_calc - e_paper
+                # 如果 exergy_error_func 返回的是这个差值，那么 e_calc = e_paper + final_errors[i]
+                calc_e = e_kJ_kg_paper + final_errors[i] 
+                print(f"{point_name:<18}\t{fluid:<6}\t{e_kJ_kg_paper:<12.2f}\t{calc_e:<14.2f}\t{final_errors[i]:<12.2f}")
+            
+            avg_abs_error = np.mean(np.abs(final_errors)) # 需要 import numpy as np
+            print(f"\n平均绝对误差: {avg_abs_error:.3f} kJ/kg")
+            print(f"均方根误差 (RMSE): {np.sqrt(np.mean(np.array(final_errors)**2)):.3f} kJ/kg")
 
 
-# --- ORC 工质: R245fa ---
-fluid_r245fa = 'R245fa'
+        else:
+            print(f"\n优化未成功: {result.message}")
+    except ImportError:
+        print("\n错误: 需要安装 scipy 库才能运行此反推功能。请运行 'pip install scipy'")
+        print("您也可能需要 'pip install numpy' (如果脚本中其他地方未导入numpy)")
+    except Exception as e_fit:
+        print(f"\n运行反推时发生错误: {e_fit}")
 
-# 点09 (已在你的示例中)
-P09_Pa = to_pascal(1500.00, 'kpa')
-T09_K = to_kelvin(127.76)
-state09_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点09 (ORC透平入口)")
-state09_orc.props_from_PT(P09_Pa, T09_K)
-state09_orc.m_dot = 677.22
-print(state09_orc)
-print(f"表10预期: P=1500.00 kPa, T=127.76 C, h=505.35 kJ/kg, s=1.86 kJ/kgK, e=61.21 kJ/kg, q_m=677.22 kg/s\n")
+# 为了使上面的平均绝对误差和RMSE计算工作，确保numpy已导入
+# 如果脚本其他地方没有 import numpy as np，可以在文件顶部添加
+# import numpy as np # 这一行已在脚本开头存在
 
-# 点010
-P010_Pa = to_pascal(445.10, 'kpa')
-T010_K = to_kelvin(94.67)
-state010_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点010 (ORC透平出口)")
-state010_orc.props_from_PT(P010_Pa, T010_K)
-state010_orc.m_dot = 677.22
-print(state010_orc)
-print(f"表10预期: P=445.10 kPa, T=94.67 C, h=485.51 kJ/kg, s=1.88 kJ/kgK, e=37.52 kJ/kg, q_m=677.22 kg/s\n")
+# 修改 __main__ 部分以包含新的函数调用
+# 找到原有的 if __name__ == "__main__": 部分并修改，或者确保它是这样调用的：
+# (假设原有的验证代码在 if __name__ == "__main__": 块内或被一个main函数调用)
 
-# 点011 (已在你的示例中, 但这里用P,T)
-P011_Pa = to_pascal(445.10, 'kpa')
-T011_K = to_kelvin(58.66) # 表中直接给了温度
-state011_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点011 (ORC冷凝器出口)")
-# 验证是否接近饱和液体
-# state011_orc_PQ = StatePoint(fluid_name=fluid_r245fa, name="ORC点011 (PQ法)")
-# state011_orc_PQ.props_from_PQ(P011_Pa, 0)
-# print("PQ法计算011:", state011_orc_PQ) # 输出 T 应该是 58.66 C 左右
-state011_orc.props_from_PT(P011_Pa, T011_K) # 使用表中的P,T
-state011_orc.m_dot = 677.22
-print(state011_orc)
-print(f"表10预期: P=445.10 kPa, T=58.66 C, h=278.39 kJ/kg, s=1.26 kJ/kgK, e=5.40 kJ/kg, q_m=677.22 kg/s\n")
-
-# 点012
-P012_Pa = to_pascal(1500.00, 'kpa')
-T012_K = to_kelvin(59.37)
-state012_orc = StatePoint(fluid_name=fluid_r245fa, name="ORC点012 (ORC泵出口)")
-state012_orc.props_from_PT(P012_Pa, T012_K)
-state012_orc.m_dot = 677.22
-print(state012_orc)
-print(f"表10预期: P=1500.00 kPa, T=59.37 C, h=279.52 kJ/kg, s=1.26 kJ/kgK, e=6.29 kJ/kg, q_m=677.22 kg/s\n")
-
+# 这是一个示例，说明如何修改或确保 __main__ 调用了新函数
+# 如果脚本末尾没有 if __name__ == "__main__":，则可以直接添加：
+# if __name__ == "__main__": (此行已被上面的新 __main__ 块替换)
+    # ... (原有的状态点验证代码已被新的验证和CSV输出逻辑替换) ...
+    
+    # 之前的 run_t0_p0_fitting() 函数定义依然存在于文件末尾
+    # 如果需要再次运行拟合，可以取消下面这行的注释：
+    # run_t0_p0_fitting()
+    print("\n--- 脚本执行完毕 ---")
