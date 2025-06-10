@@ -1,27 +1,3 @@
----
-title: GitHub仓库本地应用完整指南
-katex: true
-date: 2025-06-10 19:51:48
-tags: 
-    - GitHub
-    - git
-    - SSH
-categories: 网络研究
-copyright_info:
-sticky:
-toc: true
-comment: true
-home_cover:
-home_cover_height:
-post_cover:
-post_cover_height:
-share: true
-password:
-author:
-code_block_shrink:
-excerpt: 本地操作GitHub仓库的完整指南，包含SSH密钥配置、分支管理、代理设置、稀疏检出等高级操作
----
-
 ## 概述
 
 本文是一份完整的GitHub仓库本地操作指南，涵盖从基础的仓库克隆到高级的SSH配置、分支管理等各种实用操作。无论你是Git新手还是有经验的开发者，都能在这里找到所需的操作方法。
