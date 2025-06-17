@@ -1,0 +1,23 @@
+{
+  "name": "Lightweight Dev Container",
+  "image": "ubuntu:22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Augment.vscode-augment",
+        "MS-CEINTL.vscode-language-pack-zh-hans"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
