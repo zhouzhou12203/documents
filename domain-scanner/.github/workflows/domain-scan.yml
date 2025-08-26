@@ -1,0 +1,144 @@
+name: Domain Scanner
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_file:
+        description: 'Config file to use for scanning'
+        required: false
+        default: 'config.toml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Clean and Build
+      run: |
+        go mod tidy
+        go build -v .
+
+    - name: Test
+      run: go test -v ./...
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v6
+      with:
+        version: latest
+        args: --timeout=5m
+
+  scan:
+    needs: [build, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Run domain scanner
+        run: |
+          CONFIG_FILE=${{ github.event.inputs.config_file || 'config.toml' }}
+          go run . -config $CONFIG_FILE
+
+      - name: Create results summary
+        run: |
+          echo "## Domain Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Total domains checked: $(cat results/available_domains*.txt results/registered_domains*.txt 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Available domains: $(cat results/available_domains*.txt 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Registered domains: $(cat results/registered_domains*.txt 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Available Domains" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat results/available_domains*.txt 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Create GitHub Issue with results
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Find the actual file names
+            const availableFiles = fs.readdirSync('results').filter(file => file.startsWith('available_domains'));
+            const registeredFiles = fs.readdirSync('results').filter(file => file.startsWith('registered_domains'));
+            
+            const availableDomains = availableFiles.length > 0 ? fs.readFileSync(path.join('results', availableFiles[0]), 'utf8') : '';
+            const registeredDomains = registeredFiles.length > 0 ? fs.readFileSync(path.join('results', registeredFiles[0]), 'utf8') : '';
+            
+            const issueTitle = `Domain Scan Results - ${new Date().toISOString().split('T')[0]}`;
+            const issueBody = `
+            ## Domain Scan Results
+            
+            ### Summary
+            - Available domains: ${availableDomains.split('\n').filter(line => line.trim() !== '').length}
+            - Registered domains: ${registeredDomains.split('\n').filter(line => line.trim() !== '').length}
+            
+            ### Available Domains
+            \`\`\`
+            ${availableDomains}
+            \`\`\`
+            
+            ### Registered Domains
+            \`\`\`
+            ${registeredDomains}
+            \`\`\`
+            `;
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body: issueBody
+            });
+
+      - name: Upload results as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: domain-scan-results
+          path: results/
+
+  release:
+    needs: [build, lint]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,23 @@
+# BMad files
+.bmad-core
+.claude/commands/BMad
+docs/
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*/domain-scanner
+
+# Go workspace
+go.work
+
+# Output files
+available_domains_*.txt
+registered_domains_*.txt
+
+
+.DS_Store

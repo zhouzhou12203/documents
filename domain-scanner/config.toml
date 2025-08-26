@@ -1,0 +1,53 @@
+# 域名扫描器配置文件
+
+# 域名生成配置
+[domain]
+# 域名长度
+length = 4
+
+# 域名后缀
+suffix = ".de"
+
+# 域名模式:
+# d: 纯数字 (例如: 123.li)
+# D: 纯字母 (例如: abc.li)
+# a: 字母数字混合 (例如: a1b.li)
+pattern = "D"
+
+# 正则表达式过滤器 (可选)
+# regex_filter = "^[a-z]{2}[0-9]$"
+
+# 扫描行为配置
+[scanner]
+# 查询间隔 (毫秒)
+delay = 1000
+
+# 并发工作线程数
+workers = 10
+
+# 是否显示已注册的域名
+show_registered = false
+
+# 启用的检测方法
+[scanner.methods]
+dns_check = true
+whois_check = true
+ssl_check = true
+http_check = false  # 新增HTTP检查选项
+
+# 输出配置
+[output]
+# 可用域名文件名模板
+available_file = "available_domains_{pattern}_{length}_{suffix}.txt"
+
+# 已注册域名文件名模板
+registered_file = "registered_domains_{pattern}_{length}_{suffix}.txt"
+
+# 特殊状态域名文件名模板
+special_status_file = "special_status_domains_{pattern}_{length}_{suffix}.txt"
+
+# 结果文件保存目录
+output_dir = "./results"
+
+# 是否在控制台显示详细结果
+verbose = true
